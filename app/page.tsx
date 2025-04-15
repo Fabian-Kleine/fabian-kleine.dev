@@ -1,103 +1,106 @@
-import Image from "next/image";
+import ThemeParticles from "@/components/magicui/theme-particles";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
+import { BlurFade } from "@/components/magicui/blur-fade";
+import { Button } from "@/components/ui/button";
+import { FolderGit2 } from "lucide-react";
+import GithubIcon from "@/components/icons/github";
+import Link from "next/link";
+import RandomEmoji from "@/components/icons/random-emoji";
+import {
+  AnimatedSpan,
+  Terminal,
+  TypingAnimation as TerminalTypingAnimation,
+} from "@/components/magicui/terminal";
+import ConfettiCanon from "@/components/magicui/confetti";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const birthday = new Date("1975-07-326");
+  const today = new Date();
+  const isBirthday = today.getDate() === birthday.getDate() && today.getMonth() === birthday.getMonth();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <main className="min-h-screen">
+      <section id="about" aria-label="about" className="flex flex-wrap lg:flex-nowrap items-center justify-center h-screen w-full px-6 lg:px-36">
+        <div aria-hidden className="gradient-bg opacity-0 dark:opacity-100" />
+        <ThemeParticles />
+        {isBirthday && (
+          <ConfettiCanon />
+        )}
+        <div className="container py-24 space-y-4">
+          <BlurFade delay={2} duration={.7} direction="down">
+            <RandomEmoji birthday={isBirthday} />
+          </BlurFade>
+          <TypingAnimation duration={75} as="h1" className="tracking-tighter text-3xl sm:text-4xl md:text-5xl lg:text-6xl/none font-bold"> Hi, I'm Fabian Kleine</TypingAnimation>
+          <TypingAnimation as="p" duration={35} className="text-balance text-muted-foreground text-lg font-normal">
+            I'm an apprentice and selftaught Programmer focusing on web development
+          </TypingAnimation>
+          <div className="flex gap-2 items-center">
+            <BlurFade delay={1} duration={1} direction="up">
+              <Link href='/projects'>
+                <Button size='lg'>
+                  <FolderGit2 />
+                  Projects
+                </Button>
+              </Link>
+            </BlurFade>
+            <BlurFade delay={1.1} duration={1} direction="up">
+              <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer">
+                <Button size='lg' variant='outline' className="w-10 bg-background">
+                  <GithubIcon />
+                  <span className="sr-only">Github</span>
+                </Button>
+              </a>
+            </BlurFade>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <BlurFade delay={3} duration={1} direction="up">
+          <Terminal className="min-w-[500px] h-[500px] bg-background/50 backdrop-blur-3xl">
+            <TerminalTypingAnimation
+              duration={75}
+              delay={3000}
+              className="text-sm font-mono text-muted-foreground text-wrap"
+            >portfolio init --name="Fabian Kleine" --type="web" --location="Germany"
+            </TerminalTypingAnimation>
+            <AnimatedSpan delay={9000} className="text-green-500">
+              <span>✔ Web Development</span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={9500} className="text-green-500">
+              <span>✔ Frontend</span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={10000} className="text-green-500">
+              <span>✔ Backend</span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={10500} className="text-green-500">
+              <span>✔ Full-Stack</span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={11000} className="text-blue-500">
+              <span>ℹ Languages:</span>
+              <span className="pl-2">JavaScript, TypeScript, PHP</span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={11500} className="text-blue-500">
+              <span>ℹ Frameworks:</span>
+              <span className="pl-2">Vue, React, Nextjs</span>
+            </AnimatedSpan>
+            {isBirthday && (
+              <AnimatedSpan delay={12000} className="text-amber-500">
+                <span>🎉 Today is my Birthday</span>
+              </AnimatedSpan>
+            )}
+            <TerminalTypingAnimation
+              duration={75}
+              delay={isBirthday ? 13000 : 12500}
+              className="text-sm font-mono text-muted-foreground text-wrap"
+            >Success! Portfolio created!
+            </TerminalTypingAnimation>
+            <AnimatedSpan delay={15000} className="text-muted-foreground">
+              <span>- Projects: <Link className="hover:underline" href={'/projects'}>/projects</Link></span>
+            </AnimatedSpan>
+            <AnimatedSpan delay={15500} className="text-muted-foreground">
+              <span>- Github: <a className="hover:underline" href={'https://github.com/Fabian-Kleine'} target="_blank" rel='noopener noreferrer'>https://github.com/Fabian-Kleine</a></span>
+            </AnimatedSpan>
+          </Terminal>
+        </BlurFade>
+      </section>
+    </main>
   );
 }
