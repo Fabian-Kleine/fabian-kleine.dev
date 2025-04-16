@@ -6,8 +6,45 @@ import { FolderGit2 } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import Link from "next/link";
 import RandomEmoji from "@/components/icons/random-emoji";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
+import { IconCloudHome } from "@/components/icon-cloud-home";
+import { ThreeDMarquee } from "@/components/aceternityui/3d-marquee";
+import { AnimatedListHome } from "@/components/animated-list-home";
 
 export default function Home() {
+  const projectsMarqueeImages = [
+    "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
+    "https://assets.aceternity.com/animated-modal.png",
+    "https://assets.aceternity.com/animated-testimonials.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
+    "https://assets.aceternity.com/github-globe.png",
+    "https://assets.aceternity.com/glare-card.png",
+    "https://assets.aceternity.com/layout-grid.png",
+    "https://assets.aceternity.com/flip-text.png",
+    "https://assets.aceternity.com/hero-highlight.png",
+    "https://assets.aceternity.com/carousel.webp",
+    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
+    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    "https://assets.aceternity.com/signup-form.png",
+    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
+    "https://assets.aceternity.com/spotlight-new.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
+    "https://assets.aceternity.com/tabs.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
+    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
+    "https://assets.aceternity.com/glowing-effect.webp",
+    "https://assets.aceternity.com/hover-border-gradient.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
+    "https://assets.aceternity.com/macbook-scroll.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
+    "https://assets.aceternity.com/multi-step-loader.png",
+    "https://assets.aceternity.com/vortex.png",
+    "https://assets.aceternity.com/wobble-card.png",
+    "https://assets.aceternity.com/world-map.webp",
+  ];
 
   return (
     <main className="min-h-screen">
@@ -41,6 +78,25 @@ export default function Home() {
             </BlurFade>
           </div>
         </div>
+        <BlurFade className="w-full overflow-visible" delay={2.5} duration={1} direction="up">
+          <BentoGrid className="overflow-visible">
+            <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technoliges" background={
+              <div className="absolute inset-0 flex items-center justify-center">
+                <IconCloudHome className="-mt-14" icons={['html5', 'css3', 'javascript', 'typescript', 'node.js', 'react', 'vue.js', 'next.js', 'tailwindcss', 'php', 'shadcnui', 'mongodb', 'supabase', 'python', 'mysql', 'git', 'github', 'bootstrap']} />
+              </div>
+            } className="!bg-background/50 backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
+            <BentoCard name="Projects" description="Many different Projects" cta="Discover Projects" href="/projects" background={
+              <div className="absolute mx-auto max-w-full">
+                <ThreeDMarquee images={projectsMarqueeImages} />
+              </div>
+            } className="!bg-background/50 backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
+            <BentoCard name="Contact" description="Get in touch with me" cta="Contact Me" href="/contact" background={
+              <div className="absolute inset-0 flex items-center justify-center px-2">
+                <AnimatedListHome className="mt-40" />
+              </div>
+            } className="!bg-background/50 backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
+          </BentoGrid>
+        </BlurFade>
       </section>
     </main>
   );
