@@ -1,12 +1,5 @@
-interface RandomEmojiProps {
-    birthday?: boolean;
-}
-
-export default function RandomEmoji({ birthday }: RandomEmojiProps) {
+export default function RandomEmoji() {
     let emojis = ["👋", "🥶", "✌️", "🤖", "🖥️", "📱", "💻", "💾"];
-    if (birthday) {
-        emojis = ["🎂", "🎉", "🎊", "🥳"];
-    }
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
     return (
