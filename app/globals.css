@@ -135,6 +135,7 @@
 
 html, body {
   overflow-x: hidden;
+  transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
 .gradient-bg {
