@@ -99,7 +99,7 @@ export default function Home() {
         </BlurFade>
       </section>
       <section id="technologies" aria-label="technologies" className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
-        <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Technolgy Stack</h2>
+        <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Technology Stack</h2>
         <TechStackMarqueesHome className="mt-4" />
       </section>
     </>
