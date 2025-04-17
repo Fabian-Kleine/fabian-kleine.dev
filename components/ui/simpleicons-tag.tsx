@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface SimpleIconsTagProps {
@@ -11,6 +12,16 @@ interface SimpleIconsTagProps {
 
 export function SimpleIconsTag({ name, icon, className }: SimpleIconsTagProps) {
     const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
+
     let color = icon;
     if ((icon == "github" || icon == "shadcnui" || icon == "next.js" || icon == "vercel" || icon == "express") && resolvedTheme === "dark") {
         color = "ffffff";
