@@ -114,6 +114,10 @@ export function TechStackMarqueesHome({ className }: TechStackMarqueesHomeProps)
             icon: `https://cdn.simpleicons.org/github/${resolvedTheme === "dark" ? "ffffff" : "github"}`,
         },
         {
+            name: "GitLab",
+            icon: "https://cdn.simpleicons.org/gitlab/gitlab",
+        },
+        {
             name: "Vite",
             icon: "https://cdn.simpleicons.org/vite/vite",
         },
