@@ -1,8 +1,21 @@
 export default function RandomEmoji() {
-    const emojis = ["👋", "🥶", "✌️", "🤖", "🖥️", "📱", "💻", "💾"];
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+    const emojis = [
+        { emoji: "👋", weight: 10 },
+        { emoji: "✌️", weight: 8 },
+        { emoji: "🖐", weight: 8 },
+        { emoji: "🙋‍♂️", weight: 5 },
+        { emoji: "👻", weight: 1 },
+        { emoji: "🤖", weight: 1 },
+    ];
 
-    return (
-        <span className="text-xl">{randomEmoji}</span>
-    );
+    const totalWeight = emojis.reduce((sum, { weight }) => sum + weight, 0);
+    const random = Math.random() * totalWeight;
+
+    let cumulativeWeight = 0;
+    const randomEmoji = emojis.find(({ weight }) => {
+        cumulativeWeight += weight;
+        return random < cumulativeWeight;
+    })?.emoji;
+
+    return <span className="text-xl">{randomEmoji}</span>;
 }
