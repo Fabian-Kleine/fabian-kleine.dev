@@ -159,7 +159,7 @@ html, body {
   border-radius: 50%;
   background: radial-gradient(#6B57D1, #22235A, transparent);
   filter: blur(100px);
-  animation: gradientPulse 8s ease infinite;
+  animation: gradientPulse 10s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
 }
@@ -181,7 +181,7 @@ html, body {
       transform: scale(1);
   }
   50% {
-      transform: scale(1.05);
+      transform: scale(1.1);
   }
   100% {
       transform: scale(1);
