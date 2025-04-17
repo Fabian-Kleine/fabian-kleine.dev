@@ -140,13 +140,13 @@ export function TechStackMarqueesHome({ className }: TechStackMarqueesHomeProps)
     ];
 
     return (
-        <div className={cn("relative space-y-10", className)}>
-            <Marquee>
+        <div className={cn("relative space-y-4", className)}>
+            <Marquee className="py-6">
                 {marqeeItems1.map((item) => (
                     <MarqueeItem key={item.name} {...item} />
                 ))}
             </Marquee>
-            <Marquee>
+            <Marquee className="py-6 mb-0">
                 {marqeeItems2.map((item) => (
                     <MarqueeItem key={item.name} {...item} />
                 ))}
