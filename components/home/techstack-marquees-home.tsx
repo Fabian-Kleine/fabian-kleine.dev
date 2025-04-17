@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getSimpleIconsUrl } from "@/lib/utils";
 import { Marquee } from "../magicui/marquee";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -29,118 +29,40 @@ export function TechStackMarqueesHome({ className }: TechStackMarqueesHomeProps)
         setMounted(true);
     }, []);
 
-    if (!mounted) {
+    if (!mounted || !resolvedTheme) {
         return null;
     }
 
     const marqeeItems1 = [
-        {
-            name: "HTML",
-            icon: "https://cdn.simpleicons.org/html5/html5",
-        },
-        {
-            name: "CSS",
-            icon: "https://cdn.simpleicons.org/css3/css3",
-        },
-        {
-            name: "JavaScript",
-            icon: "https://cdn.simpleicons.org/javascript/javascript",
-        },
-        {
-            name: "TypeScript",
-            icon: "https://cdn.simpleicons.org/typescript/typescript",
-        },
-        {
-            name: "Node.js",
-            icon: "https://cdn.simpleicons.org/node.js/node.js",
-        },
-        {
-            name: "Express",
-            icon: `https://cdn.simpleicons.org/express/${resolvedTheme === "dark" ? "ffffff" : "express"}`,
-        },
-        {
-            name: "Vue.js",
-            icon: "https://cdn.simpleicons.org/vue.js/vue.js",
-        },
-        {
-            name: "React",
-            icon: "https://cdn.simpleicons.org/react/react",
-        },
-        {
-            name: "Next.js",
-            icon: `https://cdn.simpleicons.org/nextdotjs/${resolvedTheme === "dark" ? "ffffff" : "nextdotjs"}`,
-        },
-        {
-            name: "Tailwind CSS",
-            icon: "https://cdn.simpleicons.org/tailwindcss/tailwindcss",
-        },
-        {
-            name: "PHP",
-            icon: "https://cdn.simpleicons.org/php/php",
-        },
-        {
-            name: "MongoDB",
-            icon: "https://cdn.simpleicons.org/mongodb/mongodb",
-        },
-        {
-            name: "Supabase",
-            icon: "https://cdn.simpleicons.org/supabase/supabase",
-        },
-        {
-            name: "MySQL",
-            icon: "https://cdn.simpleicons.org/mysql/mysql",
-        },
-        {
-            name: "Python",
-            icon: "https://cdn.simpleicons.org/python/python",
-        },
+        { name: "HTML", icon: getSimpleIconsUrl("html5", resolvedTheme) },
+        { name: "CSS", icon: getSimpleIconsUrl("css3", resolvedTheme) },
+        { name: "JavaScript", icon: getSimpleIconsUrl("javascript", resolvedTheme) },
+        { name: "TypeScript", icon: getSimpleIconsUrl("typescript", resolvedTheme) },
+        { name: "Node.js", icon: getSimpleIconsUrl("node.js", resolvedTheme) },
+        { name: "Express", icon: getSimpleIconsUrl("express", resolvedTheme) },
+        { name: "Vue.js", icon: getSimpleIconsUrl("vue.js", resolvedTheme) },
+        { name: "React", icon: getSimpleIconsUrl("react", resolvedTheme) },
+        { name: "Next.js", icon: getSimpleIconsUrl("next.js", resolvedTheme) },
+        { name: "Tailwind CSS", icon: getSimpleIconsUrl("tailwindcss", resolvedTheme) },
+        { name: "PHP", icon: getSimpleIconsUrl("php", resolvedTheme) },
+        { name: "MongoDB", icon: getSimpleIconsUrl("mongodb", resolvedTheme) },
+        { name: "Supabase", icon: getSimpleIconsUrl("supabase", resolvedTheme) },
+        { name: "MySQL", icon: getSimpleIconsUrl("mysql", resolvedTheme) },
+        { name: "Python", icon: getSimpleIconsUrl("python", resolvedTheme) },
     ];
     
     const marqeeItems2 = [
-        {
-            name: "Shadcn UI",
-            icon: `https://cdn.simpleicons.org/shadcnui/${resolvedTheme === "dark" ? "ffffff" : "shadcnui"}`,
-        },
-        {
-            name: "Bootstrap",
-            icon: "https://cdn.simpleicons.org/bootstrap/bootstrap",
-        },
-        {
-            name: "Git",
-            icon: "https://cdn.simpleicons.org/git/git",
-        },
-        {
-            name: "GitHub",
-            icon: `https://cdn.simpleicons.org/github/${resolvedTheme === "dark" ? "ffffff" : "github"}`,
-        },
-        {
-            name: "GitLab",
-            icon: "https://cdn.simpleicons.org/gitlab/gitlab",
-        },
-        {
-            name: "Vite",
-            icon: "https://cdn.simpleicons.org/vite/vite",
-        },
-        {
-            name: "Vercel",
-            icon: `https://cdn.simpleicons.org/vercel/${resolvedTheme === "dark" ? "ffffff" : "vercel"}`,
-        },
-        {
-            name: "Wordpress",
-            icon: "https://cdn.simpleicons.org/wordpress/wordpress",
-        },
-        {
-            name: "Plesk",
-            icon: "https://cdn.simpleicons.org/plesk/plesk",
-        },
-        {
-            name: "Postman",
-            icon: "https://cdn.simpleicons.org/postman/postman",
-        },
-        {
-            name: "PHPMyAdmin",
-            icon: "https://cdn.simpleicons.org/phpmyadmin/phpmyadmin",
-        }
+        { name: "Shadcn UI", icon: getSimpleIconsUrl("shadcnui", resolvedTheme) },
+        { name: "Bootstrap", icon: getSimpleIconsUrl("bootstrap", resolvedTheme) },
+        { name: "Git", icon: getSimpleIconsUrl("git", resolvedTheme) },
+        { name: "GitHub", icon: getSimpleIconsUrl("github", resolvedTheme) },
+        { name: "GitLab", icon: getSimpleIconsUrl("gitlab", resolvedTheme) },
+        { name: "Vite", icon: getSimpleIconsUrl("vite", resolvedTheme) },
+        { name: "Vercel", icon: getSimpleIconsUrl("vercel", resolvedTheme) },
+        { name: "Wordpress", icon: getSimpleIconsUrl("wordpress", resolvedTheme) },
+        { name: "Plesk", icon: getSimpleIconsUrl("plesk", resolvedTheme) },
+        { name: "Postman", icon: getSimpleIconsUrl("postman", resolvedTheme) },
+        { name: "PHPMyAdmin", icon: getSimpleIconsUrl("phpmyadmin", resolvedTheme) },
     ];
 
     return (

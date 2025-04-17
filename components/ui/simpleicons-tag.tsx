@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { cn, getSimpleIconsUrl } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -18,15 +18,11 @@ export function SimpleIconsTag({ name, icon, className }: SimpleIconsTagProps) {
         setMounted(true);
     }, []);
 
-    if (!mounted) {
+    if (!mounted || !resolvedTheme) {
         return null;
     }
 
-    let color = icon;
-    if ((icon == "github" || icon == "shadcnui" || icon == "next.js" || icon == "vercel" || icon == "express") && resolvedTheme === "dark") {
-        color = "ffffff";
-    }
-    const src = `https://cdn.simpleicons.org/${icon}/${color}`;
+    const src = getSimpleIconsUrl(icon, resolvedTheme);
 
     return (
         <div className={cn("inline-flex items-center gap-2 rounded-md border font-semibold px-4 py-2 text-xs", className)}>
