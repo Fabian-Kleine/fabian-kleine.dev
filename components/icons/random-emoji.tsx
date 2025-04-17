@@ -1,5 +1,5 @@
 export default function RandomEmoji() {
-    let emojis = ["👋", "🥶", "✌️", "🤖", "🖥️", "📱", "💻", "💾"];
+    const emojis = ["👋", "🥶", "✌️", "🤖", "🖥️", "📱", "💻", "💾"];
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
     return (
