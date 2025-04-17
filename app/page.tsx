@@ -80,7 +80,7 @@ export default function Home() {
         </div>
         <BlurFade className="w-full overflow-visible" delay={2.5} duration={1} direction="up">
           <BentoGrid className="overflow-visible">
-            <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technoliges" background={
+            <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technologies" background={
               <div className="absolute inset-0 flex items-center justify-center">
                 <SimpleIconsCloud className="-mt-14" icons={['html5', 'css3', 'javascript', 'typescript', 'node.js', 'react', 'vue.js', 'next.js', 'tailwindcss', 'php', 'mongodb', 'supabase', 'python', 'mysql', 'git']} />
               </div>
