@@ -113,7 +113,7 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-        <div className="space-y-28 mt-28">
+        <div className="space-y-28 my-28">
           <Project
             title="Weather App"
             img="/projects/weather-app.png"
