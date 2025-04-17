@@ -26,7 +26,7 @@ export default function Navbar() {
                     <SheetContent side="left" className="w-3/4 px-6">
                         <SheetHeader>
                             <SheetTitle>
-                                <div className="relative font-bold w-fit text-sm rounded-full px-4 py-2 transition-shadow duration-500 ease-out shadow-[inset_0_-8px_10px_#8fdfff1f] hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
+                                <div className="relative font-bold w-fit text-sm rounded-full px-4 py-1.5 transition-shadow duration-500 ease-out shadow-[inset_0_-8px_10px_#8fdfff1f] hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
                                     Fabian Kleine
                                     <ShineBorder shineColor={["#1e96fc", "#f72585", "#fb5607"]} />
                                 </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
                 </Sheet>
                 <div className="hidden md:flex gap-2">
                     <Link href={'/'} className="flex items-center mr-6">
-                        <div className="relative font-bold text-sm rounded-full px-4 py-2 transition-shadow duration-500 ease-out shadow-[inset_0_-8px_10px_#8fdfff1f] hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
+                        <div className="relative font-bold text-sm rounded-full px-4 py-1.5 transition-shadow duration-500 ease-out shadow-[inset_0_-8px_10px_#8fdfff1f] hover:shadow-[inset_0_-5px_10px_#8fdfff3f]">
                             Fabian Kleine
                             <ShineBorder shineColor={["#1e96fc", "#f72585", "#fb5607"]} />
                         </div>
