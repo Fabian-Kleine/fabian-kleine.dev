@@ -88,13 +88,18 @@ export function AnimatedListHome({
 }) {
     const [notifications, setNotifications] = useState(initialNotifications);
 
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setNotifications((prev) => [...prev, ...initialNotifications]);
-      }, 5000); // Append new notifications every 5 seconds
-  
-      return () => clearInterval(interval);
-    }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNotifications((prev) => {
+        const newNotifications = [...prev, ...initialNotifications];
+        // Limit the array size to avoid performance issues
+        const maxNotifications = 50; // Adjust this value as needed
+        return newNotifications.slice(-maxNotifications);
+      });
+    }, 5000); // Append new notifications every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
     
   return (
     <div
