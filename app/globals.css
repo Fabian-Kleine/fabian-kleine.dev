@@ -152,7 +152,7 @@ html, body {
 
 .gradient-bg {
   position: absolute;
-  top: 20%;
+  bottom: -50%;
   margin: 0 auto;
   width: 1000px;
   height: 1000px;

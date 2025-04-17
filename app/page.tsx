@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <>
-      <section id="about" aria-label="about" className="flex flex-col items-center justify-center min-h-screen w-full px-6 lg:px-36">
+      <section id="about" aria-label="about" className="relative flex flex-col items-center justify-center min-h-screen w-full px-6 lg:px-36">
         <div aria-hidden className="gradient-bg opacity-0 dark:opacity-100" />
         <div className="container py-24 space-y-4">
           <BlurFade delay={2} duration={.7} direction="down">
