@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import GithubIcon from "./icons/github";
 import Link from "next/link";
+import ImageVideo from "./image-video";
 
 interface ProjectProps {
     className?: string;
@@ -25,23 +26,7 @@ export default function Project({ className, title, img, video, description, bul
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
             <div className="lg:w-1/2 relative">
-
-                {video ? (
-                    <video
-                        className="rounded-3xl shadow-lg aspect-video"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onError={() => video = undefined}>
-                    </video>
-                ) : (
-                    <img
-                        src={img}
-                        alt={title}
-                        className="rounded-3xl shadow-lg aspect-video object-cover object-center"
-                    />
-                )}
+                <ImageVideo title={title} img={img} video={video} />
             </div>
             <div className="lg:w-1/2 space-y-4 lg:space-y-8">
                 <div className="space-y-4">
