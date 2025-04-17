@@ -117,6 +117,7 @@ export default function Home() {
           <Project
             title="Weather App"
             img="/projects/weather-app.png"
+            video="https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/weather-app2.mp4"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             bullets={["Lorem10", "Lorem10", "Lorem10", "Lorem10"]}
             techs={[{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Bootstrap", icon: "bootstrap" }, { name: "Meteomatics API", icon: "Rainmeter" }]}
