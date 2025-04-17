@@ -2,7 +2,7 @@ import ThemeParticles from "@/components/magicui/theme-particles";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Button } from "@/components/ui/button";
-import { FolderGit2 } from "lucide-react";
+import { ExternalLink, FolderGit2 } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import Link from "next/link";
 import RandomEmoji from "@/components/icons/random-emoji";
@@ -11,6 +11,7 @@ import { SimpleIconsCloud } from "@/components/magicui/simpleicons-cloud";
 import { ThreeDMarquee } from "@/components/aceternityui/3d-marquee";
 import { AnimatedListHome } from "@/components/home/animated-list-home";
 import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
+import Project from "@/components/project";
 
 export default function Home() {
   const projectsMarqueeImages = [
@@ -98,9 +99,42 @@ export default function Home() {
           </BentoGrid>
         </BlurFade>
       </section>
-      <section id="technologies" aria-label="technologies" className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
+      <section id="technologies" className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
         <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Technology Stack</h2>
         <TechStackMarqueesHome className="mt-4" />
+      </section>
+      <section id="featured" className="w-full bg-background px-6 lg:px-36 pt-24">
+        <div className="flex justify-between items-center">
+          <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Featured Projects</h2>
+          <Link href='/projects'>
+            <Button variant={'outline'}>
+              All Projects
+              <ExternalLink />
+            </Button>
+          </Link>
+        </div>
+        <div className="space-y-28 mt-28">
+          <Project
+            title="Weather App"
+            img="/projects/weather-app.png"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            bullets={["Lorem10", "Lorem10", "Lorem10", "Lorem10"]}
+            techs={[{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Bootstrap", icon: "bootstrap" }, { name: "Meteomatics API", icon: "Rainmeter" }]}
+            demo="https://projects.fabian-kleine.dev/weather"
+            github="https://github.com/Fabian-Kleine/weather-app"
+            href="/projects/weather-app"
+          />
+          <Project
+            title="My Wishlists"
+            img="/projects/mywishlists.png"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            bullets={["Lorem10", "Lorem10", "Lorem10", "Lorem10"]}
+            techs={[{ name: "Next.js", icon: "next.js" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "Supabase", icon: "supabase" }, { name: "Vercel", icon: "vercel" }]}
+            demo="https://mywishlists.fabian-kleine.dev"
+            github="https://github.com/Fabian-Kleine/MyWishlists"
+            href="/projects/mywishlists"
+          />
+        </div>
       </section>
     </>
   );
