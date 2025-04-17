@@ -1,0 +1,91 @@
+import { cn } from "@/lib/utils";
+import { SimpleIconsTag } from "./ui/simpleicons-tag";
+import { Button } from "./ui/button";
+import { ExternalLink } from "lucide-react";
+import GithubIcon from "./icons/github";
+import Link from "next/link";
+
+interface ProjectProps {
+    className?: string;
+    img: string;
+    video?: string;
+    title: string;
+    description: string;
+    bullets: string[];
+    demo?: string;
+    github?: string;
+    techs?: {
+        name: string;
+        icon: string;
+    }[];
+    href?: string;
+}
+
+export default function Project({ className, title, img, video, description, bullets, techs, demo, github, href }: ProjectProps) {
+    return (
+        <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
+            <div className="lg:w-1/2 relative">
+
+                {video ? (
+                    <video
+                        className="rounded-3xl shadow-lg aspect-video"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        onError={() => video = undefined}>
+                    </video>
+                ) : (
+                    <img
+                        src={img}
+                        alt={title}
+                        className="rounded-3xl shadow-lg aspect-video object-cover object-center"
+                    />
+                )}
+            </div>
+            <div className="lg:w-1/2 space-y-4 lg:space-y-8">
+                <div className="space-y-4">
+                    {href ? (
+                        <Link href={href}>
+                            <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{title}<ExternalLink size={30} /></h3>
+                        </Link>
+                    ) : (
+                        <h3 className="text-3xl lg:text-4xl font-bold">{title}</h3>
+                    )}
+                    <p>{description}</p>
+                    <ul className="space-y-4">
+                        {bullets.map((bullet, index) => (
+                            <li key={index} className="text-sm text-muted-foreground flex gap-1">
+                                <span className="text-primary">•</span>
+                                <span>{bullet}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                    {techs?.map((tech, index) => (
+                        <SimpleIconsTag key={index} name={tech.name} icon={tech.icon} />
+                    ))}
+                </div>
+                <div className="flex gap-4 pt-4">
+                    {demo && (
+                        <a href={demo} target="_blank" rel="noopener noreferrer">
+                            <Button size="lg">
+                                <ExternalLink />
+                                Live Demo
+                            </Button>
+                        </a>
+                    )}
+                    {github && (
+                        <a href={github} target="_blank" rel="noopener noreferrer">
+                            <Button size="lg" variant="outline">
+                                <GithubIcon />
+                                View Code
+                            </Button>
+                        </a>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
