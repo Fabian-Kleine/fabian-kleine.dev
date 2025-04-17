@@ -12,7 +12,7 @@ interface Item {
   time: string;
 }
 
-let initialNotifications = [
+const initialNotifications = [
   {
     name: "Payment received",
     description: "Magic UI",
