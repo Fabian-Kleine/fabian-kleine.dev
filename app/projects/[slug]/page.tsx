@@ -1,4 +1,8 @@
-import { TypographyH1 } from "@/components/typography";
+import { TypographyH1, TypographyH2, TypographyList, TypographyP } from "@/components/typography";
+import ImageVideo from "@/components/image-video";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, GithubIcon } from "lucide-react";
+import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
 
 export default async function Page({
     params,
@@ -10,7 +14,49 @@ export default async function Page({
     const { default: Post, metadata } = await import(`@/projects/${slug}.mdx`)
 
     return <>
-        <TypographyH1 className="mb-4 text-center">{metadata.title}</TypographyH1>
+        <div className="mb-8 flex flex-col items-center justify-center gap-4">
+            <ImageVideo
+                title={metadata.title}
+                img={metadata.image}
+                video={metadata.video}
+                className="max-w-[400px]"
+            />
+            <div className="flex flex-col gap-2 text-center">
+                <h1 className="tracking-tighter text-2xl sm:text-3xl md:text-4xl lg:text-5xl/none font-bold">{metadata.title}</h1>
+                <TypographyP className="!mt-1">{metadata.description}</TypographyP>
+            </div>
+            <div className="flex justify-center flex-wrap gap-2">
+                {metadata.techs?.map((tech: { name: string, icon: string }, index: number) => (
+                    <SimpleIconsTag key={index} name={tech.name} icon={tech.icon} />
+                ))}
+            </div>
+            <div className="flex gap-4 pt-4">
+                {metadata.demo && (
+                    <a href={metadata.demo} target="_blank" rel="noopener noreferrer">
+                        <Button size="lg">
+                            <ExternalLink />
+                            Live Demo
+                        </Button>
+                    </a>
+                )}
+                {metadata.github && (
+                    <a href={metadata.github} target="_blank" rel="noopener noreferrer">
+                        <Button size="lg" variant="outline">
+                            <GithubIcon />
+                            View Code
+                        </Button>
+                    </a>
+                )}
+            </div>
+        </div>
+        <TypographyH1>Quick Overview</TypographyH1>
+        <TypographyList className="space-y-4">
+            {metadata.bullets.map((bullet: string, index: number) => (
+                <li key={index}>
+                    <span>{bullet}</span>
+                </li>
+            ))}
+        </TypographyList>
         <Post />
     </>
 }

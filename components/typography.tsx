@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function TypographyH1({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl", className)}>
+        <h1 className={cn("scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl my-2", className)}>
             {children}
         </h1>
     );
@@ -13,7 +13,7 @@ export function TypographyH1({ children, className }: { children: React.ReactNod
 
 export function TypographyH2({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <h2 className={cn("scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0", className)}>
+        <h2 className={cn("scroll-m-20 text-3xl font-semibold tracking-tight my-2", className)}>
             {children}
         </h2>
     );
@@ -21,7 +21,7 @@ export function TypographyH2({ children, className }: { children: React.ReactNod
 
 export function TypographyH3({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <h3 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight", className)}>
+        <h3 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight my-2", className)}>
             {children}
         </h3>
     );
@@ -29,7 +29,7 @@ export function TypographyH3({ children, className }: { children: React.ReactNod
 
 export function TypographyH4({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <h4 className={cn("scroll-m-20 text-xl font-semibold tracking-tight", className)}>
+        <h4 className={cn("scroll-m-20 text-xl font-semibold tracking-tight my-2", className)}>
             {children}
         </h4>
     );
