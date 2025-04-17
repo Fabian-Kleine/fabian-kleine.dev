@@ -23,7 +23,7 @@ export const ThreeDMarquee = ({
             )}
         >
             <div className="flex size-full items-center justify-center">
-                <div className="size-[900px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
+                <div className="size-[1720px] lg:size-[900px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
                     <div
                         style={{
                             transform: "rotateX(55deg) rotateY(0deg) rotateZ(-45deg)",
@@ -39,7 +39,7 @@ export const ThreeDMarquee = ({
                                     repeatType: "reverse",
                                 }}
                                 key={colIndex + "marquee"}
-                                className="flex flex-col items-start gap-8 w-[300px]"
+                                className="flex flex-col items-start gap-8 lg:w-[300px]"
                             >
                                 <GridLineVertical className="-left-4" offset="80px" />
                                 {subarray.map((image, imageIndex) => (
@@ -56,9 +56,7 @@ export const ThreeDMarquee = ({
                                             key={imageIndex + image}
                                             src={image}
                                             alt={`Image ${imageIndex + 1}`}
-                                            className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
-                                            width={225}
-                                            height={161}
+                                            className="aspect-[970/700] lg:w-[225px] lg:h-[161px] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
                                         />
                                     </div>
                                 ))}
