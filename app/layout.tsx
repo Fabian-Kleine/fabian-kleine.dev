@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "next-themes";
+import ThemeParticles from "@/components/magicui/theme-particles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,12 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <Navbar />
-          {children}
+          <main className="relative min-h-screen overflow-clip">
+            <ThemeParticles />
+            {children}
+          </main>
         </ThemeProvider>
+
       </body>
     </html>
   );

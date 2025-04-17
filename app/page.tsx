@@ -7,9 +7,10 @@ import GithubIcon from "@/components/icons/github";
 import Link from "next/link";
 import RandomEmoji from "@/components/icons/random-emoji";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-import { IconCloudHome } from "@/components/icon-cloud-home";
+import { SimpleIconsCloud } from "@/components/magicui/simpleicons-cloud";
 import { ThreeDMarquee } from "@/components/aceternityui/3d-marquee";
-import { AnimatedListHome } from "@/components/animated-list-home";
+import { AnimatedListHome } from "@/components/home/animated-list-home";
+import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
 
 export default function Home() {
   const projectsMarqueeImages = [
@@ -47,10 +48,9 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen">
+    <>
       <section id="about" aria-label="about" className="flex flex-col items-center justify-center min-h-screen w-full px-6 lg:px-36">
         <div aria-hidden className="gradient-bg opacity-0 dark:opacity-100" />
-        <ThemeParticles />
         <div className="container py-24 space-y-4">
           <BlurFade delay={2} duration={.7} direction="down">
             <RandomEmoji />
@@ -82,7 +82,7 @@ export default function Home() {
           <BentoGrid className="overflow-visible">
             <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technoliges" background={
               <div className="absolute inset-0 flex items-center justify-center">
-                <IconCloudHome className="-mt-14" icons={['html5', 'css3', 'javascript', 'typescript', 'node.js', 'react', 'vue.js', 'next.js', 'tailwindcss', 'php', 'shadcnui', 'mongodb', 'supabase', 'python', 'mysql', 'git', 'github', 'bootstrap']} />
+                <SimpleIconsCloud className="-mt-14" icons={['html5', 'css3', 'javascript', 'typescript', 'node.js', 'react', 'vue.js', 'next.js', 'tailwindcss', 'php', 'mongodb', 'supabase', 'python', 'mysql', 'git']} />
               </div>
             } className="!bg-background/50 backdrop-blur-xs dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
             <BentoCard name="Projects" description="Many different Projects" cta="Discover Projects" href="/projects" background={
@@ -98,6 +98,10 @@ export default function Home() {
           </BentoGrid>
         </BlurFade>
       </section>
-    </main>
+      <section id="technologies" aria-label="technologies" className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
+        <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Technolgy Stack</h2>
+        <TechStackMarqueesHome className="mt-4" />
+      </section>
+    </>
   );
 }
