@@ -7,14 +7,15 @@ interface ImageVideoProps {
     title: string;
     img: string;
     video?: string;
+    className?: string;
 }
 
-export default function ImageVideo({ title, img, video }: ImageVideoProps) {
+export default function ImageVideo({ title, img, video, className }: ImageVideoProps) {
     const [isVideoError, setIsVideoError] = useState(false);
 
     return <>
         {video && !isVideoError ? (
-            <div className="rounded-3xl shadow-lg aspect-video object-cover object-center overflow-hidden relative">
+            <div className={cn("rounded-3xl shadow-lg aspect-video object-cover object-center overflow-hidden relative", className)}>
                 <video
                     className={cn("w-full")}
                     src={video}
@@ -29,7 +30,7 @@ export default function ImageVideo({ title, img, video }: ImageVideoProps) {
             <img
                 src={img}
                 alt={title}
-                className="rounded-3xl shadow-lg aspect-video object-cover object-center"
+                className={cn("rounded-3xl shadow-lg aspect-video object-cover object-center", className)}
             />
         )}
     </>;

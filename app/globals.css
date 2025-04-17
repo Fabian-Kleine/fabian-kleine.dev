@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "highlight.js/styles/atom-one-dark.css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -186,4 +188,10 @@ html, body {
   100% {
       transform: scale(1);
   }
+}
+
+pre {
+  top: 0 !important;
+  margin-top: 10px;
+  max-width: 50rem;
 }
