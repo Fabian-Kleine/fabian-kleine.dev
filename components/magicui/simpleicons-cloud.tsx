@@ -1,5 +1,6 @@
 "use client";
 import { IconCloud } from "@/components/magicui/icon-cloud";
+import { getSimpleIconsUrl } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -16,17 +17,13 @@ export function SimpleIconsCloud({ icons, className }: SimpleIconsCloudProps) {
         setMounted(true);
     }, []);
 
-    if (!mounted) {
+    if (!mounted || !resolvedTheme) {
         return null;
     }
 
     const images = icons.map(
         (slug) => {
-            let color = slug;
-            if ((slug == "github" || slug == "shadcnui" || slug == "next.js" || slug == "vercel" || slug == "express") && resolvedTheme === "dark") {
-                color = "ffffff";
-            }
-            return `https://cdn.simpleicons.org/${slug}/${color}`;
+            return getSimpleIconsUrl(slug, resolvedTheme);
         },
     );
 
