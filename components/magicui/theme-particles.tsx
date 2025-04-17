@@ -10,10 +10,10 @@ export default function ThemeParticles() {
 
     useEffect(() => {
         setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
-        setQuantity(resolvedTheme === "dark" ? 20 : 75);
+        setQuantity(resolvedTheme === "dark" ? 40 : 150);
     }, [resolvedTheme]);
 
     return (
-        <Particles className="absolute inset-0 -z-10" quantity={quantity} ease={80} color={color} />
+        <Particles className="absolute inset-0" quantity={quantity} ease={80} color={color} />
     );
 }
