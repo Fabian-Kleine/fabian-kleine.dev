@@ -30,7 +30,7 @@ export default function Project({ className, title, img, video, description, bul
                     <ul className="space-y-4">
                         {bullets.map((bullet, index) => (
                             <li key={index} className="text-sm text-muted-foreground flex gap-1">
-                                <span className="text-primary">•</span>
+                                <span>✨</span>
                                 <span>{bullet}</span>
                             </li>
                         ))}
