@@ -71,6 +71,8 @@ export function TypographyLink({ children, className, ...props }: { children: Re
     return (
         <Link
             className={cn("underline text-sky-600", className)}
+            target="_blank"
+            rel="noopener noreferrer"
             {...props}>
             {children}
         </Link>
