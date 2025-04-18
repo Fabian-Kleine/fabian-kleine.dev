@@ -1,4 +1,4 @@
-import { TypographyH1, TypographyList, TypographyP } from "@/components/typography";
+import { TypographyH1, TypographyLink, TypographyList, TypographyP } from "@/components/typography";
 import ImageVideo from "@/components/image-video";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GithubIcon } from "lucide-react";
@@ -51,9 +51,10 @@ export default async function Page({
             </div>
         </div>
         <TypographyH1>Quick Overview</TypographyH1>
-        <TypographyList className="space-y-4">
+        <TypographyList className="space-y-4 list-none ml-1">
             {metadata.bullets.map((bullet: string, index: number) => (
-                <li key={index}>
+                <li key={index} className="flex gap-1">
+                    <span>✨</span>
                     <span>{bullet}</span>
                 </li>
             ))}
