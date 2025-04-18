@@ -5,24 +5,13 @@ import { ExternalLink } from "lucide-react";
 import GithubIcon from "./icons/github";
 import Link from "next/link";
 import ImageVideo from "./image-video";
+import { ProjectMetaData } from "@/types";
 
-interface ProjectProps {
+interface ProjectProps extends ProjectMetaData {
     className?: string;
-    img: string;
-    video?: string;
-    title: string;
-    description: string;
-    bullets: string[];
-    demo?: string;
-    github?: string;
-    techs?: {
-        name: string;
-        icon: string;
-    }[];
-    href?: string;
 }
 
-export default function Project({ className, title, img, video, description, bullets, techs, demo, github, href }: ProjectProps) {
+export default function Project({ className, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
             <div className="lg:w-1/2 relative">
@@ -30,8 +19,8 @@ export default function Project({ className, title, img, video, description, bul
             </div>
             <div className="lg:w-1/2 space-y-4 lg:space-y-8">
                 <div className="space-y-4">
-                    {href ? (
-                        <Link href={href}>
+                    {slug ? (
+                        <Link href={`/projects/${slug}`}>
                             <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{title}<ExternalLink size={30} /></h3>
                         </Link>
                     ) : (

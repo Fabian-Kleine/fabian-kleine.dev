@@ -1,8 +1,9 @@
-import { TypographyH1, TypographyH2, TypographyList, TypographyP } from "@/components/typography";
+import { TypographyH1, TypographyList, TypographyP } from "@/components/typography";
 import ImageVideo from "@/components/image-video";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GithubIcon } from "lucide-react";
 import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
+import { ProjectMetaData } from "@/types";
 
 export default async function Page({
     params,
@@ -11,13 +12,13 @@ export default async function Page({
 
 }) {
     const { slug } = await params
-    const { default: Post, metadata } = await import(`@/projects/${slug}.mdx`)
+    const { default: Post, metadata }: { default: React.ComponentType, metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
 
     return <>
         <div className="mb-8 flex flex-col items-center justify-center gap-4">
             <ImageVideo
                 title={metadata.title}
-                img={metadata.image}
+                img={metadata.img}
                 video={metadata.video}
                 className="max-w-[400px]"
             />

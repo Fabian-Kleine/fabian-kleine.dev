@@ -123,7 +123,7 @@ export default function Home() {
             techs={[{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Bootstrap", icon: "bootstrap" }, { name: "Meteomatics API", icon: "Rainmeter" }]}
             demo="https://projects.fabian-kleine.dev/weather"
             github="https://github.com/Fabian-Kleine/weather-app"
-            href="/projects/weather-app"
+            slug="weather-app"
           />
           <Project
             title="My Wishlists"
@@ -133,7 +133,7 @@ export default function Home() {
             techs={[{ name: "Next.js", icon: "next.js" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "Supabase", icon: "supabase" }, { name: "Vercel", icon: "vercel" }]}
             demo="https://mywishlists.fabian-kleine.dev"
             github="https://github.com/Fabian-Kleine/MyWishlists"
-            href="/projects/mywishlists"
+            slug="mywishlists"
           />
         </div>
       </section>
