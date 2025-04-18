@@ -68,3 +68,24 @@ export function generateStaticParams() {
         { slug: "example" }
     ]
 }
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+    const { slug } = params
+    const { metadata }: { metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
+    return {
+        title: `${metadata.title} | Fabian Kleine | Portfolio`,
+        description: metadata.description,
+        openGraph: {
+            title: metadata.title,
+            description: metadata.description,
+            url: `https://fabian-kleine.dev/projects/${slug}`,
+            images: [
+                {
+                    url: metadata.img,
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    }
+}
