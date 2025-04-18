@@ -65,7 +65,8 @@ export default async function Page({
 
 export function generateStaticParams() {
     return [
-        { slug: "example" }
+        { slug: "example" },
+        { slug: "weather-app" },
     ]
 }
 
