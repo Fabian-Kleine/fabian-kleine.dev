@@ -14,7 +14,7 @@ import {
 
 export default function Navbar() {
     return (
-        <nav className="flex justify-center items-center border-border border-b w-full bg-background/50 backdrop-blur-2xl fixed z-50 px-4">
+        <nav className="flex justify-center items-center border-border border-b w-full bg-background/50 backdrop-blur-xs fixed z-50 px-4">
             <div className="container mx-4 flex h-14 items-center">
                 <Sheet>
                     <SheetTrigger asChild>
