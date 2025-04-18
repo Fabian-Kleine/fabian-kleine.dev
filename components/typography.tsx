@@ -59,6 +59,14 @@ export function TypographyList({ children, className }: { children: React.ReactN
     );
 }
 
+export function TypographyOrderedList({ children, className }: { children: React.ReactNode; className?: string }) {
+    return (
+        <ul className={cn("my-6 ml-6 list-decimal [&>li]:mt-2", className)}>
+            {children}
+        </ul>
+    );
+}
+
 export function TypographyLink({ children, className, ...props }: { children: React.ReactNode; className?: string } & React.ComponentProps<typeof Link>) {
     return (
         <Link
@@ -71,7 +79,7 @@ export function TypographyLink({ children, className, ...props }: { children: Re
 
 export function TypographyInlineCode({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <code className={cn("relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold", className)}>
+        <code className={cn("relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm", className)}>
             {children}
         </code>
     );
