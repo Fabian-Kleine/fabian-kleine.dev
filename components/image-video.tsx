@@ -30,6 +30,7 @@ export default function ImageVideo({ title, img, video, className }: ImageVideoP
             <img
                 src={img}
                 alt={title}
+                loading="lazy"
                 className={cn("rounded-3xl shadow-lg aspect-video object-cover object-center", className)}
             />
         )}
