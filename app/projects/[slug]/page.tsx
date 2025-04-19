@@ -1,9 +1,10 @@
 import { TypographyH1, TypographyList, TypographyP } from "@/components/blog/typography";
 import ImageVideo from "@/components/blog/image-video";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, GithubIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
 import { ProjectMetaData } from "@/types";
+import GithubIcon from "@/components/icons/github";
 
 export default async function Page({
     params,
