@@ -3,6 +3,7 @@ import { ProjectMetaData } from "@/types";
 
 const projectsSlugs = [
     "weather-app",
+    "sil-touch",
     "mywishlists",
 ];
 
