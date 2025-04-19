@@ -36,7 +36,7 @@ export default function Project({ className, metadata, title, img, video, descri
                     ) : (
                         <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
                     )}
-                    <p>{projectDescription}</p>
+                    <p className="mt-4">{projectDescription}</p>
                     <ul className="space-y-4">
                         {projectBullets?.map((bullet, index) => (
                             <li key={index} className="text-sm text-muted-foreground flex gap-1">
