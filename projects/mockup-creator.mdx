@@ -1,0 +1,44 @@
+export const metadata = {
+    title: 'Mockup Creator',
+    description: 'A web application for creating mockups for various use cases.',
+    img: "/projects/mockup-creator.png",
+    bullets: [
+        "Lots of templates for various use cases",
+        "Customizable templates",
+        "Add your own images and text",
+        "Export your mockups as png",
+    ],
+    techs: [{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "PrimeVue", icon: "primevue" }],
+    demo: "https://projects.fabian-kleine.dev/mockup-creator/",
+    github: "https://github.com/Fabian-Kleine/mockup-generator",
+    slug: "mockup-creator",
+}
+
+# Usage
+
+## Selecting a Template
+
+The app has a lot of templates for various use cases. You can select a template by clicking on it. The template will then be loaded and you can customize it.
+
+![Template Selection](/projects/mockup-creator/template-selection.png)
+
+## Customizing a Template
+
+The template editor features a sidebar with all the customization options.
+You can change the background color / gradient, the theme, texts, images and more.
+Further you can click inside of texts to edit them directly.
+
+![Editor](/projects/mockup-creator/mockup-creator-instagram-editor.png)
+<br />
+![Editor](/projects/mockup-creator/mockup-creator-editor.png)
+
+## Exporting a Template
+
+By hitting the download button you can export your mockup as a png file.
+
+The app will then generate a png file with the current state of the editor using the [DOM to Image](https://www.npmjs.com/package/dom-to-image/v/2.2.1) package and download it to your computer.
+
+# User Interface
+
+The apps user interface was made with [PrimeVue](https://www.primefaces.org/primevue/) and [Tailwind CSS](https://tailwindcss.com/).
+The components provided by PrimeVue made it easy to create a nice looking user interface.
