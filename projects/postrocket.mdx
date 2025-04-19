@@ -1,0 +1,45 @@
+export const metadata = {
+    title: 'Postrocket',
+    description: 'A simple web-based clone of Postman made with Vue3.',
+    img: "/projects/postrocket-mockup.png",
+    bullets: [
+        "HTTP Request Builder",
+        "Dynamic URL Parameters",
+        "Different Body Types",
+        "Syntax Highlighting",
+    ],
+    techs: [{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "Axios", icon: "axios" }],
+    demo: "https://projects.fabian-kleine.dev/postrocket/",
+    github: "https://github.com/Fabian-Kleine/postrocket",
+    slug: "postrocket",
+}
+
+# Features 
+
+## HTTP Request Builder
+
+The app features a HTTP Request Builder which allows you to create GET, POST, PUT and DELETE requests. 
+You can add a body and URL parameters to the request using a dynamic table or a code editor. 
+The app will then generate the request and display the response.
+Requests are made using the [Axios](https://axios-http.com/) library.
+
+## Tabs
+
+The app features a tab system which allows you to create multiple requests and switch between them.
+The tabs are saved in the local storage so you can close the app and come back later to your requests.
+
+## User Interface
+The apps user interface was made with [Tailwind CSS](https://tailwindcss.com/) and [Vue3](https://vuejs.org/).
+
+The app features a light and dark mode which can be toggled using a button in the navbar.
+
+Further toast notifications are used to display errors and success messages.
+The app uses the [Vue Toastification](https://vue-toastification.maronato.dev/) library to display the notifications.
+
+
+# Learnings
+
+- Using Local Storage with Vue3
+- Implementing a Tab System with Vue3
+- Implementing syntax highlighting
+- State management e. g. for the dynamic table
