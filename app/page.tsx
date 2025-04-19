@@ -50,6 +50,7 @@ const projectsMarqueeImages = [
 
 const featuredProjectsSlugs = [
   "weather-app",
+  "mockup-creator",
   "mywishlists",
 ];
 
