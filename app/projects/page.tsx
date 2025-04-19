@@ -5,6 +5,7 @@ const projectsSlugs = [
     "weather-app",
     "sil-touch",
     "mockup-creator",
+    "postrocket",
     "mywishlists",
 ];
 
