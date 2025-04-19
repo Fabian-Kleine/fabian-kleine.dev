@@ -1,5 +1,5 @@
-import { TypographyH1, TypographyLink, TypographyList, TypographyP } from "@/components/typography";
-import ImageVideo from "@/components/image-video";
+import { TypographyH1, TypographyLink, TypographyList, TypographyP } from "@/components/blog/typography";
+import ImageVideo from "@/components/blog/image-video";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GithubIcon } from "lucide-react";
 import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
@@ -71,22 +71,10 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-    const { slug } = params
+    const { slug } = await params;
     const { metadata }: { metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
     return {
         title: `${metadata.title} | Fabian Kleine | Portfolio`,
         description: metadata.description,
-        openGraph: {
-            title: metadata.title,
-            description: metadata.description,
-            url: `https://fabian-kleine.dev/projects/${slug}`,
-            images: [
-                {
-                    url: metadata.img,
-                    width: 1200,
-                    height: 630,
-                },
-            ],
-        },
     }
 }
