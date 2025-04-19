@@ -1,0 +1,141 @@
+export const metadata = {
+    title: 'R6 Creative Hub',
+    description: 'A web application for creating and sharing Rainbow Six Siege user generated content.',
+    img: "/projects/r6-creative-hub.png",
+    video: "https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/r6-creative-hub.mp4",
+    bullets: [
+        "Operator Builder",
+        "Sharing Event Ideas",
+        "Map Builder",
+        "Syntax Highlighting",
+    ],
+    techs: [{ name: "Node.js", icon: "node.js" }, { name: "Express", icon: "express" }, { name: "EJS", icon: "ejs" }, { name: "MongoDB", icon: "mongodb" }],
+    slug: "r6-creative-hub",
+}
+
+> [!NOTE]
+> The website is not available anymore. The domain is not registered anymore and the server is offline. The project was discontinued in early 2025.
+
+# R6 Creative Hub
+
+**R6 Creative Hub** is a platform to share ideas and concepts for the Video Games Tom Clancy’s Rainbow Six Siege and Tom Clancy’s Rainbow Six Extraction. Both Games feature a variety of Operators with special abilitys, different Events and Maps.
+
+On r6-creative-hub.com the community can share their Operators including a whole Biography of the Operator, the Weapon Loadout, the Operator Icon and the Ability. Furthermore they can create Events and Maps using the Map Builder. Moreover it is possible to share Videoclips from YouTube through the YouTube API.
+
+The Website provides Login and Registartion with Credentials, Google or Discord, a News Page, a report and commenting system and more.
+
+# User Interface
+
+![The User Interface](/projects/r6-creative-hub/r6-ui.gif)
+
+The UI of the Home Page and in general was heavily inspired by the old UI of Tom Clancy’s Rainbow Six Siege. The UI elements on the left of the original design have been replaced with social media links, an Image Slider that shows the features of the website and a box at the bottom that rotates between the most recent news. The most important part of the website is to create something so this goes on the big blue button.
+
+As in the original design a video is playing in the background. In the top left corner a counter for the users of the website and the YouTube Subscribers can be found which replaces the original number of renown and R6 credits. The Hamburger Menu for more navigation options and for mobile devices is located to the right of these numbers. The original section that shows your squad has been replaced by an About Section which opens on hover and reveals a text which describes what you can do on the website.
+
+The other pages use a simpler design. Most pages use a background with a repeating image. Some pages like the login or register page use a video as background.
+
+![Operator List](/projects/r6-creative-hub/r6-operators.png)
+
+For the Operator Page a more special design was needed as this is the most used feature. The cards have a special hover effect and by clicking on the information icon in the top right corner more information about the Operator is revealed. The *Create Your Own Operator* function has been put into it's own card to fit into the design.
+
+# Data Handling
+
+## Frontend - The Operator Builder
+
+The Operator Builder is a multipage form which lets you create your operator as you want to. The pages are structured as follows: *General* (Biography of the Operator), *Ability* (describe the ability and upload the icon), *Primary Weapons*, *Secondary Weapons*, *Gadgets*, *Final* (See the final Operator) as it would be displayed on the page.
+
+The data is stored in sessionStorage in between the pages. On the final page the data is sent to the backend with AJAX.
+
+## Backend - Handling Of Received Data
+
+```javascript
+const router = require('express').Router();
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const jwt_decode = require('jwt-decode');
+const verify = require('./verifyToken');
+const User = require('../model/User');
+
+/* Model */
+const Operator = require('../model/Operator');
+
+router.post('/operator', urlencodedParser, async (req,res) => {
+    const token = req.cookies['jwt'];
+    const decoded = jwt_decode(token);
+    const user = await User.findById(decoded._id, '_id name');
+    const operator = new Operator({
+        user: decoded._id,
+        nickname: req.body.name.toLowerCase(),
+        /* rest of data */
+    });
+    const savedOperator = await operator.save();
+    console.log(`${user.name} created an operator named ${operator.nickname}`);
+});
+```
+
+The data is send to an express API where it is inserted into the Operator Model which is defined with the npm package mongoose which makes it easier to use MongoDB. Further the User that created the Operator is determined by reading the JSON Web Token which was stored in a Cookie during the login process.
+
+## Dynamic content
+
+The dynamic content like operator data is rendered using a npm package called [EJS](https://ejs.co/). The file is rendered on the Backend before it is served to the client. Furthermore the package prevents that user generated content that contains html or javascript gets harmful to other users or the site itself by wraping it into a string.
+
+Server Function to render data with EJS:    
+
+```javascript
+res.render('creative/operatorCreation', {operator});
+```
+
+
+```html
+<h2><%= operator.nickname %></h2>
+```
+
+# Map Editor 
+
+![Map Editor](/projects/r6-creative-hub/map-editor-beta.png)
+
+The Map Editor is the newest addition to the R6 Creative Hub website. The Editor allows you to create a blueprint of a map.
+
+The Editor is programmed with the fabricjs package. Each one of the buttons on the right side creates a different element on the canvas. The following code is an example for creating a wall with fabricjs on the canvas.
+
+```javascript
+function addWall(floor) {
+    const canvas = document.getElementById('floor' + floor).fabric;
+    var wall = new fabric.Rect({
+        width: 20,
+        height: 200,
+        left: 100,
+        top: 100,
+        fill: '#fff',
+    }).setControlsVisibility({
+        ml: false,
+        mr: false,
+        bl: false,
+        br: false,
+        tl: false,
+        tr: false,
+    })
+    wall.snapAngle = 15;
+    canvas.add(wall);
+}
+```
+
+# Learnings
+
+- Importance of Mobile friendly design
+- How APIs work
+- Hosting & DNS configuration
+- Storing Data in a Database
+- User Authentication
+- Handling big amounts of Data
+
+> [!NOTE]
+> All content after this point was written after the project was discontinued in early 2025.
+
+# Retrospective
+
+As of today my knowledge of web development has grown a lot. I have learned a lot about how to handle data and how to create a good user experience. The website is not perfect but it was a good start into web development.
+
+With my knowledge of today I would do a lot of things differently. I would use a frontend library like React or Vue.js and lay more focus on a user and mobile friendly design. I would also use a more modern stack like Next.js.
+
+Further this project showed me how much work it is to maintain a website and community. I had to learn how to handle user requests and how to deal with bugs and errors. Due to the fact that it was my first project and how time consuming the project was it was very hard to maintain and was theirfore to my discontinued in early 2025.
