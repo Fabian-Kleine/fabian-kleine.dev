@@ -8,6 +8,7 @@ const projectsSlugs = [
     "postrocket",
     "cerberusui",
     "mywishlists",
+    "fivem-utils"
 ];
 
 const getProjects = async () => {

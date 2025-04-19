@@ -1,0 +1,38 @@
+export const metadata = {
+    title: 'FiveM Utils',
+    description: 'A collection of useful scripts for FiveM servers.',
+    img: "/projects/fivem.png",
+    bullets: [
+        "creating the startup script",
+        "creating a list of all vehicles for Spawn Menu",
+    ],
+    techs: [{ name: "Python", icon: "python" }],
+    github: "https://github.com/Fabian-Kleine/FiveM-Utils",
+    slug: "fivem-utils",
+}
+
+# Featrues 
+
+These python scripts can significantly speed up the process of building a FiveM Server.
+
+**ensure.py** lists everything that needs to be started into *output.txt* with just the input of the resources directory.
+
+**getVehicles.py** creates a list of all installed vehicles with just the input of the resources directory and stores them in *vehicles.text*. This can be useful for the vMenu spawnlist etc...
+
+## Replacing Hard Work With Automation
+
+The process of installing mods and resources for your own FiveM server can be very stressful because every mod has to be individually started and every installed vehicle mod has to be added to the vMenu spawnlist.
+
+The Tool I programmed allows you to get these start commands and the vehicleslist just by entering the location of the resources folder of your FiveM server. These can then simply be copied over from the output textfiles to the files where they belong.
+
+# How Does It Work
+
+The **ensure.py** file loops through every directory and adds it to a list which is later written to the *output.txt* file. Some folders that are not important are ignored by default.
+
+The **getVehicles.py** file is a bit more complicated. It has to read the XML files where the vehicles are specified. In the XML files it reads the key value *modelName* which we need to later spawn the vehicle in Game. As in **ensure.py** we need to loop through the directorys.
+
+# Learnings
+
+- Basics of Python
+- Reading and writing to files
+- XML parsing
