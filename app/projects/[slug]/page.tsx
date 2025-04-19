@@ -1,4 +1,4 @@
-import { TypographyH1, TypographyLink, TypographyList, TypographyP } from "@/components/blog/typography";
+import { TypographyH1, TypographyList, TypographyP } from "@/components/blog/typography";
 import ImageVideo from "@/components/blog/image-video";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, GithubIcon } from "lucide-react";
