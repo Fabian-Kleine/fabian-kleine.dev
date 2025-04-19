@@ -7,28 +7,38 @@ import Link from "next/link";
 import ImageVideo from "./blog/image-video";
 import { ProjectMetaData } from "@/types";
 
-interface ProjectProps extends ProjectMetaData {
-    className?: string;
-}
+type ProjectProps = 
+    | ({ className?: string } & ProjectMetaData & { metadata?: never }) 
+    | { className?: string; metadata: ProjectMetaData; } & Partial<ProjectMetaData>;
 
-export default function Project({ className, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
+export default function Project({ className, metadata, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
+    const projectTitle = title || metadata?.title || "Project Title Not Found";
+    const projectImg = img || metadata?.img || "/projects/portfolio.png";
+    const projectVideo = video || metadata?.video;
+    const projectDescription = description || metadata?.description || "Project Description Not Found";
+    const projectBullets = bullets || metadata?.bullets || ["No description available."];
+    const projectTechs = techs || metadata?.techs || [{ name: "React", icon: "react" }];
+    const projectDemo = demo || metadata?.demo;
+    const projectGithub = github || metadata?.github;
+    const projectSlug = slug || metadata?.slug || "example";
+
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
             <div className="lg:w-1/2 relative">
-                <ImageVideo title={title} img={img} video={video} />
+                <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
             </div>
             <div className="lg:w-1/2 space-y-4 lg:space-y-8">
                 <div className="space-y-4">
-                    {slug ? (
-                        <Link href={`/projects/${slug}`}>
-                            <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{title}<ExternalLink size={30} /></h3>
+                    {projectSlug ? (
+                        <Link href={`/projects/${projectSlug}`}>
+                            <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{projectTitle}<ExternalLink size={30} /></h3>
                         </Link>
                     ) : (
-                        <h3 className="text-3xl lg:text-4xl font-bold">{title}</h3>
+                        <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
                     )}
-                    <p>{description}</p>
+                    <p>{projectDescription}</p>
                     <ul className="space-y-4">
-                        {bullets.map((bullet, index) => (
+                        {projectBullets?.map((bullet, index) => (
                             <li key={index} className="text-sm text-muted-foreground flex gap-1">
                                 <span>✨</span>
                                 <span>{bullet}</span>
@@ -37,21 +47,21 @@ export default function Project({ className, title, img, video, description, bul
                     </ul>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    {techs?.map((tech, index) => (
+                    {projectTechs?.map((tech, index) => (
                         <SimpleIconsTag key={index} name={tech.name} icon={tech.icon} />
                     ))}
                 </div>
                 <div className="flex gap-4 pt-4">
-                    {demo && (
-                        <a href={demo} target="_blank" rel="noopener noreferrer">
+                    {projectDemo && (
+                        <a href={projectDemo} target="_blank" rel="noopener noreferrer">
                             <Button size="lg">
                                 <ExternalLink />
                                 Live Demo
                             </Button>
                         </a>
                     )}
-                    {github && (
-                        <a href={github} target="_blank" rel="noopener noreferrer">
+                    {projectGithub && (
+                        <a href={projectGithub} target="_blank" rel="noopener noreferrer">
                             <Button size="lg" variant="outline">
                                 <GithubIcon />
                                 View Code

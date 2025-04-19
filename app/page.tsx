@@ -135,15 +135,7 @@ export default async function Home() {
           {featuredProjects.map((project, index) => (
             <Project
               key={index}
-              title={project.title}
-              img={project.img}
-              video={project.video}
-              description={project.description}
-              bullets={project.bullets}
-              techs={project.techs}
-              demo={project.demo}
-              github={project.github}
-              slug={project.slug}
+              metadata={project}
             />
           ))}
         </div>
