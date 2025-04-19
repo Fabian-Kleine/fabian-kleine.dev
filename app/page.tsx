@@ -12,41 +12,59 @@ import { ThreeDMarquee } from "@/components/aceternityui/3d-marquee";
 import { AnimatedListHome } from "@/components/home/animated-list-home";
 import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
 import Project from "@/components/project";
+import { ProjectMetaData } from "@/types";
 
-export default function Home() {
-  const projectsMarqueeImages = [
-    "/projects/weather-app.png",
-    "/projects/mockup-creator.png",
-    "/projects/mockup-creator.png",
-    "/projects/portfolio.png",
-    "/projects/weather-app.png",
-    "/projects/mockup-creator.png",
-    "/projects/cerberusui.png",
-    "/projects/postrocket.png",
-    "/projects/weather-app.png",
-    "/projects/mockup-creator.png",
-    "/projects/postrocket.png",
-    "/projects/mywishlists.png",
-    "/projects/portfolio_legacy.png",
-    "/projects/portfolio.png",
-    "/projects/weather-app.png",
-    "/projects/mockup-creator.png",
-    "/projects/portfolio.png",
-    "/projects/weather-app.png",
-    "/projects/mockup-creator.png",
-    "/projects/cerberusui.png",
-    "/projects/postrocket.png",
-    "/projects/portfolio_legacy.png",
-    "/projects/mywishlists.png",
-    "/projects/portfolio_legacy.png",
-    "/projects/mywishlists.png",
-    "/projects/postrocket.png",
-    "/projects/portfolio_legacy.png",
-    "/projects/portfolio.png",
-    "/projects/mywishlists.png",
-    "/projects/mockup-creator.png",
-    "/projects/weather-app.png",
-  ];
+const projectsMarqueeImages = [
+  "/projects/weather-app.png",
+  "/projects/mockup-creator.png",
+  "/projects/mockup-creator.png",
+  "/projects/portfolio.png",
+  "/projects/weather-app.png",
+  "/projects/mockup-creator.png",
+  "/projects/cerberusui.png",
+  "/projects/postrocket.png",
+  "/projects/weather-app.png",
+  "/projects/mockup-creator.png",
+  "/projects/postrocket.png",
+  "/projects/mywishlists.png",
+  "/projects/portfolio_legacy.png",
+  "/projects/portfolio.png",
+  "/projects/weather-app.png",
+  "/projects/mockup-creator.png",
+  "/projects/portfolio.png",
+  "/projects/weather-app.png",
+  "/projects/mockup-creator.png",
+  "/projects/cerberusui.png",
+  "/projects/postrocket.png",
+  "/projects/portfolio_legacy.png",
+  "/projects/mywishlists.png",
+  "/projects/portfolio_legacy.png",
+  "/projects/mywishlists.png",
+  "/projects/postrocket.png",
+  "/projects/portfolio_legacy.png",
+  "/projects/portfolio.png",
+  "/projects/mywishlists.png",
+  "/projects/mockup-creator.png",
+  "/projects/weather-app.png",
+];
+
+const featuredProjectsSlugs = [
+  "weather-app",
+  "mywishlists",
+];
+
+const getFeaturedProjects = async () => {
+  const featuredProjects = await Promise.all(
+    featuredProjectsSlugs.map(async (slug) => {
+      const { metadata } = await import(`@/projects/${slug}.mdx`) as { metadata: ProjectMetaData };
+      return metadata;
+    })
+  );
+  return featuredProjects;
+}
+
+export default async function Home() {
+  const featuredProjects = await getFeaturedProjects();
 
   return (
     <>
@@ -114,27 +132,21 @@ export default function Home() {
           </Link>
         </div>
         <div className="space-y-28 my-28">
-          <Project
-            title="Weather App"
-            img="/projects/weather-app.png"
-            video="https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/weather-app2.mp4"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            bullets={["Lorem10", "Lorem10", "Lorem10", "Lorem10"]}
-            techs={[{ name: "Vue", icon: "vue.js" }, { name: "Vite", icon: "vite" }, { name: "Bootstrap", icon: "bootstrap" }, { name: "Meteomatics API", icon: "Rainmeter" }]}
-            demo="https://projects.fabian-kleine.dev/weather"
-            github="https://github.com/Fabian-Kleine/weather-app"
-            slug="weather-app"
-          />
-          <Project
-            title="My Wishlists"
-            img="/projects/mywishlists.png"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            bullets={["Lorem10", "Lorem10", "Lorem10", "Lorem10"]}
-            techs={[{ name: "Next.js", icon: "next.js" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "Supabase", icon: "supabase" }, { name: "Vercel", icon: "vercel" }]}
-            demo="https://mywishlists.fabian-kleine.dev"
-            github="https://github.com/Fabian-Kleine/MyWishlists"
-            slug="mywishlists"
-          />
+          {featuredProjects.map((project, index) => (
+            <div key={index} className="flex flex-col items-center justify-center gap-4">
+              <Project
+                title={project.title}
+                img={project.img}
+                video={project.video}
+                description={project.description}
+                bullets={project.bullets}
+                techs={project.techs}
+                demo={project.demo}
+                github={project.github}
+                slug={project.slug}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </>
