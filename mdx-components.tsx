@@ -1,6 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
-import Image from 'next/image'
-import { TypographyBlockquote, TypographyH1, TypographyH2, TypographyH3, TypographyH4, TypographyInlineCode, TypographyLink, TypographyList, TypographyP, TypographyOrderedList } from '@/components/typography';
+import { TypographyBlockquote, TypographyH1, TypographyH2, TypographyH3, TypographyH4, TypographyInlineCode, TypographyLink, TypographyList, TypographyP, TypographyOrderedList } from '@/components/blog/typography';
 import { cn } from './lib/utils'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -13,9 +12,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ul: (props) => <TypographyList {...props} />,
         ol: (props) => <TypographyOrderedList {...props} />,
         img: (props) => (
-          <Image 
+          <img 
             width={800}
             height={800}
+            loading='lazy'
             className={cn("rounded-xl mx-auto", props.className)}
             {...props} />
         ),

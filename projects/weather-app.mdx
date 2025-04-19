@@ -1,3 +1,5 @@
+import Video from "@/components/blog/Video";
+
 export const metadata = {
     title: 'Weather App',
     description: 'A Simple Weather App I made with a colleague to get more familiar with vue3.',
@@ -93,7 +95,7 @@ Moving the gradient up and down is achieved by using the `background-position` p
 <div class="app-container" :style="{ backgroundPosition: weatherData ? weatherData[dayIndex].weatherIcon.backgroundPosition : 'center' }">
 ```
 
-<video src="https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/weather-app_background.mp4" height={800} width={800} controls muted playsInline className="rounded-xl mx-auto my-4"></video>
+<Video title="Background Gradient Animation" video="https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/weather-app_background.mp4" height={800} width={800} controls muted playsInline className="mx-auto my-4" />
 
 ## Weather Icons
 

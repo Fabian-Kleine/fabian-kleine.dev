@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { ExternalLink } from "lucide-react";
 import GithubIcon from "./icons/github";
 import Link from "next/link";
-import ImageVideo from "./image-video";
+import ImageVideo from "./blog/image-video";
 import { ProjectMetaData } from "@/types";
 
 interface ProjectProps extends ProjectMetaData {
