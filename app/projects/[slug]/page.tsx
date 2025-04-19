@@ -61,6 +61,7 @@ export default async function Page({
             ))}
         </TypographyList>
         <Post />
+        <div className="my-24" />
     </>
 }
 
