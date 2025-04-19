@@ -20,7 +20,7 @@ export default function Project({ className, metadata, title, img, video, descri
     const projectTechs = techs || metadata?.techs || [{ name: "React", icon: "react" }];
     const projectDemo = demo || metadata?.demo;
     const projectGithub = github || metadata?.github;
-    const projectSlug = slug || metadata?.slug || "example";
+    const projectSlug = slug || metadata?.slug;
 
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
