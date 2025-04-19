@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 import rehypeHighlight from 'rehype-highlight';
+import { rehypeGithubAlerts } from 'rehype-github-alerts'
 
 const nextConfig: NextConfig = {
   images: {
@@ -13,7 +14,7 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
-    rehypePlugins: [rehypeHighlight],
+    rehypePlugins: [rehypeHighlight, rehypeGithubAlerts],
   },
 });
 
