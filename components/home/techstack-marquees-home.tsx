@@ -62,7 +62,6 @@ export function TechStackMarqueesHome({ className }: TechStackMarqueesHomeProps)
         { name: "Wordpress", icon: getSimpleIconsUrl("wordpress", resolvedTheme) },
         { name: "Plesk", icon: getSimpleIconsUrl("plesk", resolvedTheme) },
         { name: "Postman", icon: getSimpleIconsUrl("postman", resolvedTheme) },
-        { name: "PHPMyAdmin", icon: getSimpleIconsUrl("phpmyadmin", resolvedTheme) },
     ];
 
     return (
