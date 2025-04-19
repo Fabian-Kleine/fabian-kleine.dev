@@ -1,0 +1,100 @@
+export const metadata = {
+    title: 'My Wishlists',
+    description: 'A Website where you can create custom wishlists and share them.',
+    img: "/projects/mywishlists.png",
+    bullets: [
+        "Create custom wishlists",
+        "Share your wishlists with others",
+        "Countdown for wishlists deadlines",
+        "Mark items as bought in real time",
+        "Add items to your wishlist from any website by web scraping",
+    ],
+    techs: [{ name: "Next.js", icon: "next.js" }, { name: "Tailwind CSS", icon: "tailwindcss" }, { name: "Supabase", icon: "supabase" }, { name: "Cheerio", icon: "cheerio" }],
+    demo: "https://mywishlists.fabian-kleine.dev/",
+    github: "https://github.com/Fabian-Kleine/MyWishlists",
+    slug: "mywishlists",
+}
+
+# Scraping Data from webshops
+
+Data like product titles, product descriptions and images can be scraped from any website that has it defined in the head using meta tags. 
+They are scraped with [cheerio](https://www.npmjs.com/package/cheerio). 
+Prices can only be scraped from specific websites which are defined in [webshops.js](https://github.com/Fabian-Kleine/MyWishlists/blob/main/app/api/getProduct/webshops.js). 
+Further an affiliate ID is added to the url if it is defined in [webshops.js](https://github.com/Fabian-Kleine/MyWishlists/blob/main/app/api/getProduct/webshops.js).
+
+```javascript
+import axios from 'axios';
+import cheerio from 'cheerio';
+import webshops from './webshops';
+
+export default async function WebshopFetch(body) {
+    let productData = {
+        title: body.title,
+        description: body.description || '',
+        price: body.price,
+        image: null,
+        link: body.link
+    }
+    if (!body.link) return productData;
+
+    try {
+        const url = new URL(body.link);
+        const domainname = url.hostname.replace(/(www\.)?/, '').split('.')[0];
+
+        const webpage = await axios.get(url);
+        const $ = cheerio.load(webpage.data);
+
+        const metadata = {
+            title: $('meta[property='og:title']').attr('content') || $('title').text() || '',
+            description: $('meta[name='description']').attr('content') || $('meta[property='og:description']').attr('content') || 'No description found',
+            image: $('meta[property='og:image']').attr('content') || null,
+        };
+
+        productData = {...productData, ...metadata};
+
+        if (webshops.some(shop => shop.hostname === domainname)) {
+            const webshopdata = webshops.find((webshop) => {
+                return webshop.hostname == domainname;
+            });
+
+            let price = !body.price ? $(webshopdata.priceQuery).first().text().trim() : body.price;
+            if (webshopdata.composedPrice && price != body.price) {
+                price = price + $(webshopdata.priceQuery2).first().text();
+            }
+            if (webshopdata.replacePriceText && price != body.price) {
+                price = price.replace(/[^0-9,]/g, '').trim();
+            }
+            productData.price = price;
+
+            if(webshopdata.imageQuery) {
+                const image = $(webshopdata.imageQuery).first().attr('src');
+                productData.image = image;
+            }
+    
+            if (webshopdata.affiliateID) {
+                url.hash = '';
+                url.search = `?tag=${webshopdata.affiliateID}`;
+                productData.link = url.href;
+            }
+        }
+    } catch (error) {
+        console.log(error)
+    } finally {
+        return productData;
+    }
+}
+```
+
+Further an affiliate ID is added for amazon.
+
+# User Interface
+The user interface is made with **Tailwind CSS** and [daisyUI](https://daisyui.com/).
+The design follows a minimalistic approach with a focus on usability.
+
+# Learnings
+
+- Next.js
+- Tailwind CSS
+- Client and Server Side Rendering
+- Supabase
+- Web Scraping with Cheerio
