@@ -133,19 +133,18 @@ export default async function Home() {
         </div>
         <div className="space-y-28 my-28">
           {featuredProjects.map((project, index) => (
-            <div key={index} className="flex flex-col items-center justify-center gap-4">
-              <Project
-                title={project.title}
-                img={project.img}
-                video={project.video}
-                description={project.description}
-                bullets={project.bullets}
-                techs={project.techs}
-                demo={project.demo}
-                github={project.github}
-                slug={project.slug}
-              />
-            </div>
+            <Project
+              key={index}
+              title={project.title}
+              img={project.img}
+              video={project.video}
+              description={project.description}
+              bullets={project.bullets}
+              techs={project.techs}
+              demo={project.demo}
+              github={project.github}
+              slug={project.slug}
+            />
           ))}
         </div>
       </section>
