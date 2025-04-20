@@ -5,6 +5,7 @@ import { Marquee } from "../magicui/marquee";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { config } from "@/config";
 
 interface TechStackMarqueesHomeProps {
     className?: string;
@@ -33,36 +34,15 @@ export function TechStackMarqueesHome({ className }: TechStackMarqueesHomeProps)
         return null;
     }
 
-    const marqeeItems1 = [
-        { name: "HTML", icon: getSimpleIconsUrl("html5", resolvedTheme) },
-        { name: "CSS", icon: getSimpleIconsUrl("css3", resolvedTheme) },
-        { name: "JavaScript", icon: getSimpleIconsUrl("javascript", resolvedTheme) },
-        { name: "TypeScript", icon: getSimpleIconsUrl("typescript", resolvedTheme) },
-        { name: "Node.js", icon: getSimpleIconsUrl("node.js", resolvedTheme) },
-        { name: "Express", icon: getSimpleIconsUrl("express", resolvedTheme) },
-        { name: "Vue.js", icon: getSimpleIconsUrl("vue.js", resolvedTheme) },
-        { name: "React", icon: getSimpleIconsUrl("react", resolvedTheme) },
-        { name: "Next.js", icon: getSimpleIconsUrl("next.js", resolvedTheme) },
-        { name: "Tailwind CSS", icon: getSimpleIconsUrl("tailwindcss", resolvedTheme) },
-        { name: "PHP", icon: getSimpleIconsUrl("php", resolvedTheme) },
-        { name: "MongoDB", icon: getSimpleIconsUrl("mongodb", resolvedTheme) },
-        { name: "Supabase", icon: getSimpleIconsUrl("supabase", resolvedTheme) },
-        { name: "MySQL", icon: getSimpleIconsUrl("mysql", resolvedTheme) },
-        { name: "Python", icon: getSimpleIconsUrl("python", resolvedTheme) },
-    ];
+    const marqeeItems1 = config.techStack.techStackMarquee1Icons.map((item) => ({
+        ...item,
+        icon: getSimpleIconsUrl(item.icon, resolvedTheme),
+    }));
     
-    const marqeeItems2 = [
-        { name: "Shadcn UI", icon: getSimpleIconsUrl("shadcnui", resolvedTheme) },
-        { name: "Bootstrap", icon: getSimpleIconsUrl("bootstrap", resolvedTheme) },
-        { name: "Git", icon: getSimpleIconsUrl("git", resolvedTheme) },
-        { name: "GitHub", icon: getSimpleIconsUrl("github", resolvedTheme) },
-        { name: "GitLab", icon: getSimpleIconsUrl("gitlab", resolvedTheme) },
-        { name: "Vite", icon: getSimpleIconsUrl("vite", resolvedTheme) },
-        { name: "Vercel", icon: getSimpleIconsUrl("vercel", resolvedTheme) },
-        { name: "Wordpress", icon: getSimpleIconsUrl("wordpress", resolvedTheme) },
-        { name: "Plesk", icon: getSimpleIconsUrl("plesk", resolvedTheme) },
-        { name: "Postman", icon: getSimpleIconsUrl("postman", resolvedTheme) },
-    ];
+    const marqeeItems2 = config.techStack.techStackMarquee2Icons.map((item) => ({
+        ...item,
+        icon: getSimpleIconsUrl(item.icon, resolvedTheme),
+    }));
 
     return (
         <div className={cn("relative space-y-4", className)}>
