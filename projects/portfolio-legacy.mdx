@@ -1,0 +1,164 @@
+export const metadata = {
+    title: 'Portfolio (Legacy)',
+    description: 'My first Portfolio Website.',
+    img: "/projects/portfolio_legacy.png",
+    bullets: [
+        "Home Page",
+        "Projects Page",
+        "Detail pages for each project",
+        "Contact Page",
+    ],
+    techs: [{ name: "React", icon: "react" }, { name: "React Router", icon: "reactrouter" }, { name: "Vite", icon: "vite" }, { name: "Tailwind CSS", icon: "tailwindcss" }],
+    demo: "https://projects.fabian-kleine.dev/portfolio-legacy/",
+    github: "https://github.com/Fabian-Kleine/portfolio-page",
+    slug: "portfolio-legacy",
+}
+
+# Setup 
+
+The page is built using Vite + React and React-Router-DOM for the routing. The pages like Home or Projects are located in the pages folder. Components like the Navbar or the Footer are located in the components folder.
+
+Static Data like the Projects are stored in JSON files in the json folder which we will focus on later.
+
+## Routing
+
+```javascript
+import './App.css'
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import Home from '../pages/Home';
+import Projects from '../pages/Projects';
+import Project from '../pages/Project';
+import Contact from '../pages/Contact';
+import Error from '../pages/Error';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route index element={<Home />} errorElement={<Error />} />
+      <Route path='/projects' element={<Projects />} errorElement={<Error />} />
+      <Route path='/project/:projectname' element={<Project />} errorElement={<Error />} />
+      <Route path='/contact' element={<Contact />} errorElement={<Error />} />
+    </>
+  )
+)
+
+function App({ routes }) {
+  return (
+    <>
+      <Navbar />
+      <RouterProvider router={router} />
+      <Footer />
+    </>
+  )
+}
+
+export default App;
+```
+
+As you can see the *RouterProvider* is wrapped by the *Navbar* and the *Footer*. Because of this we only need to focus on the content of a page because the *Navbar* and the *Footer* will be rendered on every page.
+
+The Route for the *Project Page* has the parameter :projectname passed so we can later define wich Project should be rendered.
+
+## Pages
+
+### Projects Page
+
+The Projects Page imports the projects from `@/json/projects/index.js` and lists them with a map function.
+
+```javascript
+import R6CreativeHub from './r6-creative-hub.json';
+import PortfolioPage from './portfolio-page.json';
+
+const projects = [R6CreativeHub, PortfolioPage];
+
+export default projects;
+```
+
+```javascript
+import React from 'react';
+import TechnologieBadge from '../components/TechnologieBadge';
+import projects from '../json/projects/';
+import { useState, useEffect } from 'react';
+
+const Projects = () => {
+    /* <Container> is a placeholder for the rest of the file */
+    return (
+       <Container>
+            {
+                filteredProjects.map((project) =>
+                    <div>
+                        <a href={'/project/' + project.filename}>
+                            <h2>{project.title}</h2>
+                            <div>
+                                <TechnologieBadge technologies={project.technologies} type={'badge'} />
+                            </div>
+                            <p dangerouslySetInnerHTML={{ __html: project.overview }}>
+                            </p>
+                       </a>
+                    </div>
+                )
+            }
+        </Container>
+    )
+}
+
+export default Projects;
+```
+
+Furthermore the Projects can be filtered by tags like the Projects Status, the Projects Size and the Projects Language. This is done by updating a the *filteredProjects* State everytime the filters are submitted. The following code is used to filter the Projects:
+
+```javascript
+function handleFilterApply() {
+    var newProjects = [];
+    projects.forEach((project) => {
+        var includesStatus = filter.status.some(f => project.tags.includes(f));
+        if (filter.status.length == 0) includesStatus = true;
+        var includesSize = filter.size.some(f => project.tags.includes(f));
+        if (filter.size.length == 0) includesSize = true;
+        var includesLang = filter.lang.some(f => project.tags.includes(f));
+        if (filter.lang.length == 0) includesLang = true;
+
+        if (includesStatus && includesSize && includesLang) newProjects.push(project);
+    });
+
+    setFilteredProjects(newProjects);
+}
+```
+
+The function loops through every project and checks if the filter can be found in the tags of the project. If the filter is empty the checking process is automatically passed. If every checking process passes, the project is pushed to an Array which is later set as the new *filteredProjects* State.
+
+### Project Page
+
+The Project Page dynamically imports the JSON file of the project which is defined in the URL-Parameter *projectname* which we setup earlier in App.jsx. After that it loops through the content property with the map function and renders the content depending on the type defined in the Object.
+
+When *type* is defined as code the code is rendered with Syntax-Highlighting. This is done with the npm packages *react-syntax-highlighter* and *highlight.js*.
+
+### Contact Page
+
+The Contact Page features a form which opens the email application after submit. This is done by running `window.location.href = 'mailto:<Email>?subject=<Subject>&body=<Body>'` and replacing `<Subject>` and `<Body>` with the values entered in the input fields.
+
+## Components 
+
+The Website uses three Components: *Navbar*, *Footer* and *TechnologieBadge*
+
+The *Navbar* is mobile friendly because it switches to a Hamburger Menu when the screen-width is getting to tight to display the whole Navbar. This is done with the Tailwindcss Breakpoints.
+
+The *Footer* just returns the HTML for the footer.
+
+The *TechnologieBadge* Component takes technologies and type as props. It imports the data about the technologies from `@/json/technologies.json`. It uses this data and the prop technologies which is an Array to render out Badges depending on the style defined in the type prop. This Component is used in `Home.jsx`, `Projects.jsx` and `Project.jsx`.
+
+# Learnings
+- Routing with React-Router-DOM
+- Building more mobile-friendly pages
+- Expanding my knowledge on some CSS-styles
+
+> [!NOTE]
+> All content after this point was written after the new portoflio website was finished in early 2025.
+
+# Retrospective
+
+The website was a good start getting familiar with React. I learned a lot about how to build a website with React and how to use React-Router-DOM. I also learned a lot about how to build a mobile-friendly website with Tailwind CSS.
+
+What I would do differently today is to choose a different approach for the *Project Page*. The JSON files are not the best way to handle data nor are they very maintainable or user friendly to edit. I would instead use something like MDX like I did for the new portfolio website.
