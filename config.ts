@@ -20,6 +20,7 @@ export const config: Config = {
             "cerberusui",
             "mywishlists",
             "fivem-utils",
+            "portfolio-legacy",
             "r6-creative-hub"
         ],
         featuredProjectsSlugs: [
