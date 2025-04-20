@@ -56,9 +56,11 @@ export default function Navbar() {
                         </div>
                     </Link>
                     <div className="flex items-center gap-6 text-sm font-medium">
-                        <Link href={'/#about'} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
-                        <Link href={'/projects'} className="text-muted-foreground transition-colors hover:text-foreground">Projects</Link>
-                        <Link href={'/contact'} className="text-muted-foreground transition-colors hover:text-foreground">Contact</Link>
+                        <div className="flex items-center gap-6 text-sm font-medium group">
+                            <Link href={'/#about'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">About</Link>
+                            <Link href={'/projects'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Projects</Link>
+                            <Link href={'/contact'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Contact</Link>
+                        </div>
                     </div>
                 </div>
                 <a href='https://github.com/Fabian-Kleine' target='_blank' rel='noopener noreferrer' className="hidden md:block ml-auto">
