@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
 import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
 import { ProjectMetaData } from "@/types";
 import GithubIcon from "@/components/icons/github";
+import { config } from "@/config";
 
 export default async function Page({
     params,
@@ -66,10 +67,9 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-    return [
-        { slug: "example" },
-        { slug: "weather-app" },
-    ]
+    const slugs = config.projects.projectsSlugs;
+
+    return slugs.map((slug: string) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {

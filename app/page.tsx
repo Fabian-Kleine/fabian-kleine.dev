@@ -13,6 +13,7 @@ import { AnimatedListHome } from "@/components/home/animated-list-home";
 import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
 import Project from "@/components/project";
 import { ProjectMetaData } from "@/types";
+import { config } from "@/config";
 
 const projectsMarqueeImages = [
   "/projects/weather-app.png",
@@ -48,15 +49,9 @@ const projectsMarqueeImages = [
   "/projects/weather-app.png",
 ];
 
-const featuredProjectsSlugs = [
-  "weather-app",
-  "mockup-creator",
-  "mywishlists",
-];
-
 const getFeaturedProjects = async () => {
   const featuredProjects = await Promise.all(
-    featuredProjectsSlugs.map(async (slug) => {
+    config.projects.featuredProjectsSlugs.map(async (slug) => {
       const { metadata } = await import(`@/projects/${slug}.mdx`) as { metadata: ProjectMetaData };
       return metadata;
     })
@@ -102,7 +97,7 @@ export default async function Home() {
           <BentoGrid className="overflow-visible">
             <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technologies" background={
               <div className="absolute inset-0 flex items-center justify-center">
-                <SimpleIconsCloud className="-mt-14" icons={['html5', 'css3', 'javascript', 'typescript', 'node.js', 'react', 'vue.js', 'next.js', 'tailwindcss', 'php', 'mongodb', 'supabase', 'python', 'mysql', 'git']} />
+                <SimpleIconsCloud className="-mt-14" icons={config.techStack.techStackCloudIcons} />
               </div>
             } className="!bg-background/50 backdrop-blur-xs dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
             <BentoCard name="Projects" description="Many different Projects" cta="Discover Projects" href="/projects" background={

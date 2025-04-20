@@ -1,20 +1,11 @@
 import Project from "@/components/project";
 import { ProjectMetaData } from "@/types";
+import { config } from "@/config";
 
-const projectsSlugs = [
-    "weather-app",
-    "sil-touch",
-    "mockup-creator",
-    "postrocket",
-    "cerberusui",
-    "mywishlists",
-    "fivem-utils",
-    "r6-creative-hub"
-];
 
 const getProjects = async () => {
     const featuredProjects = await Promise.all(
-        projectsSlugs.map(async (slug) => {
+        config.projects.projectsSlugs.map(async (slug) => {
             const { metadata } = await import(`@/projects/${slug}.mdx`) as { metadata: ProjectMetaData };
             return metadata;
         })
