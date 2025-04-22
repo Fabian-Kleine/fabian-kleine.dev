@@ -11,6 +11,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import ContactDialog from "./contact-dialog";
 
 export default function Navbar() {
     return (
@@ -36,7 +37,9 @@ export default function Navbar() {
                             <Link href={'/'} className="text-muted-foreground transition-colors hover:text-foreground">Home</Link>
                             <Link href={'/#about'} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
                             <Link href={'/projects'} className="text-muted-foreground transition-colors hover:text-foreground">Projects</Link>
-                            <Link href={'/contact'} className="text-muted-foreground transition-colors hover:text-foreground">Contact</Link>
+                            <ContactDialog>
+                                <span role="button" aria-haspopup className="text-muted-foreground transition-colors hover:text-foreground cursor-pointer">Contact</span>
+                            </ContactDialog>
                         </div>
                         <a href='https://github.com/Fabian-Kleine' target='_blank' rel='noopener noreferrer' className="mx-auto mt-auto mb-4">
                             <ShinyButton className="rounded-full border cursor-pointer dark:bg-radial-[at_50%_0%] from-primary/20 to-50% to-transparent">
@@ -59,7 +62,9 @@ export default function Navbar() {
                         <div className="flex items-center gap-6 text-sm font-medium group">
                             <Link href={'/#about'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">About</Link>
                             <Link href={'/projects'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Projects</Link>
-                            <Link href={'/contact'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Contact</Link>
+                            <ContactDialog>
+                                <span role="button" aria-haspopup className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground cursor-pointer">Contact</span>
+                            </ContactDialog>
                         </div>
                     </div>
                 </div>

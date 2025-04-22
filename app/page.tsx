@@ -2,7 +2,7 @@ import ThemeParticles from "@/components/magicui/theme-particles";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, FolderGit2 } from "lucide-react";
+import { ExternalLink, FolderGit2, Mail } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import Link from "next/link";
 import RandomEmoji from "@/components/icons/random-emoji";
@@ -13,6 +13,7 @@ import { AnimatedListHome } from "@/components/home/animated-list-home";
 import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
 import Project from "@/components/project";
 import { ProjectMetaData } from "@/types";
+import ContactDialog from "@/components/contact-dialog";
 import { config } from "@/config";
 
 const projectsMarqueeImages = [
@@ -90,6 +91,14 @@ export default async function Home() {
                   <span className="sr-only">Github</span>
                 </Button>
               </a>
+            </BlurFade>
+            <BlurFade delay={1.2} duration={1} direction="up">
+              <ContactDialog>
+                <Button size='lg' variant='outline' className="w-10 bg-background">
+                  <Mail />
+                  <span className="sr-only">Contact</span>
+                </Button>
+              </ContactDialog>
             </BlurFade>
           </div>
         </div>
