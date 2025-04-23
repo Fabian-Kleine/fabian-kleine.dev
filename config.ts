@@ -7,6 +7,9 @@ interface Config {
         techStackMarquee1Icons: { name: string; icon: string }[];
         techStackMarquee2Icons: { name: string; icon: string }[];
         techStackCloudIcons: string[];
+    },
+    cookies: {
+        cookieConsent: boolean;
     }
 }
 
@@ -76,5 +79,8 @@ export const config: Config = {
             'mysql', 
             'git'
         ]
+    },
+    cookies: {
+        cookieConsent: true
     }
 }
