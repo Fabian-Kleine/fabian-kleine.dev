@@ -1,5 +1,6 @@
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
+import ContactDialog from "../contact-dialog";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -70,12 +71,23 @@ const BentoCard = ({
         "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
       )}
     >
-      <Button variant="ghost" asChild size="sm" className="pointer-events-auto">
-        <Link href={href}>
-          {cta}
-          <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
-        </Link>
-      </Button>
+      {href == "/contact" ? (
+        <ContactDialog>
+          <Button variant="ghost" asChild size="sm" className="pointer-events-auto">
+            <span>
+              {cta}
+              <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
+            </span>
+          </Button>
+        </ContactDialog>
+      ) : (
+        <Button variant="ghost" asChild size="sm" className="pointer-events-auto">
+          <Link href={href}>
+            {cta}
+            <ArrowRightIcon className="ms-2 h-4 w-4 rtl:rotate-180" />
+          </Link>
+        </Button>
+      )}
     </div>
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
   </div>
