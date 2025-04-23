@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dialog"
 
 import { Button } from "@/components/ui/button"
-import { ReactNode, useState } from "react"
+import { ReactNode } from "react"
 import { z } from "zod";
 import { LoaderCircle } from "lucide-react";
 import { create } from "zustand";
@@ -191,7 +191,7 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                             />
                         </IconInput>
                         <Label htmlFor="message" className="text-sm font-medium">Message</Label>
-                        <IconInput textarea icon="MessageSquare">
+                        <IconInput icon="MessageSquare">
                             <Textarea
                                 id="message"
                                 placeholder="Your Message"
