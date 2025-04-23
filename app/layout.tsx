@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import ThemeParticles from "@/components/magicui/theme-particles";
+import CookieDialog from "@/components/ui/cookie-dialog";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,15 +33,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Navbar />
-          <main className="relative min-h-screen overflow-clip">
-            <ThemeParticles />
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
-
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <Navbar />
+            <main className="relative min-h-screen overflow-clip">
+              <ThemeParticles />
+              {children}
+            </main>
+            <CookieDialog />
+            <Footer />
+          </ThemeProvider>
       </body>
     </html>
   );
