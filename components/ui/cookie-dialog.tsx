@@ -14,6 +14,7 @@ import {
 import { config } from "@/config";
 import useCookie from "@/hooks/useCookie";
 import { Switch } from "./switch";
+import { TypographyLink } from "../blog/typography";
 
 export default function CookieDialog() {
     const [cookieConsent, setCookieConsent] = useCookie("cookie-consent", "false");
@@ -57,7 +58,7 @@ export default function CookieDialog() {
 
         const acceptedCookies = [];
         if (analyticsEnabled) acceptedCookies.push("analytics");
-        
+
         setCookieConsent(JSON.stringify(acceptedCookies), { expires: 2147483647 });
         setIsOpen(false);
     }
@@ -68,7 +69,16 @@ export default function CookieDialog() {
                 <AlertDialogHeader>
                     <AlertDialogTitle className="text-center">Cookie Consent</AlertDialogTitle>
                     <AlertDialogDescription className="text-center">
-                        {customising ? 'You can customise your cookie preferences here.' : 'This website uses cookies to enhance the user experience. By clicking "Accept", you consent to the use of cookies.'}
+                        {customising ?
+                            <>
+                                You can customise your cookie preferences here.
+                                Find out more about Cookies in the <TypographyLink href='/legal/cookie-policy'>Cookie Policy</TypographyLink>
+                            </> :
+                            <>
+                                This website uses cookies to enhance the user experience. By clicking "Accept", you consent to the use of cookies.
+                                Find out more about Cookies in the <TypographyLink href='/legal/cookie-policy'>Cookie Policy</TypographyLink>
+                            </>
+                        }
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 {customising &&

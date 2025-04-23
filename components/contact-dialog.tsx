@@ -22,6 +22,8 @@ import { z } from "zod";
 import { LoaderCircle } from "lucide-react";
 import { create } from "zustand";
 import IconInput from "./ui/icon-input";
+import { Checkbox } from "./ui/checkbox";
+import { TypographyLink } from "./blog/typography";
 
 interface ContactDialogStore {
     name: string;
@@ -32,6 +34,8 @@ interface ContactDialogStore {
     setSubject: (subject: string) => void;
     message: string;
     setMessage: (message: string) => void;
+    privacyPolicy: boolean;
+    setPrivacyPolicy: (privacyPolicy: boolean) => void;
     nameError: boolean;
     setNameError: (error: boolean) => void;
     emailError: boolean;
@@ -57,6 +61,8 @@ export const useContactDialogStore = create<ContactDialogStore>((set) => ({
     setSubject: (subject) => set({ subject }),
     message: "",
     setMessage: (message) => set({ message }),
+    privacyPolicy: false,
+    setPrivacyPolicy: (privacyPolicy) => set({ privacyPolicy }),
     nameError: false,
     setNameError: (error) => set({ nameError: error }),
     emailError: false,
@@ -83,6 +89,8 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
         setSubject,
         message,
         setMessage,
+        privacyPolicy,
+        setPrivacyPolicy,
         nameError,
         setNameError,
         emailError,
@@ -104,13 +112,16 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
         email: z.string().email("Invalid email address"),
         subject: z.string().min(1, "Subject is required"),
         message: z.string().min(1, "Message is required"),
+        privacyPolicy: z.boolean().refine((val) => val, {
+            message: "You must accept the privacy policy",
+        }),
     });
 
     const handleSubmit = async () => {
         if (isLoading) return;
 
         try {
-            contactSchema.parse({ name, email, subject, message });
+            contactSchema.parse({ name, email, subject, message, privacyPolicy });
             setNameError(false);
             setEmailError(false);
             setSubjectError(false);
@@ -202,6 +213,10 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                                 className={cn(messageError && "border-red-500")}
                             />
                         </IconInput>
+                        <div className="flex justify-center items-center space-x-2">
+                            <Checkbox checked={privacyPolicy} onCheckedChange={setPrivacyPolicy} id="terms" />
+                            <Label htmlFor="terms">I Accept <TypographyLink href='/legal/privacy-policy'>Privacy Policy</TypographyLink></Label>
+                        </div>
                         {formError && (
                             <p className="text-red-500 text-sm mt-2">{formError}</p>
                         )}
