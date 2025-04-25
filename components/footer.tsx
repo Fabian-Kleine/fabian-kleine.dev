@@ -11,12 +11,12 @@ export default function Footer() {
             </span>
             <div className="flex gap-4">
                 <ContactDialog>
-                    <span role="button" aria-haspopup className="cursor-pointer hover:text-muted-foreground transition-colors">
+                    <span role="button" aria-haspopup className="cursor-pointer hover:text-muted-foreground hover:scale-110 transition-all">
                         <Mail size={20} />
                         <span className="sr-only">Contact</span>
                     </span>
                 </ContactDialog>
-                <a href="http://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground transition-colors">
+                <a href="http://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground hover:scale-110 transition-all">
                     <GithubIcon size={20} />
                     <span className="sr-only">Github</span>
                 </a>
