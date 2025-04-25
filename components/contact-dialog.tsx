@@ -129,8 +129,26 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
             setFormError("");
             setIsLoading(true);
 
-            // Simulate an API call
-            await new Promise((resolve) => setTimeout(resolve, 2000));
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to send message. Please try again later.");
+            }
+
+            if (response.status !== 200) {
+                throw new Error("Failed to send message. Please try again later.");
+            }
 
             setIsLoading(false);
             setName("");
@@ -148,6 +166,15 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
 
                 const formErrorMessage = error.errors.map(err => err.message).join(", ");
                 setFormError(formErrorMessage);
+                setIsLoading(false);
+                return;
+            }
+            if (error instanceof Error) {
+                setFormError(error.message);
+                setIsLoading(false);
+            } else {
+                setFormError("An unknown error occurred");
+                setIsLoading(false);
             }
         }
     };
