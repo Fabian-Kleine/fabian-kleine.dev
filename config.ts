@@ -16,6 +16,7 @@ interface Config {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "portfolio",
             "weather-app",
             "sil-touch",
             "mockup-creator",

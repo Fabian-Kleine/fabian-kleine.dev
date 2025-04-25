@@ -1,0 +1,167 @@
+export const metadata = {
+    title: 'Portfolio',
+    description: 'The Portfoilio Page you are currently looking at.',
+    img: "/projects/portfolio.png",
+    bullets: [
+        "Visually appealing and responsive design",
+        "Dark and light mode support",
+        "MDX support for easy content creation",
+        "Contact form with email notifications",
+    ],
+    techs: [{ name: "Next.js", icon: "next.js" }, { name: "Shadcn UI", icon: "shadcnui" }, { name: "Tailwind CSS", icon: "tailwindcss" }],
+    demo: "https://fabian-kleine.dev",
+    github: "https://github.com/Fabian-Kleine/fabian-kleine.dev",
+    slug: "portfolio",
+}
+
+# Setup
+
+The portfolio page is build with [Next.js](https://nextjs.org/), [Shadcn UI](https://ui.shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/). 
+The page supports light and dark mode using the [next-themes](https://www.npmjs.com/package/next-themes) package.
+The content e.g. this projects page is written in [MDX](https://mdxjs.com/) format, which allows for easy content creation and management.
+
+## Pages
+
+As of now the portfolio has three pages:
+- **Home**: The home page is the first page you see when you visit the portfolio. It contains some information about my techstack and projects and is the most eye-catching page.
+- **Projects**: The projects page contains a list of all my projects.
+- **Project Detail**: The project detail page contains a detailed description of the project, the techstack used and a link to the demo and the source code.
+
+## Project Detail Page
+
+The project detail page are generated using a dynmaic route in Next.js (`/projects/[slug]`).
+The slug is the name of the project and is used to fetch the mdx file from the `projects` folder.
+
+The project detail page is build using the [MDX](https://mdxjs.com/) format, which allows for easy content creation and management.
+MDX is setup to use the plugins [rehype-highlight](https://npmjs.com/package/rehype-highlight) and [rehype-github-alerts](https://npmjs.com/package/rehype-github-alerts) to highlight code and show alerts like in Github README files.
+This is an exmple of a code block showing the `next.config.ts` file of this project:
+
+```typescript
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import rehypeHighlight from 'rehype-highlight';
+import { rehypeGithubAlerts } from 'rehype-github-alerts'
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [new URL("https://cdn.simpleicons.org/**")],
+  },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+};
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [rehypeHighlight, rehypeGithubAlerts],
+  },
+});
+
+export default withMDX(nextConfig);
+```
+
+These are the possible alerts you can use in the mdx files:
+
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]  
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]  
+> Negative potential consequences of an action.
+
+Further MDX is setup to use the Shadcns Typography components [@shadcn/typography](https://ui.shadcn.com/docs/components/typography) to style the text and headings.
+In `mdx-components.tsx` the components are imported and used to render the content of the mdx file:
+
+```tsx
+import type { MDXComponents } from 'mdx/types'
+import { 
+    TypographyBlockquote, 
+    TypographyH1, 
+    TypographyH2, 
+    TypographyH3, 
+    TypographyH4, 
+    TypographyInlineCode, 
+    TypographyLink, 
+    TypographyList, 
+    TypographyP
+} from '@/components/blog/typography';
+import { cn } from './lib/utils'
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+    return {
+        h1: (props) => <TypographyH1 {...props} />,
+        h2: (props) => <TypographyH2 {...props} />,
+        h3: (props) => <TypographyH3 {...props} />,
+        h4: (props) => <TypographyH4 {...props} />,
+        p: (props) => <TypographyP {...props} />,
+        ul: (props) => <TypographyList {...props} />,
+        a: ({ children, ...props }) => <TypographyLink {...props}>{children}</TypographyLink>,
+        pre: (props) => <pre {...props} className="relative -z-10 -top-8" />,
+        code: (props) => <TypographyInlineCode {...props} className={cn(props.className)} />,
+        blockquote: (props) => <TypographyBlockquote {...props} />,
+        ...components
+    }
+}
+```
+
+Every Project exports a metadata object which is used to render a preview of the project on the projects page.
+
+```javascript
+export const metadata = {
+    title: 'Some Project',
+    description: 'Some Project Description',
+    img: "/projects/project.png", // preview image of the project
+    video: "/projects/project.mp4", // preview video of the project
+    // list of features on the projects page and the Quick Overview Section
+    bullets: [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4",
+    ],
+    // Tech Stack used in the project
+    techs: [
+        { name: "Next.js", icon: "next.js" }, 
+        { name: "Shadcn UI", icon: "shadcnui" }, 
+        { name: "Tailwind CSS", icon: "tailwindcss" }
+    ],
+    demo: "https://example.com", // link to the demo of the project
+    github: "https://github.com/Fabian-Kleine/example", // link to the github repo of the project
+    slug: "project", // slug of the project used in the dynamic route
+}
+```
+
+## Contact Form
+
+The contact form is a dialog which sends an emial to me and a confirmation email to the user using [nodemailer](https://www.nodemailer.com/).
+It uses [Zod](https://zod.dev/) to validate the input and [Zustand](https://www.npmjs.com/package/zustand) to preserve the forms state accross multiple dialogs.
+
+# User Interface
+
+The user interface is build using [Shadcn UI](https://ui.shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/).
+Further it uses components from [Magic UI](https://magicui.design/) to make the UI more appealing.
+The UI is responsive and works on all devices. The UI is also dark mode compatible and uses the [next-themes](https://www.npmjs.com/package/next-themes) package to switch between light and dark mode.
+
+The UI sticks to the simplicity of Shadcn UI but adds some fancy and fresh components using Magic UI to make especially the home page more appealing.
+Further some blur in and text typing animations are used from Magic UI in the home pages hero section to make a good first impression.
+
+# Learnings
+- Correct usage of MDX with Next.js
+- Next.js 15
+- Dynamic Routes
+
+# Comparison to the old Portfolio
+The [old portfolio](/projects/portfolio-legacy) was build using [React](https://reactjs.org/) and [React Router](https://reactrouter.com/) which made it way more complicated than using Next.js.
+It used JSON files to store the projects which was a lot harder to edit and maintain compared to MDX which I use now.
+
+The User Interface is a question of preference. I like the new one more because it is more modern and cleaner. The old UI used lots of colors but in the new one I stuck to a more simple and clean design. 
+
+The old portfolios cotact form just used a generated `mailto:` link which was not very user friendly. The new one uses a dialog and sends an email to me and a confirmation email to the user using [nodemailer](https://www.nodemailer.com/).
