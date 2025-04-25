@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fabian-kleine.dev
 
-## Getting Started
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFabian-Kleine%2Ffabian-kleine.dev%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.dependencies.next&logo=next.js&logoColor=next.js&label=Next.js)
+[![Repo Language Count](https://img.shields.io/github/languages/count/Fabian-Kleine/fabian-kleine.dev)](https://github.com/Fabian-Kleine/fabian-kleine.dev)
+[![Repo Top Language](https://img.shields.io/github/languages/top/Fabian-Kleine/fabian-kleine.dev)](https://github.com/Fabian-Kleine/fabian-kleine.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Optional: Add a license if you have one -->
 
-First, run the development server:
+## ✨ About
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This repository contains the source code for my personal portfolio website, built to showcase my projects, skills, and experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⭐ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Visually appealing and responsive design
+* Dark and light mode support
+* MDX support for easy content creation
+* Contact form with email notifications
+* Project Showcase
+* Showcase of Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Tech Stack
 
-## Learn More
+The primary technologies used in this project include:
 
-To learn more about Next.js, take a look at the following resources:
+*   **[TypeScript](https://www.typescriptlang.org/)**: Superset of JavaScript adding static types.
+*   **[MDX](https://mdxjs.com/)**: Markdown for the component era. Allows using JSX in Markdown.
+*   **[Tailwind CSS](https:tailwindcss.com)**: Styling the application.
+*   **[Next.js](https://nextjs.org)**: The React Framework
+*   **[Shadcn UI](https://ui.shadcn.com)**: A modern component platform
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏁 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To run this project locally:
 
-## Deploy on Vercel
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Fabian-Kleine/fabian-kleine.dev.git
+    cd fabian-kleine.dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2.  **Install dependencies:**
+    ```bash
+    # Using npm
+    npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    # Or using yarn
+    # yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    # Using npm
+    npm run dev
+
+    # Or using yarn
+    # yarn dev
+    ```
+
+4.  Open [http://localhost:3000](http://localhost:3000) (or the specified port) in your browser to see the result.
+
+## 📄 License
+
+Example: This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
