@@ -27,8 +27,6 @@ export async function POST(request: Request) {
             }),
         });
 
-        console.log("Response:", response)
-
         if (!response.ok) {
             return new NextResponse("Failed to send message", { status: 500 })
         }
