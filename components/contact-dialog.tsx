@@ -215,7 +215,7 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                         </IconInput>
                         <div className="flex justify-center items-center space-x-2">
                             <Checkbox checked={privacyPolicy} onCheckedChange={setPrivacyPolicy} id="terms" />
-                            <Label htmlFor="terms">I Accept <TypographyLink href='/legal/privacy-policy'>Privacy Policy</TypographyLink></Label>
+                            <Label htmlFor="terms" className="block">I Accept the <TypographyLink href='/legal/privacy-policy'>Privacy Policy</TypographyLink></Label>
                         </div>
                         {formError && (
                             <p className="text-red-500 text-sm mt-2">{formError}</p>
