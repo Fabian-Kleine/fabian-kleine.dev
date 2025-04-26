@@ -1,4 +1,3 @@
-import ThemeParticles from "@/components/magicui/theme-particles";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Button } from "@/components/ui/button";

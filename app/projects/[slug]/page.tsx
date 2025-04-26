@@ -6,14 +6,14 @@ import { SimpleIconsTag } from "@/components/ui/simpleicons-tag";
 import { ProjectMetaData } from "@/types";
 import GithubIcon from "@/components/icons/github";
 import { config } from "@/config";
+import { Metadata } from "next";
 
 export default async function Page({
     params,
 }: {
     params: Promise<{ slug: string }>;
-
 }) {
-    const { slug } = await params
+    const { slug } = await params;
     const { default: Post, metadata }: { default: React.ComponentType, metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
 
     return <>
@@ -72,7 +72,7 @@ export function generateStaticParams() {
     return slugs.map((slug: string) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }:  { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const { metadata }: { metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
     return {
