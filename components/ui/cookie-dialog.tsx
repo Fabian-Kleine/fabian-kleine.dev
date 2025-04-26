@@ -75,7 +75,7 @@ export default function CookieDialog() {
                                 Find out more about Cookies in the <TypographyLink href='/legal/cookie-policy'>Cookie Policy</TypographyLink>
                             </> :
                             <>
-                                This website uses cookies to enhance the user experience. By clicking "Accept", you consent to the use of cookies.
+                                This website uses cookies to enhance the user experience. By clicking &quot;Accept&quot;, you consent to the use of cookies.
                                 Find out more about Cookies in the <TypographyLink href='/legal/cookie-policy'>Cookie Policy</TypographyLink>
                             </>
                         }
