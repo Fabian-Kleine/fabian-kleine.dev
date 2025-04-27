@@ -5,11 +5,11 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="flex justify-between py-6 px-6 lg:px-36 border-t">
-            <span>
+        <footer className="flex justify-between py-6 px-6 flex-wrap sm:flex-nowrap lg:px-36 border-t">
+            <span className="text-center sm:text-start w-full sm:w-fit">
                 &copy; {new Date().getFullYear()}. Made with ❤️ by <Link className="underline font-bold" href='/'>Fabian Kleine</Link>
             </span>
-            <div className="flex gap-4">
+            <div className="flex justify-center w-full sm:w-fit mt-4 sm:mt-0 gap-4">
                 <ContactDialog>
                     <span role="button" aria-haspopup className="cursor-pointer hover:text-muted-foreground hover:scale-110 transition-all">
                         <Mail size={20} />
