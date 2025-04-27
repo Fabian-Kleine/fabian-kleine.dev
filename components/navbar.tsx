@@ -10,6 +10,7 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
+    SheetClose
 } from "@/components/ui/sheet"
 import ContactDialog from "./contact-dialog";
 
@@ -34,12 +35,20 @@ export default function Navbar() {
                             </SheetTitle>
                         </SheetHeader>
                         <div className="flex flex-col gap-4 mt-2">
-                            <Link href={'/'} className="text-muted-foreground transition-colors hover:text-foreground">Home</Link>
-                            <Link href={'/#about'} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
-                            <Link href={'/projects'} className="text-muted-foreground transition-colors hover:text-foreground">Projects</Link>
-                            <ContactDialog>
-                                <span role="button" aria-haspopup className="text-muted-foreground transition-colors hover:text-foreground cursor-pointer">Contact</span>
-                            </ContactDialog>
+                            <SheetClose asChild>
+                                <Link href={'/'} className="text-muted-foreground transition-colors hover:text-foreground">Home</Link>
+                            </SheetClose>
+                            <SheetClose asChild>
+                                <Link href={'/#about'} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
+                            </SheetClose>
+                            <SheetClose asChild>
+                                <Link href={'/projects'} className="text-muted-foreground transition-colors hover:text-foreground">Projects</Link>
+                            </SheetClose>
+                            <SheetClose asChild>
+                                <ContactDialog>
+                                    <span role="button" aria-haspopup className="text-muted-foreground transition-colors hover:text-foreground cursor-pointer">Contact</span>
+                                </ContactDialog>
+                            </SheetClose>
                         </div>
                         <a href='https://github.com/Fabian-Kleine' target='_blank' rel='noopener noreferrer' className="mx-auto mt-auto mb-4">
                             <ShinyButton className="rounded-full border cursor-pointer dark:bg-radial-[at_50%_0%] from-primary/20 to-50% to-transparent">
