@@ -182,7 +182,7 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle className="tracking-tight text-3xl">Contact Me</DialogTitle>
                     {!completed && !isLoading && (
