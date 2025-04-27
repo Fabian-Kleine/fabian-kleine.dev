@@ -23,6 +23,7 @@ export default function ImageVideo({ title, img, video, className }: ImageVideoP
                     loop
                     muted
                     playsInline
+                    poster={img}
                     onError={() => setIsVideoError(true)}>
                 </video>
             </div>
