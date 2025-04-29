@@ -1,3 +1,5 @@
+"use client";
+
 export default function RandomEmoji() {
     const emojis = [
         { emoji: "👋", weight: 10 },
