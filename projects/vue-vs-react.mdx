@@ -1,0 +1,225 @@
+export const metadata = {
+    title: 'Vue vs. React',
+    description: 'A Kanban Board app written in both react and vue to compare the developer experience.',
+    img: "/projects/kanban-board.png",
+    video: "https://cdn.jsdelivr.net/gh/fabian-kleine/project-showcases/kanban-board.mp4",
+    bullets: [
+        "CRUD Operations",
+        "Drag and Drop",
+        "Saving to Local Storage",
+    ],
+    techs: [{ name: "Vue", icon: "vue.js" }, { name: "React", icon: "react" }, { name: "Vite", icon: "vite" }, { name: "Tailwind CSS", icon: "tailwindcss" }],
+    demo: "https://projects.fabian-kleine.dev/kanban-board/react/",
+    github: "https://github.com/Fabian-Kleine/vue-vs-react",
+    slug: "vue-vs-react",
+}
+
+# Kanban Board
+
+A Kanban Board app written in both react and vue to compare the developer experience.
+The app features CRUD operations, drag and drop functionality, and saving to local storage. The project is built with Vite and Tailwind CSS for styling. The goal of this project is to showcase the differences in developer experience between Vue and React.
+
+I chose a Kanban Board Aapp because utilizes all basic features of a web application like CRUD operations, drag and drop functionality, and saving to local storage.
+
+# React
+
+## Setup
+
+The React version uses the continuation of [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) called [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) for drag and drop functionality. The library is easy to use and provides a great developer experience.
+
+Further it uses [lucide-react](https://lucide.dev/) for icons. Apart from that, it uses only default functionality of React.
+
+## Pros
+
+### Props Defintion
+
+The Props are easly definable in the component as function parameters using typescript. This makes it easy and typesafe to use the props in the component.
+
+```tsx
+interface KanbanInputProps extends React.HTMLAttributes<HTMLDivElement> {
+    onAddTask: (task: { title: string; description: string }) => void;
+    onCancel?: () => void;
+    ref?: React.Ref<HTMLDivElement>;
+    defaultValues?: { title: string; description: string };
+}
+
+export default function KanbanInput({ onAddTask, defaultValues, ref, ...props }: KanbanInputProps) {
+    // ...
+}
+```
+
+Further there are no fallthrough props like in Vue which can get confusing in my opinion.
+
+### Code directly in the component
+
+The code like import statements or functions can be directly written in the file and there is no need for a setup function that is wrapped by `<script setup>`.
+This makes it easier to read the code and understand what is going on in the component.
+
+## Cons
+
+### State Management
+
+The state management is a bit more cimplicated than in Vue. The `useState` hook returns a getter and a setter and the value can't be manipulated directly like in Vue.
+Further you have to pass both the getter and setter to the child components which can get confusing. In Vue you can just pass the value as `v-model` to the child component.
+
+### HTML Classnames
+
+In React you have to use functions like `clsx` to combine classes easier. In vue you can just pass an array to the `:class` attribute and it will be combined automatically.
+
+Further in React you have to add Classnames that are passed to a client component manually to the element. In Vue this is done automatically with fallthroughs.
+
+#### React
+
+```tsx
+import { cn } from "../../lib/utils"
+
+export default function Input({
+  className,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & {
+  className?: string
+}) {
+  return (
+    <input
+      {...props}
+      className={cn(
+        '...',
+        className,
+      )}
+    />
+  )
+}
+```
+
+#### Vue
+
+```html
+<!-- child component -->
+<template>
+    <input
+        class="..."
+    />
+</template>
+
+<!-- parent component -->
+<Input class="font-bold" type="text" placeholder="Task Title" />
+
+<!-- this will be rendered as -->
+<input
+    class="... font-bold"
+/>
+```
+<br />
+
+# Vue
+
+## Setup
+
+The Vue version uses the [Vue Composition API](https://vuejs.org/guide/extras/composition-api-faq.html) and uses only vues built in features except for the icons which are added by [lucide-vue-next](https://lucide.dev/).
+
+## Pros 
+
+### Template Syntax
+
+HTML is directly written in the file using the `<template>` tag. This makes it easier to understand what the component returns. In React JSX you have to use `return` statements which are always at the end of the file and nested in functions. 
+
+Further I like conditional rendering in Vue more because you can use `v-if` and `v-else` directly in the template. In React you have to use ternary operators or if statements which can get confusing because they are warpped around the element and not directly defined inside it.
+
+#### Vue
+
+```html
+<template>
+    <LoadingSpinner v-if="isLoading" />
+    <div v-else>
+        <h1>...</h1>
+        <p>...</p>
+    </div>
+</template>
+```
+
+#### React
+
+```tsx
+return (
+    <section>
+        {isLoading ? 
+            <LoadingSpinner /> : (
+            <div>
+                <h1>...</h1>
+                <p>...</p>
+            </div>
+        )}
+    </section>
+)
+```
+
+### State Management
+
+Like mentioned before states are easier to manage because the can be directly manipulated.
+
+```typescript
+const tasks = ref<Task[]>([]);
+
+const getTasksByStatus = (status: Task['status']) => {
+    return tasks.value.filter(task => task.status === status);
+};
+```
+
+Further you can use `v-model` to bind the state to the child component. This makes it easier to pass the state to the child component and manipulate it directly.
+
+### Computed Properties
+
+The computed properties are a great feature of Vue. They are automatically updated when the dependencies change and you don't have to worry about it. In React you have to use `useEffect` and `useMemo` to achieve the same functionality which can get confusing.
+
+## Cons
+
+### Props and Emits Defintion
+
+I find the props and emits definition in Vue a bit confusing. You have to define them in the `defineProps` and `defineEmits` functions which are not directly visible in the component. This can get confusing because you have to scroll up to see what props and emits are defined.
+
+Further you can define the props in two different ways. Either by passing an object to `defineProps` or by giving them a type.
+
+```typescript
+// defineProps with object
+defineProps({
+    title: String,
+    description: String,
+});
+
+// defineProps with type
+defineProps<{
+    title: string;
+    description: string;
+}>();
+```
+
+I prefer the way React does this by just defining an interface and using it in the component.
+
+### Fallthrough Props
+
+Fallthrough props can get confusing because they can inherit from the parent or the child component which makes it harder to debug. In React you have to pass the remaining props manually but you can also make the typesafe for the specific HTML element.
+
+```typescript
+// only props that are valid for a button element can be passed in React
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    variant: 'primary' | 'secondary' | 'destructive';
+    ref?: React.Ref<HTMLButtonElement>;
+}
+```
+
+### Packages
+
+For Vue I couldn't find a package that was as good as [@hello-pangea/dnd](https://github.com/hello-pangea/dnd). 
+Because of that I programmed the drag and drop functionality by myself. This was a bit more complicated than in React but I learned a lot about the drag and drop API.
+This was of the cost of having a bit less functionality like animations.
+
+<br />
+
+# Conclusion
+
+Both frameworks have their pros and cons. I prefer the way React handles props definition and the code first approach. But I like the state management in Vue more and the way it handles computed properties.
+
+Also React has the larger community and ecosystem which makes it easier to find packages and solutions for problems. Vue therefore has more built in features and is easier to use for beginners.
+
+In the end it depends on the use case and the personal preference. I would recommend to try both frameworks and see which one fits better for your needs.
+
