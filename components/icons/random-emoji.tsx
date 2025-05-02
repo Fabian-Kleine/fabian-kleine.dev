@@ -1,6 +1,18 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 export default function RandomEmoji() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
+
     const emojis = [
         { emoji: "👋", weight: 10 },
         { emoji: "✌️", weight: 8 },
