@@ -3,7 +3,8 @@
 ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FFabian-Kleine%2Ffabian-kleine.dev%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.dependencies.next&logo=next.js&logoColor=next.js&label=Next.js)
 [![Repo Language Count](https://img.shields.io/github/languages/count/Fabian-Kleine/fabian-kleine.dev)](https://github.com/Fabian-Kleine/fabian-kleine.dev)
 [![Repo Top Language](https://img.shields.io/github/languages/top/Fabian-Kleine/fabian-kleine.dev)](https://github.com/Fabian-Kleine/fabian-kleine.dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Optional: Add a license if you have one -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/Fabian-Kleine/fabian-kleine.dev)
 
 ## ✨ About
 
