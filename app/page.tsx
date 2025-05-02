@@ -26,7 +26,7 @@ const projectsMarqueeImages = [
   "/projects/postrocket.png",
   "/projects/weather-app.png",
   "/projects/mockup-creator.png",
-  "/projects/postrocket.png",
+  "/projects/kanban-board.png",
   "/projects/mywishlists.png",
   "/projects/portfolio_legacy.png",
   "/projects/portfolio.png",
@@ -44,7 +44,7 @@ const projectsMarqueeImages = [
   "/projects/postrocket.png",
   "/projects/portfolio_legacy.png",
   "/projects/portfolio.png",
-  "/projects/mywishlists.png",
+  "/projects/kanban-board.png",
   "/projects/mockup-creator.png",
   "/projects/weather-app.png",
 ];
