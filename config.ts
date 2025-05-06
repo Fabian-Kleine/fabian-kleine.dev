@@ -16,6 +16,7 @@ interface Config {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "bang-search",
             "vue-vs-react",
             "portfolio",
             "weather-app",
@@ -31,7 +32,7 @@ export const config: Config = {
         featuredProjectsSlugs: [
             "weather-app",
             "vue-vs-react",
-            "mockup-creator",
+            "bang-search",
         ]
     },
     techStack: {
