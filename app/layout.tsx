@@ -6,6 +6,8 @@ import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import ThemeParticles from "@/components/magicui/theme-particles";
 import CookieDialog from "@/components/ui/cookie-dialog";
+import { Analytics } from "@vercel/analytics/next";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +24,15 @@ export const metadata: Metadata = {
   description: "This is my portfolio page where you can find out more about me and my projects.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieConsent = cookieStore.get("cookie-consent")?.value;
+  const allowAnalytics = cookieConsent === "true" || cookieConsent?.includes("analytics");
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -42,6 +48,7 @@ export default function RootLayout({
             <CookieDialog />
             <Footer />
           </ThemeProvider>
+          {allowAnalytics && <Analytics />}
       </body>
     </html>
   );

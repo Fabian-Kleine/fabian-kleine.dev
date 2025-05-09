@@ -84,6 +84,6 @@ export const config: Config = {
         ]
     },
     cookies: {
-        cookieConsent: true
+        cookieConsent: false
     }
 }
