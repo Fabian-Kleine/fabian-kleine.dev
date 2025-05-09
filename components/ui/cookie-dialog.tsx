@@ -17,7 +17,7 @@ import { Switch } from "./switch";
 import { TypographyLink } from "../blog/typography";
 
 export default function CookieDialog() {
-    const [cookieConsent, setCookieConsent] = useCookie("cookie-consent", "false");
+    const [cookieConsent, setCookieConsent] = useCookie("cookie-consent", "false", 365);
     const [isOpen, setIsOpen] = useState(false);
     const [customising, setCustomising] = useState(false);
     const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
