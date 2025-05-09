@@ -6,8 +6,7 @@ import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import ThemeParticles from "@/components/magicui/theme-particles";
 import CookieDialog from "@/components/ui/cookie-dialog";
-import { Analytics } from "@vercel/analytics/next";
-import { cookies } from "next/headers";
+import AnalyticsWrapper from "@/components/analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,26 +28,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const cookieConsent = cookieStore.get("cookie-consent")?.value;
-  const allowAnalytics = cookieConsent === "true" || cookieConsent?.includes("analytics");
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-          <ThemeProvider attribute="class" defaultTheme="dark">
-            <Navbar />
-            <main className="relative min-h-screen overflow-clip">
-              <ThemeParticles />
-              {children}
-            </main>
-            <CookieDialog />
-            <Footer />
-          </ThemeProvider>
-          {allowAnalytics && <Analytics />}
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <Navbar />
+          <main className="relative min-h-screen overflow-clip">
+            <ThemeParticles />
+            {children}
+          </main>
+          <CookieDialog />
+          <Footer />
+        </ThemeProvider>
+        <AnalyticsWrapper />
       </body>
     </html>
   );
