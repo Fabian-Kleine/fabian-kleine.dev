@@ -49,10 +49,12 @@ export default function CookieDialog() {
     const handleSavePreferences = () => {
         if (analyticsEnabled) {
             setCookieConsent("true", { expires: 2147483647 });
+            setIsOpen(false);
             return;
         }
         if (!analyticsEnabled) {
             setCookieConsent("false", { expires: 2147483647 });
+            setIsOpen(false);
             return;
         }
 
