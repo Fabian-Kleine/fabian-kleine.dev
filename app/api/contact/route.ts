@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
         if (!response.ok) {
             const errorText = await response.json();
-            return new NextResponse(errorText, { status: 500 })
+            return new NextResponse(JSON.stringify(errorText), { status: 500 })
             // return new NextResponse("Failed to send message", { status: 500 })
         }
 
