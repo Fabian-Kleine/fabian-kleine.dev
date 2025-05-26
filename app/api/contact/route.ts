@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         return new NextResponse("Failed to send message", { status: 500 })
     } catch (error) {
         console.error("Error sending message:", error)
-        return new NextResponse(error || "Failed to send message", { status: 500 })
+        return new NextResponse(JSON.stringify(error) || "Failed to send message", { status: 500 })
     }
 }
 
