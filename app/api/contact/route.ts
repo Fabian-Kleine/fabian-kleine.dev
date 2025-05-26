@@ -42,3 +42,5 @@ export async function POST(request: Request) {
         return new NextResponse(error || "Failed to send message", { status: 500 })
     }
 }
+
+
