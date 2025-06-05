@@ -38,7 +38,7 @@ export const config: Config = {
     techStack: {
         techStackMarquee1Icons: [
             { name: "HTML", icon: "html5" },
-            { name: "CSS", icon: "css3" },
+            { name: "CSS", icon: "css" },
             { name: "JavaScript", icon: "javascript" },
             { name: "TypeScript", icon: "typescript" },
             { name: "Node.js", icon: "node.js" },
@@ -67,7 +67,7 @@ export const config: Config = {
         ],
         techStackCloudIcons: [
             'html5', 
-            'css3', 
+            'css', 
             'javascript', 
             'typescript', 
             'node.js', 
