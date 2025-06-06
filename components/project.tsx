@@ -6,9 +6,10 @@ import GithubIcon from "./icons/github";
 import Link from "next/link";
 import ImageVideo from "./blog/image-video";
 import { ProjectMetaData } from "@/types";
+import { unstable_ViewTransition as ViewTransition } from 'react'
 
-type ProjectProps = 
-    | ({ className?: string } & ProjectMetaData & { metadata?: never }) 
+type ProjectProps =
+    | ({ className?: string } & ProjectMetaData & { metadata?: never })
     | { className?: string; metadata: ProjectMetaData; } & Partial<ProjectMetaData>;
 
 export default function Project({ className, metadata, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
@@ -25,17 +26,21 @@ export default function Project({ className, metadata, title, img, video, descri
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
             <div className="lg:w-1/2 relative">
-                <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
+                <ViewTransition name={projectSlug}>
+                    <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
+                </ViewTransition>
             </div>
             <div className="lg:w-1/2 space-y-4 lg:space-y-8">
                 <div className="space-y-4">
-                    {projectSlug ? (
-                        <Link href={`/projects/${projectSlug}`}>
-                            <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{projectTitle}<ExternalLink size={30} /></h3>
-                        </Link>
-                    ) : (
-                        <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
-                    )}
+                    <ViewTransition name={projectTitle}>
+                        {projectSlug ? (
+                            <Link href={`/projects/${projectSlug}`}>
+                                <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{projectTitle}<ExternalLink size={30} /></h3>
+                            </Link>
+                        ) : (
+                            <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
+                        )}
+                    </ViewTransition>
                     <p className="mt-4">{projectDescription}</p>
                     <ul className="space-y-4">
                         {projectBullets?.map((bullet, index) => (
