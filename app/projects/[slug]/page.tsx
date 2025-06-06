@@ -7,6 +7,7 @@ import { ProjectMetaData } from "@/types";
 import GithubIcon from "@/components/icons/github";
 import { config } from "@/config";
 import { Metadata } from "next";
+import { unstable_ViewTransition as ViewTransition } from 'react'
 
 export default async function Page({
     params,
@@ -18,14 +19,18 @@ export default async function Page({
 
     return <>
         <div className="mb-8 flex flex-col items-center justify-center gap-4">
-            <ImageVideo
-                title={metadata.title}
-                img={metadata.img}
-                video={metadata.video}
-                className="max-w-[400px]"
-            />
+            <ViewTransition name={slug}>
+                <ImageVideo
+                    title={metadata.title}
+                    img={metadata.img}
+                    video={metadata.video}
+                    className="max-w-[400px]"
+                />
+            </ViewTransition>
             <div className="flex flex-col gap-2 text-center">
-                <h1 className="tracking-tighter text-2xl sm:text-3xl md:text-4xl lg:text-5xl/none font-bold">{metadata.title}</h1>
+                <ViewTransition name={metadata.title}>
+                    <h1 className="tracking-tighter text-2xl sm:text-3xl md:text-4xl lg:text-5xl/none font-bold">{metadata.title}</h1>
+                </ViewTransition>
                 <TypographyP className="!mt-1">{metadata.description}</TypographyP>
             </div>
             <div className="flex justify-center flex-wrap gap-2">
@@ -72,7 +77,7 @@ export function generateStaticParams() {
     return slugs.map((slug: string) => ({ slug }));
 }
 
-export async function generateMetadata({ params }:  { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const { metadata }: { metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
     return {
