@@ -271,3 +271,7 @@ pre {
 .markdown-alert-caution .markdown-alert-title {
   color: var(--github-alert-caution-color);
 }
+
+@view-transition {
+  navigation: auto;
+}

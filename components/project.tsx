@@ -26,21 +26,19 @@ export default function Project({ className, metadata, title, img, video, descri
     return (
         <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
             <div className="lg:w-1/2 relative">
-                <ViewTransition name={projectSlug}>
-                    <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
-                </ViewTransition>
+                <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
             </div>
             <div className="lg:w-1/2 space-y-4 lg:space-y-8">
                 <div className="space-y-4">
-                    <ViewTransition name={projectTitle}>
-                        {projectSlug ? (
+                    {projectSlug ? (
+                        <ViewTransition name={"title"}>
                             <Link href={`/projects/${projectSlug}`}>
                                 <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{projectTitle}<ExternalLink size={30} /></h3>
                             </Link>
-                        ) : (
-                            <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
-                        )}
-                    </ViewTransition>
+                        </ViewTransition>
+                    ) : (
+                        <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
+                    )}
                     <p className="mt-4">{projectDescription}</p>
                     <ul className="space-y-4">
                         {projectBullets?.map((bullet, index) => (
