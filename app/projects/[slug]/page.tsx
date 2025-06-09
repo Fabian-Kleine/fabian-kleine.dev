@@ -19,16 +19,14 @@ export default async function Page({
 
     return <>
         <div className="mb-8 flex flex-col items-center justify-center gap-4">
-            <ViewTransition name={slug}>
-                <ImageVideo
-                    title={metadata.title}
-                    img={metadata.img}
-                    video={metadata.video}
-                    className="max-w-[400px]"
-                />
-            </ViewTransition>
+            <ImageVideo
+                title={metadata.title}
+                img={metadata.img}
+                video={metadata.video}
+                className="max-w-[400px]"
+            />
             <div className="flex flex-col gap-2 text-center">
-                <ViewTransition name={metadata.title}>
+                <ViewTransition name={"title"}>
                     <h1 className="tracking-tighter text-2xl sm:text-3xl md:text-4xl lg:text-5xl/none font-bold">{metadata.title}</h1>
                 </ViewTransition>
                 <TypographyP className="!mt-1">{metadata.description}</TypographyP>
