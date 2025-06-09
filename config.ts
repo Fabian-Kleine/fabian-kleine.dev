@@ -50,6 +50,7 @@ export const config: Config = {
             { name: "PHP", icon: "php" },
             { name: "MongoDB", icon: "mongodb" },
             { name: "Supabase", icon: "supabase" },
+            { name: "PostgreSQL", icon: "postgresql" },
             { name: "MySQL", icon: "mysql" },
             { name: "Python", icon: "python" }
         ],
@@ -79,6 +80,7 @@ export const config: Config = {
             'mongodb', 
             'supabase', 
             'python', 
+            'postgresql',
             'mysql', 
             'git'
         ]
