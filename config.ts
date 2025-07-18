@@ -50,6 +50,7 @@ export const config: Config = {
             { name: "PHP", icon: "php" },
             { name: "MongoDB", icon: "mongodb" },
             { name: "Supabase", icon: "supabase" },
+            { name: "Prisma", icon: "prisma" },
             { name: "PostgreSQL", icon: "postgresql" },
             { name: "MySQL", icon: "mysql" },
             { name: "Python", icon: "python" }
@@ -78,6 +79,7 @@ export const config: Config = {
             'tailwindcss', 
             'php', 
             'mongodb', 
+            'prisma',
             'supabase', 
             'python', 
             'postgresql',
