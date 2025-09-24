@@ -52,7 +52,6 @@ export const config: Config = {
             { name: "Supabase", icon: "supabase" },
             { name: "Prisma", icon: "prisma" },
             { name: "PostgreSQL", icon: "postgresql" },
-            { name: "MySQL", icon: "mysql" },
             { name: "Python", icon: "python" }
         ],
         techStackMarquee2Icons: [
@@ -64,6 +63,7 @@ export const config: Config = {
             { name: "Vite", icon: "vite" },
             { name: "Vercel", icon: "vercel" },
             { name: "Wordpress", icon: "wordpress" },
+            { name: "Shopware", icon: "shopware" },
             { name: "Plesk", icon: "plesk" },
             { name: "Postman", icon: "postman" },
         ],
@@ -79,11 +79,9 @@ export const config: Config = {
             'tailwindcss', 
             'php', 
             'mongodb', 
-            'prisma',
-            'supabase', 
+            'prisma', 
             'python', 
             'postgresql',
-            'mysql', 
             'git'
         ]
     },
