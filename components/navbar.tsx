@@ -39,7 +39,10 @@ export default function Navbar() {
                                 <Link href={'/'} className="text-muted-foreground transition-colors hover:text-foreground">Home</Link>
                             </SheetClose>
                             <SheetClose asChild>
-                                <Link href={'/#about'} className="text-muted-foreground transition-colors hover:text-foreground">About</Link>
+                                <Link href={'/#technologies'} className="text-muted-foreground transition-colors hover:text-foreground">Tech Stack</Link>
+                            </SheetClose>
+                            <SheetClose asChild>
+                                <Link href={'/#certifications'} className="text-muted-foreground transition-colors hover:text-foreground">Certifications</Link>
                             </SheetClose>
                             <SheetClose asChild>
                                 <Link href={'/projects'} className="text-muted-foreground transition-colors hover:text-foreground">Projects</Link>
@@ -69,7 +72,8 @@ export default function Navbar() {
                     </Link>
                     <div className="flex items-center gap-6 text-sm font-medium">
                         <div className="flex items-center gap-6 text-sm font-medium group">
-                            <Link href={'/#about'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">About</Link>
+                            <Link href={'/#technologies'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Tech Stack</Link>
+                            <Link href={'/#certifications'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Certifications</Link>
                             <Link href={'/projects'} className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground">Projects</Link>
                             <ContactDialog>
                                 <span role="button" aria-haspopup className="text-foreground transition-colors group-hover:text-muted-foreground hover:text-foreground cursor-pointer">Contact</span>

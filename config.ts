@@ -49,10 +49,9 @@ export const config: Config = {
             { name: "Tailwind CSS", icon: "tailwindcss" },
             { name: "PHP", icon: "php" },
             { name: "MongoDB", icon: "mongodb" },
-            { name: "Supabase", icon: "supabase" },
             { name: "Prisma", icon: "prisma" },
             { name: "PostgreSQL", icon: "postgresql" },
-            { name: "Python", icon: "python" }
+            { name: "Python", icon: "python" },
         ],
         techStackMarquee2Icons: [
             { name: "Shadcn UI", icon: "shadcnui" },
@@ -64,8 +63,7 @@ export const config: Config = {
             { name: "Vercel", icon: "vercel" },
             { name: "Wordpress", icon: "wordpress" },
             { name: "Shopware", icon: "shopware" },
-            { name: "Plesk", icon: "plesk" },
-            { name: "Postman", icon: "postman" },
+            { name: "Plesk", icon: "plesk" }
         ],
         techStackCloudIcons: [
             'html5', 
