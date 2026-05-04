@@ -1,52 +1,35 @@
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, FolderGit2, Mail } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { ExternalLink, FolderGit2, Mail, Award } from "lucide-react";
 import GithubIcon from "@/components/icons/github";
 import Link from "next/link";
-import RandomEmoji from "@/components/icons/random-emoji";
-import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
-import { SimpleIconsCloud } from "@/components/magicui/simpleicons-cloud";
-import { ThreeDMarquee } from "@/components/aceternityui/3d-marquee";
-import { AnimatedListHome } from "@/components/home/animated-list-home";
 import { TechStackMarqueesHome } from "@/components/home/techstack-marquees-home";
+import { LiquidBlob } from "@/components/home/liquid-blob";
 import Project from "@/components/project";
 import { ProjectMetaData } from "@/types";
 import ContactDialog from "@/components/contact-dialog";
 import { config } from "@/config";
+import Image from "next/image";
 
-const projectsMarqueeImages = [
-  "/projects/weather-app.png",
-  "/projects/mockup-creator.png",
-  "/projects/mockup-creator.png",
-  "/projects/portfolio.png",
-  "/projects/weather-app.png",
-  "/projects/mockup-creator.png",
-  "/projects/cerberusui.png",
-  "/projects/postrocket.png",
-  "/projects/weather-app.png",
-  "/projects/mockup-creator.png",
-  "/projects/kanban-board.png",
-  "/projects/mywishlists.png",
-  "/projects/portfolio_legacy.png",
-  "/projects/portfolio.png",
-  "/projects/weather-app.png",
-  "/projects/mockup-creator.png",
-  "/projects/portfolio.png",
-  "/projects/weather-app.png",
-  "/projects/mockup-creator.png",
-  "/projects/cerberusui.png",
-  "/projects/postrocket.png",
-  "/projects/portfolio_legacy.png",
-  "/projects/mywishlists.png",
-  "/projects/portfolio_legacy.png",
-  "/projects/mywishlists.png",
-  "/projects/postrocket.png",
-  "/projects/portfolio_legacy.png",
-  "/projects/portfolio.png",
-  "/projects/kanban-board.png",
-  "/projects/mockup-creator.png",
-  "/projects/weather-app.png",
+const certificates = [
+  {
+    name: "Shopware 6 Certified Backend Developer",
+    file: "shopware6-certified-backend-developer",
+    issuer: "Shopware AG",
+  },
+  {
+    name: "Shopware 6 Certified Backend Developer (Intermediate)",
+    file: "shopware6-certified-backend-developer-intermediate",
+    issuer: "Shopware AG",
+  },
+  {
+    name: "Shopware 6 Certified Frontend Developer",
+    file: "shopware6-certified-frontend-developer",
+    issuer: "Shopware AG",
+  },
 ];
 
 const getFeaturedProjects = async () => {
@@ -64,84 +47,142 @@ export default async function Home() {
 
   return (
     <>
-      <section id="about" aria-label="about" className="relative flex flex-col items-center justify-center min-h-screen w-full px-6 lg:px-36">
-        <div aria-hidden className="gradient-bg opacity-0 dark:opacity-100" />
-        <div className="container py-24 space-y-4">
-          <BlurFade delay={2} duration={.7} direction="down">
-            <RandomEmoji />
-          </BlurFade>
-          <TypingAnimation duration={75} as="h1" className="tracking-tighter text-3xl sm:text-4xl md:text-5xl lg:text-6xl/none font-bold"> Hi, I&apos;m Fabian Kleine</TypingAnimation>
-          <TypingAnimation as="p" duration={35} className="text-balance text-muted-foreground text-lg font-normal">
-            I&apos;m an apprentice and selftaught Programmer focusing on web development
-          </TypingAnimation>
-          <div className="flex gap-2 items-center">
-            <BlurFade delay={1} duration={1} direction="up">
-              <Link href='/projects'>
-                <Button size='lg'>
-                  <FolderGit2 />
-                  Projects
-                </Button>
-              </Link>
-            </BlurFade>
-            <BlurFade delay={1.1} duration={1} direction="up">
-              <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer">
-                <Button size='lg' variant='outline' className="w-10 bg-background">
-                  <GithubIcon />
-                  <span className="sr-only">Github</span>
-                </Button>
-              </a>
-            </BlurFade>
-            <BlurFade delay={1.2} duration={1} direction="up">
-              <ContactDialog>
-                <Button size='lg' variant='outline' className="w-10 bg-background">
-                  <Mail />
-                  <span className="sr-only">Contact</span>
-                </Button>
-              </ContactDialog>
+      {/* Hero */}
+      <section id="about" aria-label="about" className="flex flex-col justify-center min-h-screen w-full px-6 lg:px-36 border-b">
+        <div className="container py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <BlurFade delay={0.2} duration={0.6} direction="up">
+                <div className="flex items-center gap-2 mb-8">
+                  <span className="relative flex size-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                    <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                  </span>
+                  <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Open to opportunities
+                  </span>
+                </div>
+              </BlurFade>
+
+              <BlurFade delay={0.35} duration={0.7} direction="up">
+                <h1 className="tracking-tight text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
+                  Hi, I&apos;m{" "}
+                  <span className="text-primary">
+                    Fabian Kleine
+                  </span>
+                </h1>
+              </BlurFade>
+
+              <BlurFade delay={0.5} duration={0.7} direction="up">
+                <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+                  I&apos;m an apprentice and self-taught programmer focusing on web development.
+                  I build modern, accessible web applications with a focus on clean code and great user experience.
+                </p>
+              </BlurFade>
+
+              <BlurFade delay={0.65} duration={0.7} direction="up">
+                <div className="flex flex-wrap gap-3 items-center">
+                  <Link href="/projects">
+                    <Button size="lg">
+                      <FolderGit2 />
+                      View Projects
+                    </Button>
+                  </Link>
+                  <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" variant="outline">
+                      <GithubIcon />
+                      GitHub
+                    </Button>
+                  </a>
+                  <ContactDialog>
+                    <Button size="lg" variant="ghost">
+                      <Mail />
+                      Get in Touch
+                    </Button>
+                  </ContactDialog>
+                </div>
+              </BlurFade>
+            </div>
+
+            <BlurFade delay={0.5} duration={0.9} direction="up" className="hidden lg:flex justify-center items-center">
+              <LiquidBlob />
             </BlurFade>
           </div>
         </div>
-        <BlurFade className="w-full overflow-visible" delay={2.5} duration={1} direction="up">
-          <BentoGrid className="overflow-visible">
-            <BentoCard name="Technologies" description="I use a variety of Technoliges" cta="Learn More" href="#technologies" background={
-              <div className="absolute inset-0 flex items-center justify-center">
-                <SimpleIconsCloud className="-mt-14" icons={config.techStack.techStackCloudIcons} />
-              </div>
-            } className="!bg-background/50 backdrop-blur-xs dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
-            <BentoCard name="Projects" description="Many different Projects" cta="Discover Projects" href="/projects" background={
-              <div className="absolute mx-auto max-w-full">
-                <ThreeDMarquee images={projectsMarqueeImages} />
-              </div>
-            } className="!bg-background/50 backdrop-blur-xs dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
-            <BentoCard name="Contact" description="Get in touch with me" cta="Contact Me" href="/contact" background={
-              <div className="absolute inset-0 flex items-center justify-center px-2">
-                <AnimatedListHome className="mt-40" />
-              </div>
-            } className="!bg-background/50 backdrop-blur-xs dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] col-span-3 lg:col-span-1" Icon={"span"} />
-          </BentoGrid>
-        </BlurFade>
       </section>
-      <section id="technologies" className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
-        <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Technology Stack</h2>
-        <TechStackMarqueesHome className="mt-4" />
-      </section>
-      <section id="featured" className="w-full bg-background px-6 lg:px-36 pt-24">
-        <div className="flex justify-between items-center flex-wrap sm:flex-nowrap gap-4">
-          <h2 className="tracking-tighter text-xl sm:text-2xl md:text-3xl lg:text-4xl/none font-bold">Featured Projects</h2>
-          <Link href='/projects'>
-            <Button variant={'outline'}>
-              All Projects
-              <ExternalLink />
-            </Button>
-          </Link>
+
+      {/* Technology Stack */}
+      <section id="technologies" className="w-full bg-background px-6 lg:px-36 py-24 border-b">
+        <div className="container">
+          <BlurFade delay={0.2} duration={0.6}>
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-2">Expertise</p>
+            <h2 className="tracking-tight text-2xl sm:text-3xl md:text-4xl font-bold mb-10">Technology Stack</h2>
+          </BlurFade>
+          <TechStackMarqueesHome className="mt-2" />
         </div>
-        <div className="space-y-28 my-28">
-          {featuredProjects.map((project, index) => (
-            <Project
-              key={index}
-              metadata={project}
-            />
-          ))}
+      </section>
+
+      {/* Certifications */}
+      <section id="certifications" className="w-full bg-muted/30 px-6 lg:px-36 py-24 border-b">
+        <div className="container">
+          <BlurFade delay={0.2} duration={0.6}>
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-2">Credentials</p>
+            <h2 className="tracking-tight text-2xl sm:text-3xl md:text-4xl font-bold mb-10">Certifications</h2>
+          </BlurFade>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            {certificates.map((cert, index) => (
+              <BlurFade key={cert.file} delay={0.2 + index * 0.15} duration={0.6} className="h-full">
+                <div className="group h-full flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                  <div className="relative aspect-4/3 max-h-44 bg-muted overflow-hidden">
+                    <Image
+                      src={`/certificats/${cert.file}.png`}
+                      alt={cert.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain p-3 group-hover:scale-[1.03] transition-transform duration-500"
+                    />
+                  </div>
+                  <Separator />
+                  <div className="p-4 flex items-start gap-3 mt-auto">
+                    <div className="mt-0.5 rounded-md bg-primary/10 p-1.5 text-primary shrink-0">
+                      <Award className="size-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold leading-snug">{cert.name}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{cert.issuer}</p>
+                    </div>
+                  </div>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section id="featured" className="w-full bg-background px-6 lg:px-36 py-24">
+        <div className="container">
+          <BlurFade delay={0.2} duration={0.6}>
+            <div className="flex justify-between items-end flex-wrap gap-4 mb-16">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-2">Portfolio</p>
+                <h2 className="tracking-tight text-2xl sm:text-3xl md:text-4xl font-bold">Featured Projects</h2>
+              </div>
+              <Link href="/projects">
+                <Button variant="outline">
+                  All Projects
+                  <ExternalLink />
+                </Button>
+              </Link>
+            </div>
+          </BlurFade>
+          <div className="space-y-28">
+            {featuredProjects.map((project, index) => (
+              <BlurFade key={index} delay={0.2 + index * 0.15} duration={0.6}>
+                <Project metadata={project} />
+              </BlurFade>
+            ))}
+          </div>
         </div>
       </section>
     </>
