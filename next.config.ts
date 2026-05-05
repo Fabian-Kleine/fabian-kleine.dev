@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
-import rehypeHighlight from 'rehype-highlight';
-import { rehypeGithubAlerts } from 'rehype-github-alerts'
+import path from "path";
 
 const nextConfig: NextConfig = {
   images: {
@@ -14,7 +13,12 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
-    rehypePlugins: [rehypeHighlight, rehypeGithubAlerts],
+    // String paths are serializable, required for Turbopack compatibility.
+    // rehype-github-alerts uses a named export so we proxy it via a wrapper.
+    rehypePlugins: [
+      'rehype-highlight',
+      path.resolve('./lib/rehype-github-alerts-plugin.mjs'),
+    ],
   },
 });
 
