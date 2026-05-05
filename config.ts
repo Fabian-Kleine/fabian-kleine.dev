@@ -16,6 +16,7 @@ interface Config {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "favorlist",
             "bang-search",
             "vue-vs-react",
             "portfolio",
@@ -23,14 +24,12 @@ export const config: Config = {
             "sil-touch",
             "mockup-creator",
             "postrocket",
-            "cerberusui",
             "mywishlists",
-            "fivem-utils",
             "portfolio-legacy",
             "r6-creative-hub"
         ],
         featuredProjectsSlugs: [
-            "weather-app",
+            "favorlist",
             "vue-vs-react",
             "bang-search",
         ]
