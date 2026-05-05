@@ -18,6 +18,7 @@ export async function POST(request: Request) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "x-api-secret": process.env.API_SECRET || "",
             },
             body: JSON.stringify({
                 name,
