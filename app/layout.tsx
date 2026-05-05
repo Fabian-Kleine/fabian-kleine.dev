@@ -5,7 +5,6 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import ThemeParticles from "@/components/magicui/theme-particles";
-import CookieDialog from "@/components/ui/cookie-dialog";
 import AnalyticsWrapper from "@/components/analytics";
 import { cn } from "@/lib/utils";
 
@@ -45,7 +44,6 @@ export default async function RootLayout({
             <ThemeParticles />
             {children}
           </main>
-          <CookieDialog />
           <Footer />
         </ThemeProvider>
         <AnalyticsWrapper />
