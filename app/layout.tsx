@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Raleway, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "next-themes";
 import ThemeParticles from "@/components/magicui/theme-particles";
-import CookieDialog from "@/components/ui/cookie-dialog";
 import AnalyticsWrapper from "@/components/analytics";
+import { cn } from "@/lib/utils";
+
+const ibmPlexSansHeading = IBM_Plex_Sans({subsets:['latin'],variable:'--font-heading'});
+
+const raleway = Raleway({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +33,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", raleway.variable, ibmPlexSansHeading.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
@@ -40,7 +44,6 @@ export default async function RootLayout({
             <ThemeParticles />
             {children}
           </main>
-          <CookieDialog />
           <Footer />
         </ThemeProvider>
         <AnalyticsWrapper />

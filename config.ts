@@ -16,6 +16,7 @@ interface Config {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "favorlist",
             "bang-search",
             "vue-vs-react",
             "portfolio",
@@ -23,14 +24,12 @@ export const config: Config = {
             "sil-touch",
             "mockup-creator",
             "postrocket",
-            "cerberusui",
             "mywishlists",
-            "fivem-utils",
             "portfolio-legacy",
             "r6-creative-hub"
         ],
         featuredProjectsSlugs: [
-            "weather-app",
+            "favorlist",
             "vue-vs-react",
             "bang-search",
         ]
@@ -49,10 +48,9 @@ export const config: Config = {
             { name: "Tailwind CSS", icon: "tailwindcss" },
             { name: "PHP", icon: "php" },
             { name: "MongoDB", icon: "mongodb" },
-            { name: "Supabase", icon: "supabase" },
             { name: "Prisma", icon: "prisma" },
             { name: "PostgreSQL", icon: "postgresql" },
-            { name: "Python", icon: "python" }
+            { name: "Python", icon: "python" },
         ],
         techStackMarquee2Icons: [
             { name: "Shadcn UI", icon: "shadcnui" },
@@ -62,25 +60,24 @@ export const config: Config = {
             { name: "GitLab", icon: "gitlab" },
             { name: "Vite", icon: "vite" },
             { name: "Vercel", icon: "vercel" },
+            { name: "Expo", icon: "expo" },
             { name: "Wordpress", icon: "wordpress" },
-            { name: "Shopware", icon: "shopware" },
-            { name: "Plesk", icon: "plesk" },
-            { name: "Postman", icon: "postman" },
+            { name: "Shopware", icon: "shopware" }
         ],
         techStackCloudIcons: [
-            'html5', 
-            'css', 
-            'javascript', 
-            'typescript', 
-            'node.js', 
-            'react', 
-            'vue.js', 
-            'next.js', 
-            'tailwindcss', 
-            'php', 
-            'mongodb', 
-            'prisma', 
-            'python', 
+            'html5',
+            'css',
+            'javascript',
+            'typescript',
+            'node.js',
+            'react',
+            'vue.js',
+            'next.js',
+            'tailwindcss',
+            'php',
+            'mongodb',
+            'prisma',
+            'python',
             'postgresql',
             'git'
         ]
