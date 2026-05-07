@@ -16,6 +16,7 @@ interface Config {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "nexus",
             "favorlist",
             "bang-search",
             "vue-vs-react",
@@ -45,10 +46,10 @@ export const config: Config = {
             { name: "Vue.js", icon: "vue.js" },
             { name: "React", icon: "react" },
             { name: "Next.js", icon: "next.js" },
+            { name: "Expo", icon: "expo" },
             { name: "Tailwind CSS", icon: "tailwindcss" },
             { name: "PHP", icon: "php" },
             { name: "MongoDB", icon: "mongodb" },
-            { name: "Prisma", icon: "prisma" },
             { name: "PostgreSQL", icon: "postgresql" },
             { name: "Python", icon: "python" },
         ],
@@ -60,7 +61,8 @@ export const config: Config = {
             { name: "GitLab", icon: "gitlab" },
             { name: "Vite", icon: "vite" },
             { name: "Vercel", icon: "vercel" },
-            { name: "Expo", icon: "expo" },
+            { name: "Prisma", icon: "prisma" },
+            { name: "Drizzle", icon: "drizzle" },
             { name: "Wordpress", icon: "wordpress" },
             { name: "Shopware", icon: "shopware" }
         ],
