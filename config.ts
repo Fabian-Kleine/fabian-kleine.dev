@@ -19,6 +19,7 @@ export interface Certificate {
     name: string;
     file: string;
     issuer: string;
+    validUntil?: string;
 }
 
 export interface Insignia {
@@ -111,16 +112,19 @@ export const config: Config = {
             name: "Shopware 6 Certified Backend Developer",
             file: "shopware6-certified-backend-developer",
             issuer: "Shopware AG",
+            validUntil: "April 2027",
         },
         {
             name: "Shopware 6 Certified Backend Developer (Intermediate)",
             file: "shopware6-certified-backend-developer-intermediate",
             issuer: "Shopware AG",
+            validUntil: "April 2027",
         },
         {
             name: "Shopware 6 Certified Frontend Developer",
             file: "shopware6-certified-frontend-developer",
             issuer: "Shopware AG",
+            validUntil: "April 2027",
         },
     ],
     insignia: [

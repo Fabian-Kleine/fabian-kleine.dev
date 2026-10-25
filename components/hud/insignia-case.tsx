@@ -143,7 +143,12 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                                             />
                                         </div>
                                         <div className="grid flex-1 content-between gap-1 border-t p-3">
-                                            <span className="text-sm leading-snug font-semibold text-heading">{cert.name}</span>
+                                            <span className="grid gap-1">
+                                                <span className="text-sm leading-snug font-semibold text-heading">{cert.name}</span>
+                                                {cert.validUntil && (
+                                                    <span className="font-mono text-[0.62rem] tracking-[0.14em] text-highlight uppercase">Valid until {cert.validUntil}</span>
+                                                )}
+                                            </span>
                                             <span className="flex items-center justify-between hud-meta text-[0.62rem]">
                                                 {cert.issuer}
                                                 <ExternalLink className="size-3 text-primary" />
