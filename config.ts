@@ -38,6 +38,7 @@ export interface Insignia {
 export const config: Config = {
     projects: {
         projectsSlugs: [
+            "home-dashboard",
             "nexus",
             "favorlist",
             "bang-search",
@@ -52,9 +53,9 @@ export const config: Config = {
             "r6-creative-hub"
         ],
         featuredProjectsSlugs: [
+            "home-dashboard",
             "favorlist",
-            "vue-vs-react",
-            "bang-search",
+            "vue-vs-react"
         ]
     },
     techStack: {
