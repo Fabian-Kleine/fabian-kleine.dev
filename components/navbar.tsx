@@ -12,12 +12,16 @@ import {
     SheetClose
 } from "@/components/ui/sheet"
 import { NavTabs } from "./hud/nav-tabs";
-import { CONTACT_LABEL, NAV_ITEMS } from "@/lib/nav";
+import { NAV_ITEMS } from "@/lib/nav";
 import { Telemetry } from "./hud/telemetry";
+import { LocaleSwitcher } from "./locale-switcher";
+import { getTranslations } from "next-intl/server";
 
-function Mark() {
+async function Mark() {
+    const t = await getTranslations("Nav");
+
     return (
-        <Link href="/#top" className="group/mark flex flex-none items-center gap-2.5" aria-label="Back to top">
+        <Link href="/#top" className="group/mark flex flex-none items-center gap-2.5" aria-label={t("backToTop")}>
             <Image
                 src="/badges/fk.png"
                 alt=""
@@ -28,13 +32,14 @@ function Mark() {
             />
             <div>
                 <b className="block font-heading text-[1.35rem] leading-none font-extrabold tracking-[0.04em] text-heading">KLEINE-OS</b>
-                <span className="mt-0.5 hidden font-mono text-[0.62rem] tracking-[0.2em] text-primary sm:block">FABIAN KLEINE // FIELD</span>
+                <span className="mt-0.5 hidden font-mono text-[0.62rem] tracking-[0.2em] text-primary sm:block">{t("tagline")}</span>
             </div>
         </Link>
     );
 }
 
-export default function Navbar() {
+export default async function Navbar() {
+    const t = await getTranslations("Nav");
     const sheetLink = "border-b py-3 text-left font-heading text-xl font-bold tracking-[0.09em] text-muted-foreground uppercase transition-colors hover:text-heading";
 
     return (
@@ -44,27 +49,28 @@ export default function Navbar() {
                 <NavTabs className="hidden md:flex" />
                 <div className="ml-auto flex items-center gap-3 md:ml-0">
                     <Telemetry />
+                    <LocaleSwitcher />
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon" className="md:hidden">
                                 <AlignLeft />
-                                <span className="sr-only">Toggle Navbar</span>
+                                <span className="sr-only">{t("toggle")}</span>
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="right" className="w-3/4 px-6">
                             <SheetHeader className="px-0">
                                 <SheetTitle className="hud-title text-2xl">KLEINE-OS</SheetTitle>
                             </SheetHeader>
-                            <nav className="flex flex-col" aria-label="Main">
+                            <nav className="flex flex-col" aria-label={t("main")}>
                                 {NAV_ITEMS.map((item) => (
                                     <SheetClose asChild key={item.href}>
                                         <Link href={item.href} className={sheetLink}>
-                                            {item.label}
+                                            {t(item.key)}
                                         </Link>
                                     </SheetClose>
                                 ))}
                                 <ContactDialog>
-                                    <button type="button" className={sheetLink}>{CONTACT_LABEL}</button>
+                                    <button type="button" className={sheetLink}>{t("contact")}</button>
                                 </ContactDialog>
                             </nav>
                         </SheetContent>

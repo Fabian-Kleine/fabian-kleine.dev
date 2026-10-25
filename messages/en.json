@@ -1,0 +1,212 @@
+{
+  "Metadata": {
+    "title": "Fabian Kleine | Portfolio",
+    "description": "This is my portfolio page where you can find out more about me and my projects.",
+    "projectTitle": "{title} | Fabian Kleine | Portfolio"
+  },
+  "Boot": {
+    "label": "System startup",
+    "build": "KLEINE-OS // TACTICAL BUILD",
+    "copyright": "(C) {year} FABIAN KLEINE // FIELD EDITION",
+    "memoryCheck": "MEMORY CHECK",
+    "mount": "MOUNT /dev/portfolio",
+    "loadModule": "LOAD MODULE {name}",
+    "items": "[{count} ITEMS]",
+    "awarded": "[{count} AWARDED]",
+    "files": "[{count} FILES]",
+    "unstable": "UNSTABLE",
+    "uplink": "SYNC SATELLITE UPLINK",
+    "locked": "LOCKED",
+    "biometrics": "VERIFY OPERATOR BIOMETRICS",
+    "match": "MATCH",
+    "subtitle": "TACTICAL DEVELOPER ENVIRONMENT",
+    "granted": "ACCESS GRANTED // WELCOME BACK, OPERATOR",
+    "skip": "SKIP [ESC]",
+    "stages": {
+      "decrypting": "DECRYPTING PROFILE",
+      "stack": "LOADING STACK",
+      "operations": "SYNCING OPERATIONS",
+      "deploying": "DEPLOYING HUD"
+    }
+  },
+  "Nav": {
+    "main": "Main",
+    "home": "Home",
+    "projects": "Projects",
+    "insignia": "Insignia",
+    "contact": "Contact",
+    "toggle": "Toggle Navbar",
+    "backToTop": "Back to top",
+    "tagline": "FABIAN KLEINE // FIELD",
+    "localTime": "Local time in Germany"
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "Footer": {
+    "legal": "Legal",
+    "contact": "Contact",
+    "github": "Github",
+    "reboot": "REBOOT SYSTEM"
+  },
+  "Contact": {
+    "title": "Contact Me",
+    "description": "If you have any questions or inquiries, feel free to reach out to me by filling in the form below.",
+    "name": "Name",
+    "namePlaceholder": "John Doe",
+    "email": "Email",
+    "emailPlaceholder": "john.doe@example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Subject",
+    "message": "Message",
+    "messagePlaceholder": "Your Message",
+    "acceptPrivacy": "I accept the <link>Privacy Policy</link>",
+    "sending": "Sending your message...",
+    "success": "Thank you for your message! I will get back to you as soon as possible.",
+    "send": "Send Message",
+    "close": "Close",
+    "errors": {
+      "nameRequired": "Name is required",
+      "invalidEmail": "Invalid email address",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required",
+      "privacyRequired": "You must accept the privacy policy",
+      "sendFailed": "Failed to send message. Please try again later.",
+      "unknown": "An unknown error occurred"
+    }
+  },
+  "Project": {
+    "sector": "Sector: {list}",
+    "live": "Live",
+    "source": "Source",
+    "viewProject": "View project",
+    "liveDemo": "Live demo"
+  },
+  "ProjectPage": {
+    "liveDemo": "Live Demo",
+    "viewCode": "View Code",
+    "overview": "Quick Overview"
+  },
+  "Projects": {
+    "eyebrow": "Mission archive // all debriefs",
+    "title": "All Operations",
+    "meta": "{total} on file // {openSource} open source"
+  },
+  "Home": {
+    "hero": {
+      "dossier": "Operator dossier",
+      "id": "ID FK-0800",
+      "class": "Class: Web developer",
+      "role": "Web Developer",
+      "path": "Apprentice // Self-taught",
+      "open": "Open to opportunities",
+      "intro": "I'm an apprentice and self-taught programmer focusing on web development. I build modern, accessible web applications with a focus on clean code and great user experience.",
+      "viewOperations": "View operations",
+      "openComms": "Open comms"
+    },
+    "stats": {
+      "label": "Operator stats",
+      "rank": "Rank: Apprentice",
+      "callsign": "Web developer // callsign Kleine",
+      "liveDeployments": "Live deployments",
+      "operations": "Operations",
+      "stackItems": "Stack items",
+      "certifications": "Certifications",
+      "openSource": "Open source",
+      "tacmap": "Tacmap // Operations",
+      "contacts": "{count, plural, one {# contact} other {# contacts}}"
+    },
+    "ticker": {
+      "latest": "Latest operation: {title}, {description}",
+      "open": "Open to opportunities",
+      "certified": "{count}x Shopware 6 certified",
+      "tech": "{count} technologies in the stack",
+      "operations": "{count} operations on record, {openSource} open source",
+      "built": "Built with Next.js and shadcn/ui"
+    },
+    "stack": {
+      "eyebrow": "Languages, frameworks, field tools",
+      "title": "Stack",
+      "meta": "{count} items equipped",
+      "primaryLabel": "Primary stack",
+      "primaryTitle": "Arsenal",
+      "secondaryLabel": "Secondary stack",
+      "secondaryTitle": "Field kit",
+      "summary": "{core} core // {total} equipped",
+      "core": "Core",
+      "support": "Support",
+      "deployed": "Deployed",
+      "ops": "{count, plural, one {# op} other {# ops}}"
+    },
+    "insignia": {
+      "eyebrow": "Commendations // select to inspect",
+      "title": "Insignia",
+      "meta": "{count} awarded",
+      "certificationsCaption": "{count, plural, one {# certification} other {# certifications}}",
+      "operationsCaption": "{count, plural, one {# operation} other {# operations}}",
+      "certifications": "Certifications",
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "operations": "Operations",
+      "liveDemos": "Live demos",
+      "openSource": "Open source",
+      "share": "Share of operations"
+    },
+    "operations": {
+      "eyebrow": "Selected work // mission debriefs",
+      "title": "Operations",
+      "meta": "{featured} featured // {total} on file",
+      "archiveTitle": "Archive",
+      "archiveSector": "Sector: Archive // {count} files",
+      "classified": "Classified",
+      "archiveText": "{count} more operations on file, from <long></long> to <short></short>. Clearance granted for the full archive.",
+      "openArchive": "Open archive"
+    },
+    "comms": {
+      "eyebrow": "Secure channel",
+      "title": "Comms",
+      "meta": "Contact form // GitHub",
+      "heading": "Got a mission? Open a channel.",
+      "text": "If you have any questions or inquiries, feel free to reach out by filling in the contact form. I will get back to you as soon as possible.",
+      "status": "Currently open to opportunities.",
+      "details": "Contact details",
+      "channel": "CHANNEL // ENCRYPTED",
+      "open": "OPEN",
+      "openAction": "OPEN",
+      "contact": "CONTACT",
+      "contactForm": "Contact form",
+      "github": "GITHUB",
+      "external": "EXT",
+      "archive": "ARCHIVE",
+      "statusKey": "STATUS",
+      "awaiting": "AWAITING TRANSMISSION"
+    }
+  },
+  "Insignia": {
+    "alt": "{name} insignia",
+    "dossier": "INSIGNIA DOSSIER",
+    "close": "CLOSE [ESC]",
+    "certifications": "Certifications",
+    "validUntil": "Valid until {date}",
+    "deployedIn": "Deployed in",
+    "partners": "Field partners",
+    "inspect": "Inspect",
+    "radar": "Radar showing {count, plural, one {# featured operation} other {# featured operations}}",
+    "items": {
+      "shopware": {
+        "unit": "Commerce Vanguard",
+        "summary": "Official Shopware 6 developer certifications issued by Shopware AG, covering backend development at two levels and storefront frontend development."
+      },
+      "nextjs": {
+        "unit": "Airborne Division",
+        "summary": "My framework of choice for full stack React apps, from database backed web apps to this portfolio."
+      },
+      "react": {
+        "unit": "Frontend Corps",
+        "summary": "Component driven interfaces, from small single purpose tools to full applications."
+      }
+    }
+  }
+}

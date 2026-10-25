@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useHotkey } from "@tanstack/react-hotkeys";
+import { useTranslations } from "next-intl";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,7 +14,7 @@ export interface BootLine {
     status?: string;
 }
 
-const STAGES = ["DECRYPTING PROFILE", "LOADING STACK", "SYNCING OPERATIONS", "DEPLOYING HUD"];
+const STAGES = ["decrypting", "stack", "operations", "deploying"] as const;
 
 function LogLine({ line }: { line: BootLine }) {
     const [showStatus, setShowStatus] = useState(false);
@@ -47,6 +48,7 @@ function LogLine({ line }: { line: BootLine }) {
 }
 
 export function BootSequence({ lines }: { lines: BootLine[] }) {
+    const t = useTranslations("Boot");
     const [log, setLog] = useState<BootLine[]>([]);
     const [phase, setPhase] = useState<"log" | "core" | "granted">("log");
     const [progress, setProgress] = useState(0);
@@ -165,7 +167,7 @@ export function BootSequence({ lines }: { lines: BootLine[] }) {
         <div
             className={cn("boot", flash && "flash", clear && "clear")}
             role="dialog"
-            aria-label="System startup"
+            aria-label={t("label")}
             onClick={() => finishRef.current()}
         >
             <div className="boot-frame relative w-full max-w-195">
@@ -180,20 +182,20 @@ export function BootSequence({ lines }: { lines: BootLine[] }) {
                             data-text="KLEINE-OS"
                         >
                             KLEINE-OS
-                            <small className="mt-2.5 block font-mono text-xs font-normal tracking-[0.3em] text-primary">TACTICAL DEVELOPER ENVIRONMENT</small>
+                            <small className="mt-2.5 block font-mono text-xs font-normal tracking-[0.3em] text-primary">{t("subtitle")}</small>
                         </div>
                         <Progress value={progress} segmented className="h-2.5 *:data-[slot=progress-indicator]:transition-none" />
                         <div className="flex justify-between gap-4 text-xs tracking-[0.12em] text-muted-foreground">
-                            <span>{stage}</span>
+                            <span>{t(`stages.${stage}`)}</span>
                             <b className="font-normal text-highlight tabular-nums">{String(progress).padStart(3, "0")}%</b>
                         </div>
                         {phase === "granted" && (
                             <div
                                 ref={grantedRef}
                                 className="glitch font-heading text-[clamp(1.4rem,5vw,2.2rem)] tracking-[0.08em] text-heading uppercase"
-                                data-text="ACCESS GRANTED // WELCOME BACK, OPERATOR"
+                                data-text={t("granted")}
                             >
-                                ACCESS GRANTED // WELCOME BACK, OPERATOR
+                                {t("granted")}
                             </div>
                         )}
                     </div>
@@ -206,7 +208,7 @@ export function BootSequence({ lines }: { lines: BootLine[] }) {
                 className="boot-skip absolute right-5 bottom-5 z-10 border-border text-muted-foreground"
                 onClick={(e) => { e.stopPropagation(); finishRef.current(); }}
             >
-                SKIP [ESC]
+                {t("skip")}
             </Button>
         </div>
     );

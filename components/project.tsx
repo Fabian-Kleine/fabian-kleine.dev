@@ -8,6 +8,7 @@ import GithubIcon from "./icons/github";
 import Link from "next/link";
 import ImageVideo from "./blog/image-video";
 import { ProjectMetaData } from "@/types";
+import { useTranslations } from "next-intl";
 
 type ProjectProps =
     | ({ className?: string; style?: React.CSSProperties } & ProjectMetaData & { metadata?: never })
@@ -23,6 +24,7 @@ export default function Project({ className, style, metadata, title, img, video,
     const projectDemo = demo || metadata?.demo;
     const projectGithub = github || metadata?.github;
     const projectSlug = slug || metadata?.slug;
+    const t = useTranslations("Project");
 
     return (
         <Card className={cn("grid gap-0 py-0 lg:grid-cols-2", className)} style={style}>
@@ -38,9 +40,9 @@ export default function Project({ className, style, metadata, title, img, video,
                             <>{projectTitle}</>
                         )}
                     </CardTitle>
-                    <CardDescription>Sector: {projectTechs.slice(0, 2).map((t) => t.name).join(" / ")}</CardDescription>
+                    <CardDescription>{t("sector", { list: projectTechs.slice(0, 2).map((tech) => tech.name).join(" / ") })}</CardDescription>
                     <CardAction>
-                        {projectDemo ? <Badge>Live</Badge> : <Badge variant="outline">Source</Badge>}
+                        {projectDemo ? <Badge>{t("live")}</Badge> : <Badge variant="outline">{t("source")}</Badge>}
                     </CardAction>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
@@ -61,17 +63,17 @@ export default function Project({ className, style, metadata, title, img, video,
                 <CardFooter className="mt-auto flex-wrap gap-2">
                     {projectSlug && (
                         <Button asChild variant="terminal" size="sm">
-                            <Link href={`/projects/${projectSlug}`}>View project <ArrowRight data-icon="inline-end" /></Link>
+                            <Link href={`/projects/${projectSlug}`}>{t("viewProject")} <ArrowRight data-icon="inline-end" /></Link>
                         </Button>
                     )}
                     {projectDemo && (
                         <Button asChild variant="terminal" size="sm">
-                            <a href={projectDemo} target="_blank" rel="noopener noreferrer"><ExternalLink data-icon="inline-start" />Live demo</a>
+                            <a href={projectDemo} target="_blank" rel="noopener noreferrer"><ExternalLink data-icon="inline-start" />{t("liveDemo")}</a>
                         </Button>
                     )}
                     {projectGithub && (
                         <Button asChild variant="terminal" size="sm">
-                            <a href={projectGithub} target="_blank" rel="noopener noreferrer"><GithubIcon />Source</a>
+                            <a href={projectGithub} target="_blank" rel="noopener noreferrer"><GithubIcon />{t("source")}</a>
                         </Button>
                     )}
                 </CardFooter>

@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { prefersReducedMotion, readToken } from "@/lib/hud";
 
 // fixed bearings and ranges so the contacts spread around the scope
 const SLOTS = [{ a: .7, r: .55 }, { a: 2.3, r: .78 }, { a: 3.9, r: .4 }, { a: 5.3, r: .68 }, { a: 1.5, r: .3 }, { a: 4.6, r: .85 }];
 
 export function Radar({ contacts }: { contacts: string[] }) {
+    const t = useTranslations("Insignia");
     const ref = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -72,5 +74,5 @@ export function Radar({ contacts }: { contacts: string[] }) {
         return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
     }, [contacts]);
 
-    return <canvas ref={ref} className="block aspect-video w-full" aria-label={`Radar showing ${contacts.length} featured operations`} />;
+    return <canvas ref={ref} className="block aspect-video w-full" aria-label={t("radar", { count: contacts.length })} />;
 }

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,8 @@ import { prefersReducedMotion, pulse, readToken } from "@/lib/hud";
 import type { Certificate, Insignia } from "@/config";
 
 export interface InsigniaDossier extends Insignia {
+    unit: string;
+    summary: string;
     caption: string;
     stats: [value: string, label: string][];
     meter?: { label: string; value: string; percent: number };
@@ -23,11 +26,13 @@ export interface InsigniaDossier extends Insignia {
 }
 
 function BadgeArt({ item, className, ref }: { item: InsigniaDossier; className?: string; ref?: React.Ref<HTMLImageElement> }) {
+    const t = useTranslations("Insignia");
+
     return (
         <Image
             ref={ref}
             src={item.image}
-            alt={`${item.name} insignia`}
+            alt={t("alt", { name: item.name })}
             width={item.width}
             height={item.height}
             className={cn("size-full object-contain drop-shadow-[0_12px_16px_rgba(0,0,0,.65)]", className)}
@@ -63,6 +68,7 @@ function Line({ i, multi, className, children }: { i: number; multi?: boolean; c
 }
 
 function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: boolean; imageRef: React.Ref<HTMLImageElement> }) {
+    const t = useTranslations("Insignia");
     const titleRef = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
@@ -75,9 +81,9 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
     return (
         <div className="flex max-h-[calc(100dvh-2rem)] min-h-0 flex-col">
             <div className="flex flex-none items-center justify-between gap-4 border-b px-4 py-2.5 font-mono text-[0.68rem] tracking-[0.18em] text-muted-foreground sm:px-6">
-                <span className="truncate">INSIGNIA DOSSIER // <b className="font-normal text-primary">FK-0800-{item.id.charAt(0).toUpperCase()}</b></span>
+                <span className="truncate">{t("dossier")} // <b className="font-normal text-primary">FK-0800-{item.id.charAt(0).toUpperCase()}</b></span>
                 <DialogClose asChild>
-                    <Button variant="terminal" size="xs">CLOSE [ESC]</Button>
+                    <Button variant="terminal" size="xs">{t("close")}</Button>
                 </DialogClose>
             </div>
             <div className="grid min-h-0 gap-6 overflow-y-auto p-4 sm:gap-7 sm:p-8">
@@ -123,7 +129,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
 
                 {item.certificates.length > 0 && (
                     <div className="grid gap-3">
-                        <Line i={i++} className="w-fit"><span className="hud-label">Certifications</span></Line>
+                        <Line i={i++} className="w-fit"><span className="hud-label">{t("certifications")}</span></Line>
                         <div className="grid gap-3 sm:grid-cols-3">
                             {item.certificates.map((cert) => (
                                 <Line key={cert.file} i={i++} className="*:h-full">
@@ -146,7 +152,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                                             <span className="grid gap-1">
                                                 <span className="text-sm leading-snug font-semibold text-heading">{cert.name}</span>
                                                 {cert.validUntil && (
-                                                    <span className="font-mono text-[0.62rem] tracking-[0.14em] text-highlight uppercase">Valid until {cert.validUntil}</span>
+                                                    <span className="font-mono text-[0.62rem] tracking-[0.14em] text-highlight uppercase">{t("validUntil", { date: cert.validUntil })}</span>
                                                 )}
                                             </span>
                                             <span className="flex items-center justify-between hud-meta text-[0.62rem]">
@@ -165,7 +171,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                     <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
                         {item.operations.length > 0 && (
                             <div className="grid content-start gap-2">
-                                <Line i={i++} className="w-fit"><span className="hud-label">Deployed in</span></Line>
+                                <Line i={i++} className="w-fit"><span className="hud-label">{t("deployedIn")}</span></Line>
                                 <Line i={i++} multi>
                                     <ul className="grid gap-1 leading-relaxed">
                                         {item.operations.map((op) => (
@@ -183,7 +189,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                         )}
                         {item.partners.length > 0 && (
                             <div className="grid content-start gap-2">
-                                <Line i={i++} className="w-fit"><span className="hud-label">Field partners</span></Line>
+                                <Line i={i++} className="w-fit"><span className="hud-label">{t("partners")}</span></Line>
                                 <Line i={i++}>
                                     <div className="flex flex-wrap gap-1.5">
                                         {item.partners.map((p) => <Badge key={p} variant="secondary">{p}</Badge>)}
@@ -199,6 +205,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
 }
 
 export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
+    const t = useTranslations("Insignia");
     const [active, setActive] = useState<string | null>(null);
     // keeps the dossier filled while the dialog plays its close animation
     const [shown, setShown] = useState<string | null>(null);
@@ -287,7 +294,7 @@ export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
                                 <span className="font-mono text-[0.58rem] tracking-[0.08em] text-primary uppercase sm:text-[0.66rem] sm:tracking-[0.14em]">{it.unit}</span>
                             </span>
                             <Badge variant="outline" className="hidden text-muted-foreground transition-colors group-hover/insig:border-primary group-hover/insig:bg-primary group-hover/insig:text-primary-foreground sm:inline-flex">
-                                Inspect
+                                {t("inspect")}
                             </Badge>
                         </button>
                     </CardContent>

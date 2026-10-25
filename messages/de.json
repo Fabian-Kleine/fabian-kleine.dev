@@ -1,0 +1,212 @@
+{
+  "Metadata": {
+    "title": "Fabian Kleine | Portfolio",
+    "description": "Mein Portfolio: wer ich bin, womit ich arbeite und was ich bisher gebaut habe.",
+    "projectTitle": "{title} | Fabian Kleine | Portfolio"
+  },
+  "Boot": {
+    "label": "Systemstart",
+    "build": "KLEINE-OS // TAKTISCHER BUILD",
+    "copyright": "(C) {year} FABIAN KLEINE // FELDAUSGABE",
+    "memoryCheck": "PRÜFE SPEICHER",
+    "mount": "BINDE /dev/portfolio EIN",
+    "loadModule": "LADE MODUL {name}",
+    "items": "[{count} EINTRÄGE]",
+    "awarded": "[{count} VERLIEHEN]",
+    "files": "[{count} AKTEN]",
+    "unstable": "INSTABIL",
+    "uplink": "SYNCHRONISIERE SATELLITEN-UPLINK",
+    "locked": "VERBUNDEN",
+    "biometrics": "PRÜFE OPERATOR-BIOMETRIE",
+    "match": "ERKANNT",
+    "subtitle": "TAKTISCHE ENTWICKLERUMGEBUNG",
+    "granted": "ZUGRIFF GEWÄHRT // WILLKOMMEN ZURÜCK, OPERATOR",
+    "skip": "ÜBERSPRINGEN [ESC]",
+    "stages": {
+      "decrypting": "ENTSCHLÜSSLE PROFIL",
+      "stack": "LADE STACK",
+      "operations": "SYNCHRONISIERE EINSÄTZE",
+      "deploying": "STARTE HUD"
+    }
+  },
+  "Nav": {
+    "main": "Hauptnavigation",
+    "home": "Start",
+    "projects": "Projekte",
+    "insignia": "Abzeichen",
+    "contact": "Kontakt",
+    "toggle": "Menü öffnen",
+    "backToTop": "Zurück nach oben",
+    "tagline": "FABIAN KLEINE // IM EINSATZ",
+    "localTime": "Ortszeit in Deutschland"
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache",
+    "en": "English",
+    "de": "Deutsch"
+  },
+  "Footer": {
+    "legal": "Rechtliches",
+    "contact": "Kontakt",
+    "github": "Github",
+    "reboot": "SYSTEM NEU STARTEN"
+  },
+  "Contact": {
+    "title": "Schreib mir",
+    "description": "Fragen, Ideen oder ein konkretes Projekt? Schreib mir einfach über das Formular.",
+    "name": "Name",
+    "namePlaceholder": "Max Mustermann",
+    "email": "E-Mail",
+    "emailPlaceholder": "max.mustermann@example.com",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Worum geht's?",
+    "message": "Nachricht",
+    "messagePlaceholder": "Deine Nachricht",
+    "acceptPrivacy": "Ich habe die <link>Datenschutzerklärung</link> gelesen und bin einverstanden.",
+    "sending": "Nachricht wird übermittelt...",
+    "success": "Danke für deine Nachricht! Ich melde mich so schnell wie möglich bei dir.",
+    "send": "Nachricht senden",
+    "close": "Schließen",
+    "errors": {
+      "nameRequired": "Name fehlt",
+      "invalidEmail": "E-Mail-Adresse ungültig",
+      "subjectRequired": "Betreff fehlt",
+      "messageRequired": "Nachricht fehlt",
+      "privacyRequired": "Datenschutzerklärung nicht bestätigt",
+      "sendFailed": "Die Nachricht konnte nicht gesendet werden. Versuch es bitte später noch einmal.",
+      "unknown": "Da ist etwas schiefgelaufen"
+    }
+  },
+  "Project": {
+    "sector": "Einsatzgebiet: {list}",
+    "live": "Live",
+    "source": "Quellcode",
+    "viewProject": "Zum Projekt",
+    "liveDemo": "Live-Demo"
+  },
+  "ProjectPage": {
+    "liveDemo": "Live-Demo",
+    "viewCode": "Zum Quellcode",
+    "overview": "Auf einen Blick"
+  },
+  "Projects": {
+    "eyebrow": "Einsatzarchiv // alle Einsatzberichte",
+    "title": "Alle Einsätze",
+    "meta": "{total} erfasst // {openSource} Open Source"
+  },
+  "Home": {
+    "hero": {
+      "dossier": "Personalakte",
+      "id": "ID FK-0800",
+      "class": "Funktion: Webentwickler",
+      "role": "Webentwickler",
+      "path": "Azubi // Selbst gelernt",
+      "open": "Offen für neue Projekte",
+      "intro": "Ich mache gerade meine Ausbildung und habe mir das Programmieren selbst beigebracht. Mein Revier ist das Web: Ich baue moderne, barrierefreie Webanwendungen mit sauberem Code und einer User Experience, die sich einfach gut anfühlt.",
+      "viewOperations": "Einsätze ansehen",
+      "openComms": "Kanal öffnen"
+    },
+    "stats": {
+      "label": "Kennzahlen",
+      "rank": "Dienstgrad: Azubi",
+      "callsign": "Webentwickler // Rufzeichen Kleine",
+      "liveDeployments": "Live im Einsatz",
+      "operations": "Einsätze",
+      "stackItems": "Im Stack",
+      "certifications": "Zertifikate",
+      "openSource": "Open Source",
+      "tacmap": "Lagekarte // Einsätze",
+      "contacts": "{count, plural, one {# Kontakt} other {# Kontakte}}"
+    },
+    "ticker": {
+      "latest": "Letzter Einsatz: {title}, {description}",
+      "open": "Offen für neue Projekte",
+      "certified": "{count}-fach Shopware 6 zertifiziert",
+      "tech": "{count} Technologien im Stack",
+      "operations": "{count} Einsätze dokumentiert, davon {openSource} Open Source",
+      "built": "Gebaut mit Next.js und shadcn/ui"
+    },
+    "stack": {
+      "eyebrow": "Sprachen, Frameworks, Werkzeuge",
+      "title": "Stack",
+      "meta": "{count} einsatzbereit",
+      "primaryLabel": "Primärausrüstung",
+      "primaryTitle": "Arsenal",
+      "secondaryLabel": "Sekundärausrüstung",
+      "secondaryTitle": "Marschgepäck",
+      "summary": "{core} Kern // {total} gesamt",
+      "core": "Kern",
+      "support": "Ergänzung",
+      "deployed": "Im Einsatz",
+      "ops": "{count, plural, one {# Einsatz} other {# Einsätze}}"
+    },
+    "insignia": {
+      "eyebrow": "Auszeichnungen // für Details auswählen",
+      "title": "Abzeichen",
+      "meta": "{count} verliehen",
+      "certificationsCaption": "{count, plural, one {# Zertifikat} other {# Zertifikate}}",
+      "operationsCaption": "{count, plural, one {# Einsatz} other {# Einsätze}}",
+      "certifications": "Zertifikate",
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "operations": "Einsätze",
+      "liveDemos": "Live-Demos",
+      "openSource": "Open Source",
+      "share": "Anteil aller Einsätze"
+    },
+    "operations": {
+      "eyebrow": "Ausgewählte Arbeiten // Einsatzberichte",
+      "title": "Einsätze",
+      "meta": "{featured} im Fokus // {total} erfasst",
+      "archiveTitle": "Archiv",
+      "archiveSector": "Einsatzgebiet: Archiv // {count} Akten",
+      "classified": "Verschlusssache",
+      "archiveText": "{count} weitere Einsätze liegen in den Akten, von <long></long> bis <short></short>. Freigabe für das komplette Archiv erteilt.",
+      "openArchive": "Archiv öffnen"
+    },
+    "comms": {
+      "eyebrow": "Gesicherte Verbindung",
+      "title": "Funk",
+      "meta": "Kontaktformular // GitHub",
+      "heading": "Einsatz geplant? Funk mich an.",
+      "text": "Ob Frage, Idee oder konkretes Projekt: Schreib mir über das Kontaktformular und ich melde mich so schnell wie möglich zurück.",
+      "status": "Derzeit offen für neue Projekte.",
+      "details": "Kontaktdaten",
+      "channel": "KANAL // VERSCHLÜSSELT",
+      "open": "OFFEN",
+      "openAction": "ÖFFNEN",
+      "contact": "KONTAKT",
+      "contactForm": "Kontaktformular",
+      "github": "GITHUB",
+      "external": "EXT",
+      "archive": "ARCHIV",
+      "statusKey": "STATUS",
+      "awaiting": "WARTE AUF FUNKSPRUCH"
+    }
+  },
+  "Insignia": {
+    "alt": "{name}-Abzeichen",
+    "dossier": "ABZEICHEN-DOSSIER",
+    "close": "SCHLIESSEN [ESC]",
+    "certifications": "Zertifikate",
+    "validUntil": "Gültig bis {date}",
+    "deployedIn": "Eingesetzt in",
+    "partners": "Im Verbund mit",
+    "inspect": "Inspizieren",
+    "radar": "Radar mit {count, plural, one {# Einsatz im Fokus} other {# Einsätzen im Fokus}}",
+    "items": {
+      "shopware": {
+        "unit": "Commerce-Vorhut",
+        "summary": "Offiziell zertifiziert von der Shopware AG: Backend-Entwicklung auf zwei Stufen und Frontend-Entwicklung für die Storefront."
+      },
+      "nextjs": {
+        "unit": "Luftlandedivision",
+        "summary": "Mein Framework der Wahl für Full-Stack-Apps mit React, von Web-Apps mit Datenbank im Rücken bis zu diesem Portfolio."
+      },
+      "react": {
+        "unit": "Frontend-Korps",
+        "summary": "Oberflächen aus Komponenten, von kleinen Tools mit klarem Zweck bis zu ausgewachsenen Anwendungen."
+      }
+    }
+  }
+}

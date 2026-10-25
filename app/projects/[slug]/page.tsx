@@ -7,6 +7,7 @@ import { ProjectMetaData } from "@/types";
 import GithubIcon from "@/components/icons/github";
 import { config } from "@/config";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 export default async function Page({
     params,
@@ -15,6 +16,7 @@ export default async function Page({
 }) {
     const { slug } = await params;
     const { default: Post, metadata }: { default: React.ComponentType, metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
+    const t = await getTranslations("ProjectPage");
 
     return <>
         <div className="mb-8 flex flex-col items-center justify-center gap-4">
@@ -38,7 +40,7 @@ export default async function Page({
                     <a href={metadata.demo} target="_blank" rel="noopener noreferrer">
                         <Button size="lg">
                             <ExternalLink />
-                            Live Demo
+                            {t("liveDemo")}
                         </Button>
                     </a>
                 )}
@@ -46,13 +48,13 @@ export default async function Page({
                     <a href={metadata.github} target="_blank" rel="noopener noreferrer">
                         <Button size="lg" variant="outline">
                             <GithubIcon />
-                            View Code
+                            {t("viewCode")}
                         </Button>
                     </a>
                 )}
             </div>
         </div>
-        <TypographyH1>Quick Overview</TypographyH1>
+        <TypographyH1>{t("overview")}</TypographyH1>
         <TypographyList className="space-y-4 list-none ml-1">
             {metadata.bullets.map((bullet: string, index: number) => (
                 <li key={index} className="flex gap-1">
@@ -75,8 +77,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }:  { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const { metadata }: { metadata: ProjectMetaData } = await import(`@/projects/${slug}.mdx`)
+    const t = await getTranslations("Metadata");
     return {
-        title: `${metadata.title} | Fabian Kleine | Portfolio`,
+        title: t("projectTitle", { title: metadata.title }),
         description: metadata.description,
     }
 }

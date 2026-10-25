@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { CONTACT_LABEL, NAV_ITEMS } from "@/lib/nav";
+import { NAV_ITEMS } from "@/lib/nav";
 import ContactDialog from "@/components/contact-dialog";
 
 /** which nav item matches the current page, or the homepage section under the top third of the viewport */
@@ -37,10 +38,11 @@ const tabClass = cn(
 );
 
 export function NavTabs({ className }: { className?: string }) {
+    const t = useTranslations("Nav");
     const active = useActiveSection();
 
     return (
-        <nav className={cn("h-full min-w-0 flex-1 gap-1", className)} aria-label="Main">
+        <nav className={cn("h-full min-w-0 flex-1 gap-1", className)} aria-label={t("main")}>
             {NAV_ITEMS.map((item) => (
                 <Link
                     key={item.href}
@@ -48,11 +50,11 @@ export function NavTabs({ className }: { className?: string }) {
                     aria-current={active === item.section ? "true" : undefined}
                     className={cn(tabClass, active === item.section && "text-heading after:scale-x-100")}
                 >
-                    {item.label}
+                    {t(item.key)}
                 </Link>
             ))}
             <ContactDialog>
-                <button type="button" className={tabClass}>{CONTACT_LABEL}</button>
+                <button type="button" className={tabClass}>{t("contact")}</button>
             </ContactDialog>
         </nav>
     );

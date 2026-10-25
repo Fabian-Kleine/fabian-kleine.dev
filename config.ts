@@ -23,15 +23,14 @@ export interface Certificate {
 }
 
 export interface Insignia {
+    /** also keys the translated unit and summary under `Insignia.items` in messages/*.json */
     id: string;
     name: string;
-    unit: string;
     image: string;
     width: number;
     height: number;
     /** SimpleIcons slug used to find the projects built with this technology */
     tech: string;
-    summary: string;
     /** shows the certificates issued by this issuer inside the insignia dossier */
     certificateIssuer?: string;
 }
@@ -131,33 +130,27 @@ export const config: Config = {
         {
             id: "shopware",
             name: "Shopware",
-            unit: "Commerce Vanguard",
             image: "/badges/shopware.webp",
             width: 509,
             height: 640,
             tech: "shopware",
-            summary: "Official Shopware 6 developer certifications issued by Shopware AG, covering backend development at two levels and storefront frontend development.",
             certificateIssuer: "Shopware AG",
         },
         {
             id: "nextjs",
             name: "Next.js",
-            unit: "Airborne Division",
             image: "/badges/nextjs.webp",
             width: 608,
             height: 640,
             tech: "next.js",
-            summary: "My framework of choice for full stack React apps, from database backed web apps to this portfolio.",
         },
         {
             id: "react",
             name: "React",
-            unit: "Frontend Corps",
             image: "/badges/react.webp",
             width: 556,
             height: 640,
             tech: "react",
-            summary: "Component driven interfaces, from small single purpose tools to full applications.",
         },
     ],
     cookies: {

@@ -17,6 +17,7 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { ReactNode } from "react"
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { LoaderCircle, Send } from "lucide-react";
 import { create } from "zustand";
@@ -79,6 +80,7 @@ export const useContactDialogStore = create<ContactDialogStore>((set) => ({
 }));
 
 export default function ContactDialog({ children }: { children: ReactNode }) {
+    const t = useTranslations("Contact");
     const {
         name,
         setName,
@@ -107,12 +109,12 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
     } = useContactDialogStore();
 
     const contactSchema = z.object({
-        name: z.string().min(1, "Name is required"),
-        email: z.string().email("Invalid email address"),
-        subject: z.string().min(1, "Subject is required"),
-        message: z.string().min(1, "Message is required"),
+        name: z.string().min(1, t("errors.nameRequired")),
+        email: z.string().email(t("errors.invalidEmail")),
+        subject: z.string().min(1, t("errors.subjectRequired")),
+        message: z.string().min(1, t("errors.messageRequired")),
         privacyPolicy: z.boolean().refine((val) => val, {
-            message: "You must accept the privacy policy",
+            message: t("errors.privacyRequired"),
         }),
     });
 
@@ -142,11 +144,11 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
             });
 
             if (!response.ok) {
-                throw new Error("Failed to send message. Please try again later.");
+                throw new Error(t("errors.sendFailed"));
             }
 
             if (response.status !== 200) {
-                throw new Error("Failed to send message. Please try again later.");
+                throw new Error(t("errors.sendFailed"));
             }
 
             setIsLoading(false);
@@ -172,7 +174,7 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                 setFormError(error.message);
                 setIsLoading(false);
             } else {
-                setFormError("An unknown error occurred");
+                setFormError(t("errors.unknown"));
                 setIsLoading(false);
             }
         }
@@ -183,20 +185,20 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                    <DialogTitle className="tracking-tight text-3xl">Contact Me</DialogTitle>
+                    <DialogTitle className="tracking-tight text-3xl">{t("title")}</DialogTitle>
                     {!completed && !isLoading && (
                         <DialogDescription>
-                            If you have any questions or inquiries, feel free to reach out to me by filling in the form below.
+                            {t("description")}
                         </DialogDescription>
                     )}
                 </DialogHeader>
                 {!completed && !isLoading && (
                     <div className="flex flex-col gap-4 w-full">
-                        <Label htmlFor="name" className="text-sm font-medium">Name</Label>
+                        <Label htmlFor="name" className="text-sm font-medium">{t("name")}</Label>
                         <IconInput icon="User">
                             <Input
                                 id="name"
-                                placeholder="John Doe"
+                                placeholder={t("namePlaceholder")}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 disabled={isLoading}
@@ -204,11 +206,11 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                                 className={cn(nameError && "border-red-500")}
                             />
                         </IconInput>
-                        <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                        <Label htmlFor="email" className="text-sm font-medium">{t("email")}</Label>
                         <IconInput icon="Mail">
                             <Input
                                 id="email"
-                                placeholder="john.doe@example.com"
+                                placeholder={t("emailPlaceholder")}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 disabled={isLoading}
@@ -216,22 +218,22 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                                 className={cn(emailError && "border-red-500")}
                             />
                         </IconInput>
-                        <Label htmlFor="subject" className="text-sm font-medium">Subject</Label>
+                        <Label htmlFor="subject" className="text-sm font-medium">{t("subject")}</Label>
                         <IconInput icon="BookType">
                             <Input
                                 id="subject"
-                                placeholder="Subject"
+                                placeholder={t("subjectPlaceholder")}
                                 value={subject}
                                 onChange={(e) => setSubject(e.target.value)}
                                 disabled={isLoading}
                                 className={cn(subjectError && "border-red-500")}
                             />
                         </IconInput>
-                        <Label htmlFor="message" className="text-sm font-medium">Message</Label>
+                        <Label htmlFor="message" className="text-sm font-medium">{t("message")}</Label>
                         <IconInput icon="MessageSquare">
                             <Textarea
                                 id="message"
-                                placeholder="Your Message"
+                                placeholder={t("messagePlaceholder")}
                                 rows={4}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
@@ -241,7 +243,9 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                         </IconInput>
                         <div className="flex justify-center items-center space-x-2">
                             <Checkbox checked={privacyPolicy} onCheckedChange={setPrivacyPolicy} id="terms" />
-                            <Label htmlFor="terms" className="block">I Accept the <TypographyLink href='/legal/privacy-policy'>Privacy Policy</TypographyLink></Label>
+                            <Label htmlFor="terms" className="block">
+                                {t.rich("acceptPrivacy", { link: (chunks) => <TypographyLink href='/legal/privacy-policy'>{chunks}</TypographyLink> })}
+                            </Label>
                         </div>
                         {formError && (
                             <p className="text-red-500 text-sm mt-2">{formError}</p>
@@ -251,23 +255,23 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                 {isLoading && (
                     <div className="flex flex-col gap-4 w-full">
                         <LoaderCircle className="animate-spin mx-auto size-14" />
-                        <p className="text-lg text-center">Sending your message...</p>
+                        <p className="text-lg text-center">{t("sending")}</p>
                     </div>
                 )}
                 {completed && (
-                    <p className="text-green-500 text-sm">Thank you for your message! I will get back to you as soon as possible.</p>
+                    <p className="text-green-500 text-sm">{t("success")}</p>
                 )}
                 <DialogFooter>
                     {!completed && !isLoading && (
                         <Button disabled={isLoading} onClick={handleSubmit} type="submit">
                             <Send data-icon="inline-start" />
-                            Send Message
+                            {t("send")}
                         </Button>
                     )}
                     {completed && (
                         <DialogClose asChild>
                             <Button variant="outline">
-                                Close
+                                {t("close")}
                             </Button>
                         </DialogClose>
                     )}
