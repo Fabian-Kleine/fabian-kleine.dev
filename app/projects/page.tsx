@@ -1,29 +1,28 @@
 import Project from "@/components/project";
-import { ProjectMetaData } from "@/types";
-import { config } from "@/config";
-
-
-const getProjects = async () => {
-    const featuredProjects = await Promise.all(
-        config.projects.projectsSlugs.map(async (slug) => {
-            const { metadata } = await import(`@/projects/${slug}.mdx`) as { metadata: ProjectMetaData };
-            return metadata;
-        })
-    );
-    return featuredProjects;
-}
+import { SectionHeading } from "@/components/hud/section-heading";
+import { getProjects } from "@/lib/projects";
 
 export default async function Projects() {
     const projects = await getProjects();
+    const openSource = projects.filter((p) => p.github).length;
 
     return (
-        <section className="w-full border-t bg-background px-6 lg:px-36 pt-24 mt-4">
-            <h1 className="tracking-tighter text-2xl sm:text-3xl md:text-4xl lg:text-5xl/none font-bold">All My Projects</h1>
-            <div className="space-y-28 my-28">
+        <section className="mx-auto max-w-310 px-4 pt-[clamp(2.5rem,6vw,5rem)]">
+            <SectionHeading
+                as="h1"
+                id="archiveH"
+                eyebrow="Mission archive // all debriefs"
+                title="All Operations"
+                meta={`${String(projects.length).padStart(2, "0")} on file // ${String(openSource).padStart(2, "0")} open source`}
+                className="dep"
+            />
+            <div className="flex flex-col gap-6">
                 {projects.map((project, index) => (
                     <Project
                         key={index}
                         metadata={project}
+                        className="dep"
+                        style={{ "--d": index + 1 } as React.CSSProperties}
                     />
                 ))}
             </div>

@@ -3,7 +3,7 @@ import { LoaderCircle } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <section className="relative flex justify-center mt-24 px-6">
+        <section className="relative flex justify-center mt-12 px-6">
             <div className="w-full max-w-4xl">
                 <Suspense fallback={
                     <div className="flex justify-center w-full h-screen">

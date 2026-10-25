@@ -19,6 +19,10 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        signal:
+          "border-primary bg-transparent text-heading hover:border-highlight hover:bg-highlight hover:text-background aria-expanded:bg-highlight aria-expanded:text-background",
+        terminal:
+          "border-primary bg-transparent font-mono tracking-[0.16em] text-primary uppercase hover:bg-primary hover:text-primary-foreground",
       },
       size: {
         default:
@@ -32,6 +36,7 @@ const buttonVariants = cva(
         "icon-sm":
           "size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md",
         "icon-lg": "size-10",
+        hud: "h-12 gap-3 px-5 pt-0.5 font-heading text-lg font-bold tracking-[0.1em] uppercase clip-corner [&_kbd]:border [&_kbd]:border-current [&_kbd]:px-1.5 [&_kbd]:font-mono [&_kbd]:text-[0.68rem] [&_kbd]:opacity-75",
       },
     },
     defaultVariants: {

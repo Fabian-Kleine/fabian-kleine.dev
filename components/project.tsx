@@ -1,17 +1,19 @@
 import { cn } from "@/lib/utils";
 import { SimpleIconsTag } from "./ui/simpleicons-tag";
 import { Button } from "./ui/button";
-import { ExternalLink } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import GithubIcon from "./icons/github";
 import Link from "next/link";
 import ImageVideo from "./blog/image-video";
 import { ProjectMetaData } from "@/types";
 
-type ProjectProps = 
-    | ({ className?: string } & ProjectMetaData & { metadata?: never }) 
-    | { className?: string; metadata: ProjectMetaData; } & Partial<ProjectMetaData>;
+type ProjectProps =
+    | ({ className?: string; style?: React.CSSProperties } & ProjectMetaData & { metadata?: never })
+    | { className?: string; style?: React.CSSProperties; metadata: ProjectMetaData; } & Partial<ProjectMetaData>;
 
-export default function Project({ className, metadata, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
+export default function Project({ className, style, metadata, title, img, video, description, bullets, techs, demo, github, slug }: ProjectProps) {
     const projectTitle = title || metadata?.title || "Project Title Not Found";
     const projectImg = img || metadata?.img || "/projects/portfolio.png";
     const projectVideo = video || metadata?.video;
@@ -23,53 +25,57 @@ export default function Project({ className, metadata, title, img, video, descri
     const projectSlug = slug || metadata?.slug;
 
     return (
-        <div className={cn("flex flex-col lg:flex-row justify-center gap-10", className)}>
-            <div className="lg:w-1/2 relative">
-                <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} />
+        <Card className={cn("grid gap-0 py-0 lg:grid-cols-2", className)} style={style}>
+            <div className="relative border-b lg:border-r lg:border-b-0">
+                <ImageVideo title={projectTitle} img={projectImg} video={projectVideo} className="w-full rounded-none shadow-none" />
             </div>
-            <div className="lg:w-1/2 space-y-4 lg:space-y-8">
-                <div className="space-y-4">
-                    {projectSlug ? (
-                        <Link href={`/projects/${projectSlug}`}>
-                            <h3 className="flex gap-2 items-end text-3xl lg:text-4xl font-bold hover:underline">{projectTitle}<ExternalLink size={30} /></h3>
-                        </Link>
-                    ) : (
-                        <h3 className="text-3xl lg:text-4xl font-bold">{projectTitle}</h3>
-                    )}
-                    <p className="mt-4">{projectDescription}</p>
-                    <ul className="space-y-4">
+            <div className="flex flex-col gap-5 py-6">
+                <CardHeader>
+                    <CardTitle className="text-[clamp(1.9rem,4vw,2.6rem)]">
+                        {projectSlug ? (
+                            <Link href={`/projects/${projectSlug}`} className="underline-offset-4 hover:text-primary hover:underline">{projectTitle}</Link>
+                        ) : (
+                            <>{projectTitle}</>
+                        )}
+                    </CardTitle>
+                    <CardDescription>Sector: {projectTechs.slice(0, 2).map((t) => t.name).join(" / ")}</CardDescription>
+                    <CardAction>
+                        {projectDemo ? <Badge>Live</Badge> : <Badge variant="outline">Source</Badge>}
+                    </CardAction>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
+                    <p className="text-base first-letter:uppercase">{projectDescription}</p>
+                    <ul className="flex flex-col gap-1.5 text-muted-foreground">
                         {projectBullets?.map((bullet, index) => (
-                            <li key={index} className="text-sm text-muted-foreground flex gap-1">
-                                <span>✨</span>
-                                <span>{bullet}</span>
+                            <li key={index} className="relative pl-5 before:absolute before:top-[0.7em] before:left-0 before:h-px before:w-2 before:bg-primary">
+                                {bullet}
                             </li>
                         ))}
                     </ul>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                    {projectTechs?.map((tech, index) => (
-                        <SimpleIconsTag key={index} name={tech.name} icon={tech.icon} />
-                    ))}
-                </div>
-                <div className="flex gap-4 pt-4">
+                    <div className="flex flex-wrap gap-2">
+                        {projectTechs?.map((tech, index) => (
+                            <SimpleIconsTag key={index} name={tech.name} icon={tech.icon} />
+                        ))}
+                    </div>
+                </CardContent>
+                <CardFooter className="mt-auto flex-wrap gap-2">
+                    {projectSlug && (
+                        <Button asChild variant="terminal" size="sm">
+                            <Link href={`/projects/${projectSlug}`}>View project <ArrowRight data-icon="inline-end" /></Link>
+                        </Button>
+                    )}
                     {projectDemo && (
-                        <a href={projectDemo} target="_blank" rel="noopener noreferrer">
-                            <Button size="lg">
-                                <ExternalLink />
-                                Live Demo
-                            </Button>
-                        </a>
+                        <Button asChild variant="terminal" size="sm">
+                            <a href={projectDemo} target="_blank" rel="noopener noreferrer"><ExternalLink data-icon="inline-start" />Live demo</a>
+                        </Button>
                     )}
                     {projectGithub && (
-                        <a href={projectGithub} target="_blank" rel="noopener noreferrer">
-                            <Button size="lg" variant="outline">
-                                <GithubIcon />
-                                View Code
-                            </Button>
-                        </a>
+                        <Button asChild variant="terminal" size="sm">
+                            <a href={projectGithub} target="_blank" rel="noopener noreferrer"><GithubIcon />Source</a>
+                        </Button>
                     )}
-                </div>
+                </CardFooter>
             </div>
-        </div>
+        </Card>
     );
 }

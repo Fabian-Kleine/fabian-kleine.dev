@@ -18,7 +18,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+  --color-heading: var(--heading);
+  --color-highlight: var(--highlight);
+  --color-border-strong: var(--border-strong);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,10 +52,14 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  /* multiplicative scale so a zero radius keeps every corner square */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
   --animate-shine: shine var(--duration) infinite linear;
   @keyframes shine {
   0% {
@@ -77,78 +85,48 @@
     transform: translateY(0);}
   to {
     transform: translateY(calc(-100% - var(--gap)));}}
-  --font-heading: var(--font-heading);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6)}
-
-:root {
-  --radius: 0.45rem;
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.148 0.004 228.8);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.148 0.004 228.8);
-  --primary: oklch(0.496 0.265 301.924);
-  --primary-foreground: oklch(0.977 0.014 308.299);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.963 0.002 197.1);
-  --muted-foreground: oklch(0.56 0.021 213.5);
-  --accent: oklch(0.963 0.002 197.1);
-  --accent-foreground: oklch(0.218 0.008 223.9);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.925 0.005 214.3);
-  --input: oklch(0.925 0.005 214.3);
-  --ring: oklch(0.723 0.014 214.4);
-  --chart-1: oklch(0.833 0.145 321.434);
-  --chart-2: oklch(0.667 0.295 322.15);
-  --chart-3: oklch(0.591 0.293 322.896);
-  --chart-4: oklch(0.518 0.253 323.949);
-  --chart-5: oklch(0.452 0.211 324.591);
-  --sidebar: oklch(0.987 0.002 197.1);
-  --sidebar-foreground: oklch(0.148 0.004 228.8);
-  --sidebar-primary: oklch(0.558 0.288 302.321);
-  --sidebar-primary-foreground: oklch(0.977 0.014 308.299);
-  --sidebar-accent: oklch(0.963 0.002 197.1);
-  --sidebar-accent-foreground: oklch(0.218 0.008 223.9);
-  --sidebar-border: oklch(0.925 0.005 214.3);
-  --sidebar-ring: oklch(0.723 0.014 214.4);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.148 0.004 228.8);
 }
 
-.dark {
-  --background: oklch(0.148 0.004 228.8);
-  --foreground: oklch(0.987 0.002 197.1);
-  --card: oklch(0.218 0.008 223.9);
-  --card-foreground: oklch(0.987 0.002 197.1);
-  --popover: oklch(0.218 0.008 223.9);
-  --popover-foreground: oklch(0.987 0.002 197.1);
-  --primary: oklch(0.438 0.218 303.724);
-  --primary-foreground: oklch(0.977 0.014 308.299);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.275 0.011 216.9);
-  --muted-foreground: oklch(0.723 0.014 214.4);
-  --accent: oklch(0.275 0.011 216.9);
-  --accent-foreground: oklch(0.987 0.002 197.1);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.56 0.021 213.5);
-  --chart-1: oklch(0.833 0.145 321.434);
-  --chart-2: oklch(0.667 0.295 322.15);
-  --chart-3: oklch(0.591 0.293 322.896);
-  --chart-4: oklch(0.518 0.253 323.949);
-  --chart-5: oklch(0.452 0.211 324.591);
-  --sidebar: oklch(0.218 0.008 223.9);
-  --sidebar-foreground: oklch(0.987 0.002 197.1);
-  --sidebar-primary: oklch(0.627 0.265 303.9);
-  --sidebar-primary-foreground: oklch(0.977 0.014 308.299);
-  --sidebar-accent: oklch(0.275 0.011 216.9);
-  --sidebar-accent-foreground: oklch(0.987 0.002 197.1);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.56 0.021 213.5);
+/* single dark theme: tactical HUD */
+:root {
+  color-scheme: dark;
+  --radius: 0rem;
+  --background: #03070e;
+  --foreground: #d7e6f7;
+  --heading: #ffffff;
+  --highlight: #a9dcff;
+  --card: #0a1627eb;
+  --card-foreground: #d7e6f7;
+  --popover: #07101d;
+  --popover-foreground: #d7e6f7;
+  --primary: #3a9bff;
+  --primary-foreground: #03070e;
+  --secondary: #0c1d35;
+  --secondary-foreground: #a9dcff;
+  --muted: #102240;
+  --muted-foreground: #6c86a8;
+  --accent: #0c1d35;
+  --accent-foreground: #a9dcff;
+  --destructive: #ff6b5e;
+  --border: #183150;
+  --border-strong: #2b5486;
+  --input: #183150;
+  --ring: #a9dcff;
+  --glow: #1747a6;
+  --glitch-blend: screen;
+  --chart-1: #3a9bff;
+  --chart-2: #a9dcff;
+  --chart-3: #1747a6;
+  --chart-4: #6c86a8;
+  --chart-5: #2b5486;
+  --sidebar: #07101d;
+  --sidebar-foreground: #d7e6f7;
+  --sidebar-primary: #3a9bff;
+  --sidebar-primary-foreground: #03070e;
+  --sidebar-accent: #0c1d35;
+  --sidebar-accent-foreground: #a9dcff;
+  --sidebar-border: #183150;
+  --sidebar-ring: #a9dcff;
 }
 
 @layer base {
@@ -160,10 +138,42 @@
   }
   html {
     @apply font-sans;}
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@utility clip-corner {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+@utility hud-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility hud-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility hud-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--heading);
 }
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
@@ -171,6 +181,233 @@ pre {
   top: 0 !important;
   margin-top: 10px;
   z-index: 0 !important;
+}
+
+@layer components {
+/* ================= HUD: card corner brackets ================= */
+[data-slot="card"]::before,
+[data-slot="card"]::after,
+[data-slot="dialog-content"]::before,
+[data-slot="dialog-content"]::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 1;
+}
+[data-slot="card"]::before, [data-slot="dialog-content"]::before { top: 0; left: 0; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
+[data-slot="card"]::after, [data-slot="dialog-content"]::after { bottom: 0; right: 0; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+
+/* ================= HUD: atmosphere ================= */
+.hud-atmo { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.hud-atmo.mesh {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 14%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 14%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: .28;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 20%, #000 20%, transparent 75%);
+}
+.hud-atmo.glow {
+  background:
+    radial-gradient(60% 50% at 85% 0%, color-mix(in oklab, var(--glow) 45%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 0% 100%, color-mix(in oklab, var(--glow) 25%, transparent), transparent 70%);
+}
+.hud-atmo.scan { z-index: 90; background: repeating-linear-gradient(to bottom, color-mix(in oklab, var(--highlight) 2%, transparent) 0 1px, transparent 1px 4px); }
+.hud-atmo.vignette { z-index: 89; background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .6) 100%); }
+.hud-topo {
+  position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: .5;
+  mask-image: radial-gradient(ellipse 90% 80% at 70% 30%, #000 30%, transparent 85%);
+}
+.hud-tear-bar {
+  position: fixed; left: 0; right: 0; height: 14px; z-index: 91; pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 35%, transparent), color-mix(in oklab, var(--highlight) 60%, transparent), color-mix(in oklab, var(--primary) 35%, transparent), transparent);
+  mix-blend-mode: var(--glitch-blend);
+}
+html.tear .hud-tear-bar { opacity: 1; }
+html.tear main { animation: tearMain .18s steps(2) both; }
+@keyframes tearMain { 0% { transform: translateX(0); } 50% { transform: translateX(4px) skewX(-.6deg); filter: brightness(1.25); } 100% { transform: none; } }
+.hud-beam {
+  position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 95; pointer-events: none; opacity: 0;
+  background: var(--highlight); box-shadow: 0 0 24px 6px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+/* ================= HUD: glitch ================= */
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after {
+  content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; opacity: 0;
+  -webkit-text-stroke: 0; mix-blend-mode: var(--glitch-blend);
+}
+.glitch::before { color: var(--primary); }
+.glitch::after { color: var(--highlight); }
+.glitch.burst::before { opacity: .95; animation: gA .28s steps(2) both; }
+.glitch.burst::after { opacity: .8; animation: gB .28s steps(2) both; }
+.glitch.burst { animation: gJ .28s steps(3) both; }
+@keyframes gA {
+  0% { clip-path: inset(8% 0 72% 0); transform: translate(-7px, 0); }
+  25% { clip-path: inset(58% 0 22% 0); transform: translate(6px, 0); }
+  50% { clip-path: inset(30% 0 52% 0); transform: translate(-4px, 0); }
+  75% { clip-path: inset(80% 0 4% 0); transform: translate(5px, 0); }
+  100% { clip-path: inset(40% 0 44% 0); transform: translate(-2px, 0); }
+}
+@keyframes gB {
+  0% { clip-path: inset(66% 0 12% 0); transform: translate(6px, 0); }
+  25% { clip-path: inset(14% 0 70% 0); transform: translate(-5px, 0); }
+  50% { clip-path: inset(46% 0 30% 0); transform: translate(7px, 0); }
+  75% { clip-path: inset(2% 0 86% 0); transform: translate(-3px, 0); }
+  100% { clip-path: inset(72% 0 10% 0); transform: translate(3px, 0); }
+}
+@keyframes gJ { 0% { transform: none; } 33% { transform: translate(2px, -1px) skewX(-4deg); } 66% { transform: translate(-2px, 1px); } 100% { transform: none; } }
+@keyframes blink { 50% { opacity: .25; } }
+.animate-blink { animation: blink 1.4s steps(2) infinite; }
+.hud-outline { color: transparent; -webkit-text-stroke: 2px var(--primary); }
+.hud-outline.glitch::before, .hud-outline.glitch::after { -webkit-text-stroke: 0; }
+@media (max-width: 760px) { .hud-outline { -webkit-text-stroke-width: 1.5px; } }
+
+/* ================= HUD: boot sequence ================= */
+.boot {
+  position: fixed; inset: 0; z-index: 200; display: none; place-items: center;
+  padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--background); color: var(--highlight); font-family: var(--font-mono); cursor: pointer;
+  transition: background-color .5s ease;
+}
+html[data-boot] .boot { display: grid; }
+html[data-boot] body { overflow: hidden; }
+.boot::after { content: ""; position: absolute; inset: 0; pointer-events: none; transition: opacity .4s; background: repeating-linear-gradient(to bottom, color-mix(in oklab, var(--highlight) 6%, transparent) 0 1px, transparent 1px 3px); }
+.boot.clear { background: transparent; }
+.boot.clear::after { opacity: 0; }
+.boot.flash .boot-frame { animation: flashTwice .82s linear both; }
+.boot.flash .boot-skip { opacity: 0; transition: opacity .15s; }
+@keyframes flashTwice {
+  0% { opacity: 1; filter: none; }
+  9% { opacity: 1; filter: brightness(2.6) drop-shadow(0 0 8px var(--primary)); }
+  21% { opacity: .08; filter: none; }
+  35% { opacity: 1; filter: brightness(2.8) drop-shadow(0 0 14px var(--primary)); }
+  49% { opacity: .08; filter: none; }
+  58% { opacity: .55; filter: brightness(1.4); }
+  100% { opacity: 0; filter: blur(3px); transform: scaleY(.94); }
+}
+
+/* content stays hidden until the interface builds up */
+html[data-prebuild] .hud-atmo.glow, html[data-prebuild] .hud-atmo.mesh, html[data-prebuild] .hud-topo { opacity: 0; }
+html[data-prebuild] [data-hud-chrome], html[data-prebuild] main { visibility: hidden; }
+html[data-bg-in] .hud-atmo.glow { animation: glowIn 1.5s cubic-bezier(.2, .8, .2, 1) backwards; }
+html[data-bg-in] .hud-atmo.mesh { animation: gridIn 1.3s cubic-bezier(.2, .8, .2, 1) backwards; }
+html[data-bg-in] .hud-topo { animation: topoIn 1.7s cubic-bezier(.5, 0, .2, 1) .12s backwards; }
+html[data-bg-in] .hud-beam { animation: beam 1.1s cubic-bezier(.6, 0, .3, 1) both; }
+@keyframes glowIn { 0% { opacity: 0; transform: scale(1.5); } 100% { opacity: 1; transform: none; } }
+@keyframes gridIn { 0% { opacity: 0; background-size: 200px 200px; } 35% { opacity: .65; } 100% { opacity: .28; background-size: 56px 56px; } }
+@keyframes topoIn {
+  0% { opacity: 0; clip-path: circle(0% at 70% 30%); }
+  14% { opacity: .95; } 22% { opacity: .15; } 32% { opacity: .85; }
+  100% { opacity: .5; clip-path: circle(150% at 70% 30%); }
+}
+@keyframes beam { 0% { transform: translateY(0); opacity: 0; } 8% { opacity: 1; } 88% { opacity: .9; } 100% { transform: translateY(100vh); opacity: 0; } }
+
+/* ================= HUD: interface build-up ================= */
+html[data-deployed] [data-hud-chrome="header"] { animation: hdrIn .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes hdrIn { 0% { transform: translateY(-100%); opacity: 0; } 100% { transform: none; opacity: 1; } }
+html[data-deployed] .dep { animation: dep .7s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--d, 0) * 90ms); }
+html[data-deployed] .dep.wipe { animation-name: wipe; animation-duration: .75s; }
+@keyframes dep {
+  0% { opacity: 0; transform: translateY(14px); clip-path: inset(0 0 100% 0); }
+  60% { opacity: 1; clip-path: inset(0 0 0 0); }
+  100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+}
+@keyframes wipe {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+  12% { opacity: 1; } 24% { opacity: .35; } 36% { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+/* ================= HUD: ticker ================= */
+.hud-ticker { animation: tick 48s linear infinite; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ================= HUD: segmented progress ================= */
+[data-slot="progress"][data-segmented]::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--background) calc(10% - 2px) 10%);
+}
+
+/* ================= HUD: insignia dossier reveal ================= */
+/* each line appears as a bar, then wipes away to show the text */
+.ml { position: relative; }
+.ml::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; transform: scaleX(0); transform-origin: left center;
+  background: linear-gradient(var(--foreground), var(--foreground)) left center / 100% clamp(6px, .45em, 16px) no-repeat;
+}
+.ml.multi::after { background: repeating-linear-gradient(to bottom, transparent 0 .62em, var(--foreground) .62em 1em, transparent 1em 1.6em); }
+.ml > .mt { display: block; opacity: 0; }
+[data-slot="dialog-content"][data-reveal] .ml > .mt { animation: mtIn .8s linear both; animation-delay: calc(var(--i, 0) * 85ms); }
+[data-slot="dialog-content"][data-reveal] .ml::after { animation: sketchBar .8s cubic-bezier(.6, 0, .3, 1) both; animation-delay: calc(var(--i, 0) * 85ms); }
+@keyframes sketchBar {
+  0% { transform: scaleX(0); transform-origin: left center; }
+  42% { transform: scaleX(1); transform-origin: left center; }
+  58% { transform: scaleX(1); transform-origin: right center; }
+  100% { transform: scaleX(0); transform-origin: right center; }
+}
+@keyframes mtIn { 0%, 49% { opacity: 0; } 52% { opacity: 1; } 57% { opacity: .25; } 62%, 100% { opacity: 1; } }
+
+/* targeting box behind the badge: glow plus a 20px plotting grid */
+.dossier-box {
+  background:
+    radial-gradient(circle at 50% 55%, color-mix(in oklab, var(--glow) 35%, transparent), transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 19px, color-mix(in oklab, var(--primary) 7%, transparent) 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 19px, color-mix(in oklab, var(--primary) 7%, transparent) 19px 20px);
+}
+[data-slot="dialog-content"][data-reveal] .dossier-box { animation: lockOn .7s ease both; }
+@keyframes lockOn {
+  0% { border-color: var(--highlight); box-shadow: 0 0 0 3px color-mix(in oklab, var(--highlight) 25%, transparent), 0 0 34px color-mix(in oklab, var(--primary) 55%, transparent); }
+  100% { border-color: var(--border-strong); box-shadow: none; }
+}
+
+/* detached badge copy that flies between the case and the dossier */
+.hud-flyer {
+  position: fixed; z-index: 60; margin: 0; object-fit: contain; pointer-events: none;
+  will-change: left, top, width, height, transform;
+}
+@keyframes frameIn {
+  0% { clip-path: inset(-3px 100% calc(100% - 3px) -3px); }
+  40% { clip-path: inset(-3px -3px calc(100% - 3px) -3px); }
+  100% { clip-path: inset(-3px -3px -3px -3px); }
+}
+@keyframes frameOut {
+  0% { clip-path: inset(-3px -3px -3px -3px); }
+  55% { clip-path: inset(-3px -3px calc(100% - 3px) -3px); }
+  100% { clip-path: inset(-3px 100% calc(100% - 3px) -3px); }
+}
+@keyframes scrimIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrimOut { from { opacity: 1; } to { opacity: 0; } }
+}
+
+/* outlined corner-cut buttons: a plain border would be sliced off at the cut corners, so the
+   outline is drawn as a 1px frame following the same shape (outer path minus inner path) */
+[data-slot="button"][data-size="hud"][data-variant="signal"] { position: relative; border-color: transparent; }
+[data-slot="button"][data-size="hud"][data-variant="signal"]::before {
+  content: ""; position: absolute; inset: -1px; pointer-events: none;
+  background: var(--primary); transition: background-color .15s;
+  clip-path: polygon(evenodd,
+    0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px), 0 0,
+    1px 1px, 1px calc(100% - 12.41px), 12.41px calc(100% - 1px), calc(100% - 1px) calc(100% - 1px),
+    calc(100% - 1px) 12.41px, calc(100% - 12.41px) 1px, 1px 1px);
+}
+[data-slot="button"][data-size="hud"][data-variant="signal"]:hover::before { background: var(--highlight); }
+
+/* unlayered so they replace the dialog's default tw-animate enter/exit */
+[data-slot="dialog-content"].hud-dossier[data-state="open"] { animation: frameIn .62s cubic-bezier(.7, 0, .2, 1) .08s both; }
+[data-slot="dialog-content"].hud-dossier[data-state="closed"] { animation: frameOut .4s cubic-bezier(.7, 0, .2, 1) both; }
+[data-slot="dialog-overlay"]:has(+ .hud-dossier) {
+  background: color-mix(in oklab, var(--background) 84%, transparent);
+  backdrop-filter: blur(6px);
+}
+[data-slot="dialog-overlay"][data-state="open"]:has(+ .hud-dossier) { animation: scrimIn .35s ease both; }
+[data-slot="dialog-overlay"][data-state="closed"]:has(+ .hud-dossier) { animation: scrimOut .35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .hud-ticker { animation: none; }
 }
 
 .markdown-alert {

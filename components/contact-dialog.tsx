@@ -3,7 +3,6 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { cn } from "@/lib/utils";
 import {
     Dialog,
@@ -19,7 +18,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ReactNode } from "react"
 import { z } from "zod";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Send } from "lucide-react";
 import { create } from "zustand";
 import IconInput from "./ui/icon-input";
 import { Checkbox } from "./ui/checkbox";
@@ -260,9 +259,10 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                 )}
                 <DialogFooter>
                     {!completed && !isLoading && (
-                        <InteractiveHoverButton disabled={isLoading} onClick={handleSubmit} type="submit">
+                        <Button disabled={isLoading} onClick={handleSubmit} type="submit">
+                            <Send data-icon="inline-start" />
                             Send Message
-                        </InteractiveHoverButton>
+                        </Button>
                     )}
                     {completed && (
                         <DialogClose asChild>
