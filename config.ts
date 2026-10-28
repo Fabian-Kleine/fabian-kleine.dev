@@ -155,7 +155,7 @@ export const config: Config = {
     insignia: [
         {
             id: "operator",
-            name: "Operator",
+            name: "Fabian Kleine",
             image: "/badges/fk.webp",
             width: 489,
             height: 640,
