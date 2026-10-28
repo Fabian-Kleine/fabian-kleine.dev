@@ -43,16 +43,31 @@ export default async function Home() {
   const openSource = projects.filter((p) => p.github).length;
 
   const dossiers: InsigniaDossier[] = config.insignia.map((insignia) => {
+    const id = insignia.id as InsigniaId;
+    const copy = { unit: ti(`${id}.unit`), summary: ti(`${id}.summary`) };
+    const item = allMessages.Insignia.items[id];
+
+    if (insignia.operator || !insignia.tech) {
+      const record = "record" in item ? item.record : [];
+      return {
+        ...insignia,
+        ...copy,
+        caption: t("insignia.operatorCaption"),
+        stats: [[pad(record.length), t("insignia.recordEntries")], [pad(config.certificates.length), t("insignia.certifications")], [pad(projects.length), t("insignia.operations")]],
+        certificates: [],
+        partners: [],
+        operations: [],
+        record,
+      };
+    }
+
     const ops = opsFor(insignia.tech).filter((p) => !p.slug || !insignia.excludeProjects?.includes(p.slug));
     const certificates = insignia.certificateIssuer
       ? config.certificates.filter((c) => c.issuer === insignia.certificateIssuer)
       : [];
     const partners = [...ops.flatMap((p) => p.techs ?? []), ...insignia.extraPartners ?? []]
       .filter((tech, i, all) => tech.icon !== insignia.tech && !insignia.excludePartners?.includes(tech.icon) && all.findIndex((other) => other.icon === tech.icon) === i);
-    const id = insignia.id as InsigniaId;
-    const copy = { unit: ti(`${id}.unit`), summary: ti(`${id}.summary`) };
     // optional `work` list in messages: professional work listed under "Deployed in" ahead of the portfolio projects
-    const item = allMessages.Insignia.items[id];
     const work = "work" in item ? item.work.map((title) => ({ title })) : [];
 
     if (certificates.length > 0) {
@@ -142,6 +157,13 @@ export default async function Home() {
             <CardDescription>{t("stats.callsign")}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 px-5">
+            <Link href="#insignia" className="group/posting flex items-center justify-between gap-3 border bg-popover px-3.5 py-2.5 transition-colors hover:border-primary">
+              <span className="grid min-w-0 gap-0.5">
+                <span className="flex items-center gap-1.5 hud-meta text-[0.62rem]"><LiveDot className="bg-primary" />{t("stats.postingLabel")}</span>
+                <span className="truncate font-heading text-lg leading-tight font-bold tracking-[0.05em] text-heading uppercase">{t("stats.posting")}</span>
+              </span>
+              <ArrowRight className="size-4 flex-none text-primary transition-transform group-hover/posting:translate-x-0.5" />
+            </Link>
             <div className="flex flex-col gap-1.5">
               <div className="flex justify-between hud-meta"><span>{t("stats.liveDeployments")}</span><b className="font-normal text-highlight tabular-nums">{liveDemos} / {projects.length}</b></div>
               <Meter value={liveDemos / projects.length * 100} className="h-2" />

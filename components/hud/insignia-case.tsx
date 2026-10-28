@@ -24,6 +24,8 @@ export interface InsigniaDossier extends Insignia {
     certificates: Certificate[];
     partners: { name: string; icon: string }[];
     operations: { title: string; slug?: string }[];
+    /** service record of the operator insignia, newest first */
+    record?: { period: string; title: string; org: string; bullets: string[] }[];
 }
 
 function BadgeArt({ item, className, ref }: { item: InsigniaDossier; className?: string; ref?: React.Ref<HTMLImageElement> }) {
@@ -89,7 +91,7 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
             </div>
             <div className="grid min-h-0 gap-6 overflow-y-auto p-4 sm:gap-7 sm:p-8">
                 <div className="grid grid-cols-[112px_minmax(0,1fr)] items-start gap-4 sm:grid-cols-[clamp(120px,34%,300px)_minmax(0,1fr)] sm:gap-8">
-                    <div className="dossier-box relative aspect-5/4 border border-border-strong p-2 sm:p-4">
+                    <div className={cn("dossier-box relative aspect-5/4 border border-border-strong p-2 sm:p-4", item.operator && "insig-operator")}>
                         <BadgeArt ref={imageRef} item={item} className={cn("drop-shadow-[0_10px_14px_rgba(0,0,0,.6)]", !landed && "invisible")} />
                     </div>
                     <div className="grid min-w-0 content-start gap-2.5 pt-1">
@@ -127,6 +129,34 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                         </Line>
                     ))}
                 </dl>
+
+                {item.record && item.record.length > 0 && (
+                    <div className="grid gap-3">
+                        <Line i={i++} className="w-fit"><span className="hud-label">{t("record")}</span></Line>
+                        <ol className="ml-1.5 grid border-l">
+                            {item.record.map((entry, k) => (
+                                <li key={entry.title} className="relative grid gap-1.5 pb-7 pl-7 last:pb-1 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-6">
+                                    {/* the newest entry is lit as the current posting */}
+                                    <span className={cn("absolute top-1.5 -left-1.75 size-3.25 rotate-45 border-2 border-primary bg-popover", k === 0 && "bg-primary shadow-[0_0_12px_var(--primary)]")} />
+                                    <Line i={i++} className="w-fit">
+                                        <span className="font-mono text-xs tracking-[0.14em] text-primary tabular-nums uppercase">{entry.period}</span>
+                                    </Line>
+                                    <Line i={i++} multi>
+                                        <h3 className="hud-title text-[1.65rem] leading-[1.05] tracking-[0.04em]">{entry.title}</h3>
+                                        <p className="mt-1 mb-2 hud-meta">{entry.org}</p>
+                                        {entry.bullets.length > 0 && (
+                                            <ul className="grid max-w-[62ch] gap-1 leading-relaxed">
+                                                {entry.bullets.map((bullet) => (
+                                                    <li key={bullet} className="relative pl-5 before:absolute before:top-[0.8em] before:left-0 before:h-px before:w-2 before:bg-primary">{bullet}</li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </Line>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                )}
 
                 {(item.partners.length > 0 || item.operations.length > 0) && (
                     <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
@@ -275,7 +305,10 @@ export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
         <>
             <Card className="grid grid-cols-3 overflow-visible gap-[clamp(.4rem,3vw,2.5rem)] bg-[radial-gradient(70%_90%_at_50%_100%,color-mix(in_oklab,var(--glow)_28%,transparent),transparent_70%)] px-[clamp(.6rem,3vw,2.2rem)] py-[clamp(1.2rem,3vw,2.2rem)]">
                 {items.map((it) => (
-                    <CardContent key={it.id} className="px-0">
+                    <CardContent key={it.id} className={cn("px-0", it.operator && "insig-operator")}>
+                        {it.operator && (
+                            <span className="absolute -top-2.5 left-1/2 z-2 -translate-x-1/2 bg-card px-2 hud-label text-[0.58rem] whitespace-nowrap">{t("operatorTag")}</span>
+                        )}
                         <button
                             type="button"
                             aria-haspopup="dialog"

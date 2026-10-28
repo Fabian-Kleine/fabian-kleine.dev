@@ -156,7 +156,9 @@
       "certifications": "Zertifikate",
       "openSource": "Open Source",
       "tacmap": "Lagekarte // Projekte",
-      "contacts": "{count, plural, one {# Kontakt} other {# Kontakte}}"
+      "contacts": "{count, plural, one {# Kontakt} other {# Kontakte}}",
+      "postingLabel": "Aktueller Einsatz",
+      "posting": "Azubi @ Shopware-Agentur"
     },
     "ticker": {
       "latest": "Letzter Einsatz: {title}, {description}",
@@ -192,7 +194,9 @@
       "operations": "Projekte",
       "liveDemos": "Live-Demos",
       "openSource": "Open Source",
-      "share": "Anteil aller Projekte"
+      "share": "Anteil aller Projekte",
+      "operatorCaption": "Persönliches Abzeichen",
+      "recordEntries": "Einträge"
     },
     "operations": {
       "eyebrow": "Ausgewählte Arbeiten // Projektberichte",
@@ -234,7 +238,30 @@
     "partners": "Im Verbund mit",
     "inspect": "Inspizieren",
     "radar": "Radar mit {count, plural, one {# Projekt im Fokus} other {# Projekten im Fokus}}",
+    "record": "Dienstakte",
+    "operatorTag": "Operator",
     "items": {
+      "operator": {
+        "unit": "Dienstakte",
+        "summary": "Mein bisheriger Weg: von der Schule direkt in die Ausbildung zum Fachinformatiker für Anwendungsentwicklung, in der ich Shopware-Shops und -Plugins entwickle und betreue.",
+        "record": [
+          {
+            "period": "2024 // Heute",
+            "title": "Fachinformatiker für Anwendungsentwicklung",
+            "org": "Ausbildung // Shopware-Agentur",
+            "bullets": [
+              "Aufbau und Betreuung von Kundenshops und Shopware-Store-Plugins",
+              "Shopware-6-zertifiziert in Backend- und Frontend-Entwicklung"
+            ]
+          },
+          {
+            "period": "2024",
+            "title": "Abitur",
+            "org": "Allgemeine Hochschulreife",
+            "bullets": []
+          }
+        ]
+      },
       "shopware": {
         "unit": "Commerce-Vorhut",
         "summary": "Mein Arbeitsalltag in einer Shopware-Agentur: Kundenshops aufbauen und betreuen sowie Plugins für den Shopware Store entwickeln. Dazu offiziell zertifiziert von der Shopware AG: Backend-Entwicklung auf zwei Stufen und Frontend-Entwicklung für die Storefront.",
@@ -251,6 +278,14 @@
       "react": {
         "unit": "Frontend-Korps",
         "summary": "Oberflächen aus Komponenten, von kleinen Tools mit klarem Zweck bis zu ausgewachsenen Anwendungen."
+      },
+      "postgresql": {
+        "unit": "Datenkommando",
+        "summary": "Die relationale Datenbank hinter meinen Full-Stack-Apps, immer kombiniert mit einem typsicheren TypeScript-ORM: Drizzle für einen schlanken, SQL-nahen Ansatz, Prisma für einen Schema-first-Workflow mit generiertem Client und Migrationen, dazu Prisma Accelerate für Query-Caching."
+      },
+      "tailwindcss": {
+        "unit": "Design-Brigade",
+        "summary": "Mein Standard fürs Styling, im Einsatz in fast jedem Projekt. Zusammen mit Shadcn UI bekomme ich barrierearme Komponenten, die als Quellcode in meinem Projekt liegen und sich an jedes Design anpassen lassen."
       }
     }
   }

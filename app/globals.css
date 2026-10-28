@@ -357,6 +357,25 @@ html[data-deployed] .dep.wipe { animation-name: wipe; animation-duration: .75s; 
   100% { border-color: var(--border-strong); box-shadow: none; }
 }
 
+/* operator insignia: a double frame with bright corner brackets that slowly pulse, setting it apart from the tech badges */
+.insig-operator {
+  position: relative;
+  border: 1px solid var(--border-strong);
+  outline: 1px solid color-mix(in oklab, var(--primary) 35%, transparent);
+  outline-offset: 4px;
+  animation: operatorPulse 3.2s ease-in-out infinite;
+}
+.insig-operator:not(.dossier-box) { background: radial-gradient(80% 60% at 50% 40%, color-mix(in oklab, var(--glow) 30%, transparent), transparent 75%); }
+.insig-operator::before, .insig-operator::after {
+  content: ""; position: absolute; width: 18px; height: 18px; pointer-events: none; z-index: 1;
+}
+.insig-operator::before { top: -6px; left: -6px; border-top: 2px solid var(--highlight); border-left: 2px solid var(--highlight); }
+.insig-operator::after { bottom: -6px; right: -6px; border-bottom: 2px solid var(--highlight); border-right: 2px solid var(--highlight); }
+@keyframes operatorPulse {
+  0%, 100% { box-shadow: 0 0 0 0 transparent, inset 0 0 0 0 transparent; }
+  50% { box-shadow: 0 0 22px -4px color-mix(in oklab, var(--primary) 55%, transparent), inset 0 0 18px -6px color-mix(in oklab, var(--primary) 45%, transparent); }
+}
+
 /* detached badge copy that flies between the case and the dossier */
 .hud-flyer {
   position: fixed; z-index: 60; margin: 0; object-fit: contain; pointer-events: none;

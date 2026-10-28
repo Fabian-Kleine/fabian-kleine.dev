@@ -46,8 +46,10 @@ export interface Insignia {
     image: string;
     width: number;
     height: number;
-    /** SimpleIcons slug used to find the projects built with this technology */
-    tech: string;
+    /** SimpleIcons slug used to find the projects built with this technology; left out on the operator insignia */
+    tech?: string;
+    /** the operator's own insignia: framed apart in the case, and its dossier shows the service record from `Insignia.items.<id>.record` instead of projects and partners */
+    operator?: boolean;
     /** shows the certificates issued by this issuer inside the insignia dossier */
     certificateIssuer?: string;
     /** project slugs left out of this dossier even though they use its tech */
@@ -152,6 +154,14 @@ export const config: Config = {
     ],
     insignia: [
         {
+            id: "operator",
+            name: "Operator",
+            image: "/badges/fk.webp",
+            width: 489,
+            height: 640,
+            operator: true,
+        },
+        {
             id: "shopware",
             name: "Shopware",
             image: "/badges/shopware.webp",
@@ -159,6 +169,13 @@ export const config: Config = {
             height: 640,
             tech: "shopware",
             certificateIssuer: "Shopware AG",
+            extraPartners: [
+                { name: "Vue.js", icon: "vue.js" },
+                { name: "PHP", icon: "php" },
+                { name: "JavaScript", icon: "javascript" },
+                { name: "Symfony", icon: "symfony" },
+                { name: "MySQL", icon: "mysql" },
+            ],
         },
         {
             id: "nextjs",
@@ -187,6 +204,27 @@ export const config: Config = {
                 { name: "Shadcn UI", icon: "shadcnui" },
                 { name: "TypeScript", icon: "typescript" },
             ],
+        },
+        {
+            id: "postgresql",
+            name: "PostgreSQL",
+            image: "/badges/postgresql.webp",
+            width: 598,
+            height: 640,
+            tech: "postgresql",
+            excludePartners: ["shadcnui", "tailwindcss"],
+            extraPartners: [
+                { name: "Prisma", icon: "prisma" },
+            ],
+        },
+        {
+            id: "tailwindcss",
+            name: "Tailwind CSS",
+            image: "/badges/tailwindcss.webp",
+            width: 601,
+            height: 640,
+            tech: "tailwindcss",
+            excludePartners: ["postgresql", "drizzle", "supabase", "node.js", "express", "cheerio", "axios", "reactrouter"],
         },
     ],
     cookies: {

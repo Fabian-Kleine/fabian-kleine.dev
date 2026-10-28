@@ -156,7 +156,9 @@
       "certifications": "Certifications",
       "openSource": "Open source",
       "tacmap": "Tacmap // Operations",
-      "contacts": "{count, plural, one {# contact} other {# contacts}}"
+      "contacts": "{count, plural, one {# contact} other {# contacts}}",
+      "postingLabel": "Current posting",
+      "posting": "Apprentice @ Shopware agency"
     },
     "ticker": {
       "latest": "Latest operation: {title}, {description}",
@@ -192,7 +194,9 @@
       "operations": "Operations",
       "liveDemos": "Live demos",
       "openSource": "Open source",
-      "share": "Share of operations"
+      "share": "Share of operations",
+      "operatorCaption": "Personal insignia",
+      "recordEntries": "Record entries"
     },
     "operations": {
       "eyebrow": "Selected work // mission debriefs",
@@ -234,7 +238,30 @@
     "partners": "Field partners",
     "inspect": "Inspect",
     "radar": "Radar showing {count, plural, one {# featured operation} other {# featured operations}}",
+    "record": "Service record",
+    "operatorTag": "Operator",
     "items": {
+      "operator": {
+        "unit": "Service Record",
+        "summary": "My path so far: from school straight into an apprenticeship as an IT specialist for application development, where I build and maintain Shopware shops and plugins.",
+        "record": [
+          {
+            "period": "2024 // Now",
+            "title": "IT Specialist for Application Development",
+            "org": "Apprenticeship // Shopware agency",
+            "bullets": [
+              "Building and maintaining client shops and Shopware Store plugins",
+              "Shopware 6 certified in backend and frontend development"
+            ]
+          },
+          {
+            "period": "2024",
+            "title": "Abitur",
+            "org": "University entrance qualification",
+            "bullets": []
+          }
+        ]
+      },
       "shopware": {
         "unit": "Commerce Vanguard",
         "summary": "My daily work at a Shopware agency: building and maintaining client shops and developing plugins for the Shopware Store. Backed by official Shopware 6 certifications from Shopware AG, covering backend development at two levels and storefront frontend development.",
@@ -251,6 +278,14 @@
       "react": {
         "unit": "Frontend Corps",
         "summary": "Component driven interfaces, from small single purpose tools to full applications."
+      },
+      "postgresql": {
+        "unit": "Data Command",
+        "summary": "The relational database behind my full stack apps, always paired with a type safe TypeScript ORM: Drizzle for a lightweight, SQL-like approach, Prisma for a schema first workflow with a generated client and migrations, plus Prisma Accelerate for query caching."
+      },
+      "tailwindcss": {
+        "unit": "Design Brigade",
+        "summary": "My default for styling, used in nearly every project. Paired with Shadcn UI, I get accessible components that live as source code in my project and can be shaped to fit any design."
       }
     }
   }
