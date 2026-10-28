@@ -1,3 +1,7 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
+overrides:
+  # 1.2.3 renders asChild triggers with server-provided children as null during dev SSR
+  # (React hands them over as lazy elements), causing a hydration mismatch
+  '@radix-ui/react-slot': 1.2.4

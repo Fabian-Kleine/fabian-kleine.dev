@@ -20,7 +20,7 @@ import { getAllTech, getProjects, usesTech } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { config } from "@/config";
 import { getTranslations } from "next-intl/server";
-import type messages from "@/messages/en.json";
+import type messages from "@/i18n/messages/en.json";
 
 const wrap = "mx-auto max-w-310 px-4";
 const sectionClass = cn(wrap, "scroll-mt-20 pt-[clamp(3.5rem,8vw,6rem)]");
@@ -38,7 +38,6 @@ export default async function Home() {
   const allTech = getAllTech();
   const coreTech = new Set(config.techStack.techStackCloudIcons);
   const opsFor = (icon: string) => projects.filter((p) => usesTech(p, icon));
-  const maxOps = Math.max(1, ...allTech.map((t) => opsFor(t.icon).length));
   const liveDemos = projects.filter((p) => p.demo).length;
   const openSource = projects.filter((p) => p.github).length;
 
@@ -102,7 +101,7 @@ export default async function Home() {
       <section className={cn(wrap, "grid items-start gap-[clamp(1.5rem,4vw,3.5rem)] pt-[clamp(2.5rem,6vw,5rem)] pb-[clamp(2rem,5vw,3.5rem)] lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]")} aria-labelledby="opName">
         <div>
           <div className="dep mb-6 flex flex-wrap gap-x-5 gap-y-1.5" style={next()}>
-            {[t("hero.dossier"), t("hero.id"), t("hero.class")].map((label) => (
+            {[t("hero.dossier"), t("hero.id")].map((label) => (
               <span key={label} className="flex items-center gap-2 hud-label before:h-0.5 before:w-4.5 before:bg-primary">{label}</span>
             ))}
           </div>
@@ -111,7 +110,6 @@ export default async function Home() {
             <ScrambleText text="Kleine" delay={170} className="hud-outline mt-[0.04em] block" />
           </h1>
           <div className="dep my-6 flex flex-wrap items-center gap-x-4 gap-y-2.5" style={next()}>
-            <strong className="font-heading text-[clamp(1.4rem,3.4vw,2rem)] font-bold tracking-[0.06em] text-heading uppercase">{t("hero.role")}</strong>
             <Badge variant="outline">{t("hero.path")}</Badge>
             <Badge><LiveDot />{t("hero.open")}</Badge>
           </div>
@@ -189,25 +187,22 @@ export default async function Home() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] border-t border-l">
-                  {stack.items.map((tech) => {
-                    const ops = opsFor(tech.icon).length;
-                    return (
-                      <div key={tech.name} className="grid content-start gap-1 border-r border-b bg-popover px-3.5 py-3 transition-colors hover:bg-secondary">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className={cn("hud-meta text-[0.6rem]", coreTech.has(tech.icon) && "text-primary")}>
-                            {coreTech.has(tech.icon) ? t("stack.core") : t("stack.support")}
-                          </span>
-                          <TechIcon name={tech.name} icon={tech.icon} size={18} />
-                        </div>
-                        <strong className="font-heading text-xl leading-tight font-bold tracking-[0.05em] text-heading uppercase">{tech.name}</strong>
-                        <div className="mt-1 flex justify-between hud-meta text-[0.6rem]">
-                          <span>{t("stack.deployed")}</span>
-                          <b className="font-normal text-highlight tabular-nums">{t("stack.ops", { count: ops })}</b>
-                        </div>
-                        <Meter value={ops / maxOps * 100} className="h-1" />
+                  {stack.items.map((tech) => (
+                    <div key={tech.name} className="grid content-start gap-1 border-r border-b bg-popover px-3.5 py-3 transition-colors hover:bg-secondary">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className={cn("hud-meta text-[0.6rem]", coreTech.has(tech.icon) && "text-primary")}>
+                          {coreTech.has(tech.icon) ? t("stack.core") : t("stack.support")}
+                        </span>
+                        <TechIcon name={tech.name} icon={tech.icon} size={18} />
                       </div>
-                    );
-                  })}
+                      <strong className="font-heading text-xl leading-tight font-bold tracking-[0.05em] text-heading uppercase">{tech.name}</strong>
+                      <div className="mt-1 flex justify-between gap-2 hud-meta text-[0.6rem]">
+                        <span>{t("stack.level", { level: String(tech.level) })}</span>
+                        <b className="font-normal text-highlight tabular-nums">{t("stack.levelOf", { level: tech.level })}</b>
+                      </div>
+                      <Meter value={tech.level / 5 * 100} className="h-1" />
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>

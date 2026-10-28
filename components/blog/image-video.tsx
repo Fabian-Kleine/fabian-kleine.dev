@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { isExternalUrl, useExternalMedia } from "@/lib/consent";
 
 interface ImageVideoProps {
     title: string;
@@ -12,9 +13,12 @@ interface ImageVideoProps {
 
 export default function ImageVideo({ title, img, video, className }: ImageVideoProps) {
     const [isVideoError, setIsVideoError] = useState(false);
+    // third-party hosted videos only load with consent, otherwise the preview image is shown
+    const externalMedia = useExternalMedia();
+    const showVideo = video && !isVideoError && (externalMedia || !isExternalUrl(video));
 
     return <>
-        {video && !isVideoError ? (
+        {showVideo ? (
             <div className={cn("rounded-3xl shadow-lg aspect-video object-cover object-center overflow-hidden relative", className)}>
                 <video
                     className={cn("w-full")}

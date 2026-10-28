@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { PlayIcon, PauseIcon, RotateCcwIcon } from "lucide-react";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
+import { isExternalUrl, setConsent, useExternalMedia } from "@/lib/consent";
 
 interface VideoProps {
     title: string;
@@ -12,6 +14,28 @@ interface VideoProps {
 }
 
 export default function Video({ title, video, width, className }: VideoProps) {
+    const externalMedia = useExternalMedia();
+
+    // third-party hosted videos only load with consent
+    if (!externalMedia && isExternalUrl(video)) {
+        return <BlockedVideo title={title} video={video} width={width} className={className} />;
+    }
+
+    return <VideoPlayer title={title} video={video} width={width} className={className} />;
+}
+
+function BlockedVideo({ title, video, width, className }: VideoProps) {
+    const t = useTranslations("Consent");
+
+    return (
+        <div title={title} style={{ width: `${width}px` }} className={cn("rounded-xl aspect-video max-w-full border bg-card flex flex-col items-center justify-center gap-3 p-6 text-center", className)}>
+            <p className="text-sm text-muted-foreground">{t("videoBlocked", { host: new URL(video).hostname })}</p>
+            <Button size="sm" onClick={() => setConsent("granted")}>{t("allow")}</Button>
+        </div>
+    );
+}
+
+function VideoPlayer({ title, video, width, className }: VideoProps) {
     const [isVideoError, setIsVideoError] = useState(false);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -70,7 +94,7 @@ export default function Video({ title, video, width, className }: VideoProps) {
     };
 
     return (
-        <div title={title} style={{ width: `${width}px` }} className={cn("rounded-xl aspect-video object-cover object-center overflow-hidden relative", className)}>
+        <div title={title} style={{ width: `${width}px` }} className={cn("rounded-xl aspect-video max-w-full object-cover object-center overflow-hidden relative", className)}>
             <video
                 ref={videoRef}
                 className="w-full cursor-pointer"

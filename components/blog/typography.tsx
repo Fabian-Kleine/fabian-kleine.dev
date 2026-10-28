@@ -61,9 +61,9 @@ export function TypographyList({ children, className }: { children: React.ReactN
 
 export function TypographyOrderedList({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
-        <ul className={cn("my-6 ml-6 list-decimal [&>li]:mt-2", className)}>
+        <ol className={cn("my-6 ml-6 list-decimal [&>li]:mt-2", className)}>
             {children}
-        </ul>
+        </ol>
     );
 }
 

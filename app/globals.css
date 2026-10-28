@@ -177,12 +177,6 @@ html, body {
   transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
 }
 
-pre {
-  top: 0 !important;
-  margin-top: 10px;
-  z-index: 0 !important;
-}
-
 @layer components {
 /* ================= HUD: card corner brackets ================= */
 [data-slot="card"]::before,
@@ -411,77 +405,59 @@ html[data-deployed] .dep.wipe { animation-name: wipe; animation-duration: .75s; 
 }
 
 .markdown-alert {
-  --github-alert-default-color: rgb(48, 54, 61);
-  --github-alert-note-color: rgb(31, 111, 235);
-  --github-alert-tip-color: rgb(35, 134, 54);
-  --github-alert-important-color: rgb(137, 87, 229);
-  --github-alert-warning-color: rgb(158, 106, 3);
-  --github-alert-caution-color: rgb(248, 81, 73);
-
-  padding: 0.5rem 1rem;
-  margin-bottom: 16px;
-  border-left: 0.25em solid var(--github-alert-default-color);
+  --alert: var(--primary);
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--alert) 35%, var(--border));
+  border-left: 2px solid var(--alert);
+  background: color-mix(in oklab, var(--alert) 7%, transparent);
 }
-
-.markdown-alert>:first-child {
-  margin-top: 0;
-}
-
-.markdown-alert>p {
-  margin-top: .5rem;
-}
-
-.markdown-alert>:last-child {
-  margin-bottom: 0;
-}
-
-.markdown-alert-note {
-  border-left-color: var(--github-alert-note-color);
-}
-
-.markdown-alert-tip {
-  border-left-color: var(--github-alert-tip-color);
-}
-
-.markdown-alert-important {
-  border-left-color: var(--github-alert-important-color);
-}
-
-.markdown-alert-warning {
-  border-left-color: var(--github-alert-warning-color);
-}
-
-.markdown-alert-caution {
-  border-left-color: var(--github-alert-caution-color);
-}
-
+.markdown-alert > :first-child { margin-top: 0; }
+.markdown-alert > p { margin-top: .5rem; }
+.markdown-alert > :last-child { margin-bottom: 0; }
+.markdown-alert-tip { --alert: #3fb950; }
+.markdown-alert-important { --alert: #a371f7; }
+.markdown-alert-warning { --alert: #d29922; }
+.markdown-alert-caution { --alert: #f85149; }
 .markdown-alert-title {
   display: flex;
-  margin-bottom: 4px;
   align-items: center;
+  gap: 8px;
+  color: var(--alert);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
+.markdown-alert-title > svg { fill: currentColor; }
 
-.markdown-alert-title>svg {
-  margin-right: 8px;
-  fill: currentColor;
+/* ================= project debrief (MDX write-up) =================
+   unlayered so it wins over the typography components' utility margins */
+.debrief > :first-child { margin-top: 0; }
+.debrief h1, .debrief h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3rem 0 1rem;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1;
 }
-
-.markdown-alert-note .markdown-alert-title {
-  color: var(--github-alert-note-color);
+.debrief h1::before, .debrief h2::before { content: ""; flex: none; width: 18px; height: 2px; background: var(--primary); }
+.debrief h2 { font-size: clamp(1.5rem, 3vw, 1.9rem); margin-top: 2.5rem; }
+.debrief h3, .debrief h4 { margin: 2rem 0 0.75rem; }
+.debrief li::marker { color: var(--primary); }
+.debrief ol > li::marker { font-family: var(--font-mono); font-size: 0.85em; }
+.debrief blockquote { border-left-color: var(--primary); color: var(--muted-foreground); }
+.debrief img { border: 1px solid var(--border); }
+.debrief pre {
+  position: relative;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--primary);
+  background: var(--popover);
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
-
-.markdown-alert-tip .markdown-alert-title {
-  color: var(--github-alert-tip-color);
-}
-
-.markdown-alert-important .markdown-alert-title {
-  color: var(--github-alert-important-color);
-}
-
-.markdown-alert-warning .markdown-alert-title {
-  color: var(--github-alert-warning-color);
-}
-
-.markdown-alert-caution .markdown-alert-title {
-  color: var(--github-alert-caution-color);
-}
+.debrief pre code, .debrief pre code.hljs { padding: 0; border-radius: 0; background: transparent; font-size: inherit; }

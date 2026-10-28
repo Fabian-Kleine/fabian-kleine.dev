@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import AnalyticsWrapper from "@/components/analytics";
+import { ConsentBanner } from "@/components/consent-banner";
 import { HudBackground } from "@/components/hud/hud-background";
 import { BootLine, BootSequence } from "@/components/hud/boot-sequence";
 import { bootScript } from "@/lib/hud";
@@ -64,6 +65,7 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer />
+          <ConsentBanner />
           <BootSequence lines={bootLines} />
         </NextIntlClientProvider>
         <AnalyticsWrapper />

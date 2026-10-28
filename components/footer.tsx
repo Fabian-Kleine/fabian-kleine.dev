@@ -4,6 +4,7 @@ import ContactDialog from "./contact-dialog";
 import { Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { RebootButton } from "./hud/reboot-button";
+import { ConsentSettingsButton } from "./consent-banner";
 import { getTranslations } from "next-intl/server";
 
 export default async function Footer() {
@@ -19,6 +20,10 @@ export default async function Footer() {
                     <Button asChild variant="ghost" size="xs" className="font-mono tracking-[0.16em] text-muted-foreground uppercase">
                         <Link href="/legal">{t("legal")}</Link>
                     </Button>
+                    <Button asChild variant="ghost" size="xs" className="font-mono tracking-[0.16em] text-muted-foreground uppercase">
+                        <Link href="/legal/imprint">{t("imprint")}</Link>
+                    </Button>
+                    <ConsentSettingsButton className="font-mono tracking-[0.16em] text-muted-foreground uppercase" />
                     <ContactDialog>
                         <Button variant="ghost" size="icon-sm" className="text-muted-foreground">
                             <Mail />

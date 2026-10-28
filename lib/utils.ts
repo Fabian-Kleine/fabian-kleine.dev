@@ -5,10 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-/** brand icon URL; monochrome black brands are recolored so they show on the dark theme */
+/** self-hosted SimpleIcons brand icon, downloaded by `pnpm icons` (no third-party request at runtime) */
 export function getSimpleIconsUrl(icon: string) {
-  const white = ["github", "shadcnui", "next.js", "vercel", "express", "expo", "prisma"]
-  const color = white.includes(icon) ? "ffffff" : icon
-
-  return `https://cdn.simpleicons.org/${icon}/${color}`
+  return `/icons/tech/${icon.toLowerCase()}.svg`
 }

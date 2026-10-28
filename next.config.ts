@@ -4,9 +4,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [new URL("https://cdn.simpleicons.org/**")],
-  },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 };
 

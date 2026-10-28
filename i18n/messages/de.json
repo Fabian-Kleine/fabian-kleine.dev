@@ -25,7 +25,7 @@
     "stages": {
       "decrypting": "ENTSCHLÜSSLE PROFIL",
       "stack": "LADE STACK",
-      "operations": "SYNCHRONISIERE EINSÄTZE",
+      "operations": "SYNCHRONISIERE PROJEKTE",
       "deploying": "STARTE HUD"
     }
   },
@@ -38,6 +38,7 @@
     "toggle": "Menü öffnen",
     "backToTop": "Zurück nach oben",
     "tagline": "FABIAN KLEINE // IM EINSATZ",
+    "github": "GitHub",
     "localTime": "Ortszeit in Deutschland"
   },
   "LocaleSwitcher": {
@@ -47,9 +48,27 @@
   },
   "Footer": {
     "legal": "Rechtliches",
+    "imprint": "Impressum",
     "contact": "Kontakt",
     "github": "Github",
     "reboot": "SYSTEM NEU STARTEN"
+  },
+  "Consent": {
+    "eyebrow": "DATENSCHUTZ // EXTERNE MEDIEN",
+    "title": "Projektvideos laden?",
+    "description": "Die Projektvideos werden über jsDelivr und GitHub bereitgestellt. Beim Laden wird deine IP-Adresse an diese Anbieter übertragen, teilweise in die USA. Ohne deine Einwilligung werden nur Vorschaubilder angezeigt.",
+    "details": "Mehr dazu in der <link>Datenschutzerklärung</link>. Du kannst deine Wahl jederzeit über „Datenschutz-Einstellungen“ im Footer ändern.",
+    "allow": "Videos erlauben",
+    "deny": "Nur Bilder",
+    "settings": "Datenschutz-Einstellungen",
+    "videoBlocked": "Dieses Video wird über {host} bereitgestellt. Beim Laden wird deine IP-Adresse an diesen Anbieter übertragen."
+  },
+  "Legal": {
+    "title": "Rechtliches",
+    "metaTitle": "{title} | Fabian Kleine",
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "imprint": "Impressum"
   },
   "Contact": {
     "title": "Schreib mir",
@@ -62,7 +81,7 @@
     "subjectPlaceholder": "Worum geht's?",
     "message": "Nachricht",
     "messagePlaceholder": "Deine Nachricht",
-    "acceptPrivacy": "Ich habe die <link>Datenschutzerklärung</link> gelesen und bin einverstanden.",
+    "acceptPrivacy": "Ich habe die <link>Datenschutzerklärung</link> gelesen.",
     "sending": "Nachricht wird übermittelt...",
     "success": "Danke für deine Nachricht! Ich melde mich so schnell wie möglich bei dir.",
     "send": "Nachricht senden",
@@ -72,7 +91,7 @@
       "invalidEmail": "E-Mail-Adresse ungültig",
       "subjectRequired": "Betreff fehlt",
       "messageRequired": "Nachricht fehlt",
-      "privacyRequired": "Datenschutzerklärung nicht bestätigt",
+      "privacyRequired": "Bitte bestätige, dass du die Datenschutzerklärung gelesen hast.",
       "sendFailed": "Die Nachricht konnte nicht gesendet werden. Versuch es bitte später noch einmal.",
       "unknown": "Da ist etwas schiefgelaufen"
     }
@@ -85,13 +104,34 @@
     "liveDemo": "Live-Demo"
   },
   "ProjectPage": {
+    "breadcrumb": "Brotkrümelnavigation",
+    "languageLabel": "Sprachhinweis",
+    "languageFallback": "Dieses Projekt ist nur auf {language, select, de {Deutsch} other {Englisch}} verfügbar.",
+    "back": "Alle Projekte",
+    "eyebrow": "Projektbericht",
+    "opId": "OP-{id}",
+    "live": "Live",
+    "sourceOnly": "Nur Quellcode",
+    "openSource": "Open Source",
     "liveDemo": "Live-Demo",
     "viewCode": "Zum Quellcode",
-    "overview": "Auf einen Blick"
+    "visual": "Bildaufzeichnung",
+    "overview": "Auf einen Blick",
+    "briefing": "Briefing",
+    "objectives": "{count} Ziele",
+    "reportEyebrow": "Vollständiger Bericht // Feldnotizen",
+    "debrief": "Debriefing",
+    "data": "Einsatzdaten",
+    "status": "Status",
+    "stack": "Ausrüstung",
+    "stackCount": "{count} Einträge",
+    "demo": "Demo",
+    "source": "Quellcode",
+    "nextOp": "Nächster Einsatz"
   },
   "Projects": {
     "eyebrow": "Einsatzarchiv // alle Einsatzberichte",
-    "title": "Alle Einsätze",
+    "title": "Alle Projekte",
     "meta": "{total} erfasst // {openSource} Open Source"
   },
   "Home": {
@@ -102,20 +142,20 @@
       "role": "Webentwickler",
       "path": "Azubi // Selbst gelernt",
       "open": "Offen für neue Projekte",
-      "intro": "Ich mache gerade meine Ausbildung und habe mir das Programmieren selbst beigebracht. Mein Revier ist das Web: Ich baue moderne, barrierefreie Webanwendungen mit sauberem Code und einer User Experience, die sich einfach gut anfühlt.",
-      "viewOperations": "Einsätze ansehen",
+      "intro": "Ich mache gerade meine Ausbildung und habe mir das Programmieren selbst beigebracht. Hauptsächlich baue ich moderne, barrierefreie Webanwendungen mit sauberem Code und einer guten User Experience.",
+      "viewOperations": "Projekte ansehen",
       "openComms": "Kanal öffnen"
     },
     "stats": {
       "label": "Kennzahlen",
-      "rank": "Dienstgrad: Azubi",
-      "callsign": "Webentwickler // Rufzeichen Kleine",
+      "rank": "Rang: Azubi",
+      "callsign": "Webentwickler",
       "liveDeployments": "Live im Einsatz",
-      "operations": "Einsätze",
+      "operations": "Projekte",
       "stackItems": "Im Stack",
       "certifications": "Zertifikate",
       "openSource": "Open Source",
-      "tacmap": "Lagekarte // Einsätze",
+      "tacmap": "Lagekarte // Projekte",
       "contacts": "{count, plural, one {# Kontakt} other {# Kontakte}}"
     },
     "ticker": {
@@ -123,45 +163,45 @@
       "open": "Offen für neue Projekte",
       "certified": "{count}-fach Shopware 6 zertifiziert",
       "tech": "{count} Technologien im Stack",
-      "operations": "{count} Einsätze dokumentiert, davon {openSource} Open Source",
+      "operations": "{count} Projekte dokumentiert, davon {openSource} Open Source",
       "built": "Gebaut mit Next.js und shadcn/ui"
     },
     "stack": {
       "eyebrow": "Sprachen, Frameworks, Werkzeuge",
       "title": "Stack",
-      "meta": "{count} einsatzbereit",
-      "primaryLabel": "Primärausrüstung",
-      "primaryTitle": "Arsenal",
-      "secondaryLabel": "Sekundärausrüstung",
-      "secondaryTitle": "Marschgepäck",
+      "meta": "{count} Technologien",
+      "primaryLabel": "Primärer Stack",
+      "primaryTitle": "Tagesgeschäft",
+      "secondaryLabel": "Sekundärer Stack",
+      "secondaryTitle": "Werkzeugkiste",
       "summary": "{core} Kern // {total} gesamt",
       "core": "Kern",
       "support": "Ergänzung",
-      "deployed": "Im Einsatz",
-      "ops": "{count, plural, one {# Einsatz} other {# Einsätze}}"
+      "level": "{level, select, 1 {Grundlagen} 2 {Vertraut} 3 {Sicher} 4 {Routiniert} other {Experte}}",
+      "levelOf": "{level} / 5"
     },
     "insignia": {
       "eyebrow": "Auszeichnungen // für Details auswählen",
       "title": "Abzeichen",
       "meta": "{count} verliehen",
       "certificationsCaption": "{count, plural, one {# Zertifikat} other {# Zertifikate}}",
-      "operationsCaption": "{count, plural, one {# Einsatz} other {# Einsätze}}",
+      "operationsCaption": "{count, plural, one {# Projekt} other {# Projekte}}",
       "certifications": "Zertifikate",
       "backend": "Backend",
       "frontend": "Frontend",
-      "operations": "Einsätze",
+      "operations": "Projekte",
       "liveDemos": "Live-Demos",
       "openSource": "Open Source",
-      "share": "Anteil aller Einsätze"
+      "share": "Anteil aller Projekte"
     },
     "operations": {
-      "eyebrow": "Ausgewählte Arbeiten // Einsatzberichte",
-      "title": "Einsätze",
+      "eyebrow": "Ausgewählte Arbeiten // Projektberichte",
+      "title": "Projekte",
       "meta": "{featured} im Fokus // {total} erfasst",
       "archiveTitle": "Archiv",
       "archiveSector": "Einsatzgebiet: Archiv // {count} Akten",
       "classified": "Verschlusssache",
-      "archiveText": "{count} weitere Einsätze liegen in den Akten, von <long></long> bis <short></short>. Freigabe für das komplette Archiv erteilt.",
+      "archiveText": "{count} weitere Projekte liegen in den Akten, von <long></long> bis <short></short>. Freigabe für das komplette Archiv erteilt.",
       "openArchive": "Archiv öffnen"
     },
     "comms": {
@@ -193,14 +233,14 @@
     "deployedIn": "Eingesetzt in",
     "partners": "Im Verbund mit",
     "inspect": "Inspizieren",
-    "radar": "Radar mit {count, plural, one {# Einsatz im Fokus} other {# Einsätzen im Fokus}}",
+    "radar": "Radar mit {count, plural, one {# Projekt im Fokus} other {# Projekten im Fokus}}",
     "items": {
       "shopware": {
         "unit": "Commerce-Vorhut",
         "summary": "Offiziell zertifiziert von der Shopware AG: Backend-Entwicklung auf zwei Stufen und Frontend-Entwicklung für die Storefront."
       },
       "nextjs": {
-        "unit": "Luftlandedivision",
+        "unit": "Full-Stack Division",
         "summary": "Mein Framework der Wahl für Full-Stack-Apps mit React, von Web-Apps mit Datenbank im Rücken bis zu diesem Portfolio."
       },
       "react": {

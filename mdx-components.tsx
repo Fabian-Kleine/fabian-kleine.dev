@@ -20,7 +20,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             {...props} />
         ),
         a: ({ children, ...props }) => <TypographyLink {...props}>{children}</TypographyLink>,
-        pre: (props) => <pre {...props} className="relative -z-10 -top-8" />,
+        pre: (props) => <pre {...props} />,
         code: (props) => <TypographyInlineCode {...props} className={cn(props.className)} />,
         blockquote: (props) => <TypographyBlockquote {...props} />,
         ...components

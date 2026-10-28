@@ -4,15 +4,32 @@ interface Config {
         featuredProjectsSlugs: string[];
     }
     techStack: {
-        techStackMarquee1Icons: { name: string; icon: string }[];
-        techStackMarquee2Icons: { name: string; icon: string }[];
+        techStackMarquee1Icons: Tech[];
+        techStackMarquee2Icons: Tech[];
         techStackCloudIcons: string[];
     },
     certificates: Certificate[];
     insignia: Insignia[];
     cookies: {
+        /** shows the consent banner for externally hosted project videos; when off, they never load */
         cookieConsent: boolean;
     }
+    legal: {
+        /** controller details shown in the privacy policy (Art. 13 GDPR) */
+        name: string;
+        address: string[];
+        email: string;
+    }
+}
+
+/** self-assessed proficiency on the homepage stack tiles: 1 basics, 2 familiar, 3 proficient, 4 advanced, 5 expert */
+export type SkillLevel = 1 | 2 | 3 | 4 | 5;
+
+export interface Tech {
+    name: string;
+    /** SimpleIcons slug */
+    icon: string;
+    level: SkillLevel;
 }
 
 export interface Certificate {
@@ -60,34 +77,34 @@ export const config: Config = {
     },
     techStack: {
         techStackMarquee1Icons: [
-            { name: "HTML", icon: "html5" },
-            { name: "CSS", icon: "css" },
-            { name: "JavaScript", icon: "javascript" },
-            { name: "TypeScript", icon: "typescript" },
-            { name: "Node.js", icon: "node.js" },
-            { name: "Express", icon: "express" },
-            { name: "Vue.js", icon: "vue.js" },
-            { name: "React", icon: "react" },
-            { name: "Next.js", icon: "next.js" },
-            { name: "Expo", icon: "expo" },
-            { name: "Tailwind CSS", icon: "tailwindcss" },
-            { name: "PHP", icon: "php" },
-            { name: "MongoDB", icon: "mongodb" },
-            { name: "PostgreSQL", icon: "postgresql" },
-            { name: "Python", icon: "python" },
+            { name: "HTML", icon: "html5", level: 5 },
+            { name: "CSS", icon: "css", level: 5 },
+            { name: "JavaScript", icon: "javascript", level: 5 },
+            { name: "TypeScript", icon: "typescript", level: 4 },
+            { name: "Node.js", icon: "node.js", level: 4 },
+            { name: "Express", icon: "express", level: 4 },
+            { name: "Vue.js", icon: "vue.js", level: 3 },
+            { name: "React", icon: "react", level: 4 },
+            { name: "Next.js", icon: "next.js", level: 4 },
+            { name: "Expo", icon: "expo", level: 2 },
+            { name: "Tailwind CSS", icon: "tailwindcss", level: 5 },
+            { name: "PHP", icon: "php", level: 4 },
+            { name: "MongoDB", icon: "mongodb", level: 3 },
+            { name: "PostgreSQL", icon: "postgresql", level: 3 },
+            { name: "Python", icon: "python", level: 2 },
         ],
         techStackMarquee2Icons: [
-            { name: "Shadcn UI", icon: "shadcnui" },
-            { name: "Bootstrap", icon: "bootstrap" },
-            { name: "Git", icon: "git" },
-            { name: "GitHub", icon: "github" },
-            { name: "GitLab", icon: "gitlab" },
-            { name: "Vite", icon: "vite" },
-            { name: "Vercel", icon: "vercel" },
-            { name: "Prisma", icon: "prisma" },
-            { name: "Drizzle", icon: "drizzle" },
-            { name: "Wordpress", icon: "wordpress" },
-            { name: "Shopware", icon: "shopware" }
+            { name: "Shadcn UI", icon: "shadcnui", level: 5 },
+            { name: "Bootstrap", icon: "bootstrap", level: 4 },
+            { name: "Git", icon: "git", level: 4 },
+            { name: "GitHub", icon: "github", level: 4 },
+            { name: "GitLab", icon: "gitlab", level: 3 },
+            { name: "Vite", icon: "vite", level: 3 },
+            { name: "Vercel", icon: "vercel", level: 3 },
+            { name: "Prisma", icon: "prisma", level: 4 },
+            { name: "Drizzle", icon: "drizzle", level: 2 },
+            { name: "Wordpress", icon: "wordpress", level: 2 },
+            { name: "Shopware", icon: "shopware", level: 4 }
         ],
         techStackCloudIcons: [
             'html5',
@@ -155,6 +172,12 @@ export const config: Config = {
         },
     ],
     cookies: {
-        cookieConsent: false
+        cookieConsent: true
+    },
+    legal: {
+        // TODO: fill in before going live
+        name: "Fabian Kleine",
+        address: ["[Street and house number]", "[Postal code and city]"],
+        email: "[email address]",
     }
 }

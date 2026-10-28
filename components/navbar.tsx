@@ -16,6 +16,7 @@ import { NAV_ITEMS } from "@/lib/nav";
 import { Telemetry } from "./hud/telemetry";
 import { LocaleSwitcher } from "./locale-switcher";
 import { getTranslations } from "next-intl/server";
+import GithubIcon from "./icons/github";
 
 async function Mark() {
     const t = await getTranslations("Nav");
@@ -50,6 +51,12 @@ export default async function Navbar() {
                 <div className="ml-auto flex items-center gap-3 md:ml-0">
                     <Telemetry />
                     <LocaleSwitcher />
+                    <Button asChild variant="ghost" size="icon-sm" className="text-muted-foreground hover:text-heading">
+                        <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer">
+                            <GithubIcon />
+                            <span className="sr-only">{t("github")}</span>
+                        </a>
+                    </Button>
                     <Sheet>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon" className="md:hidden">

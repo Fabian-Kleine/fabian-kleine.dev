@@ -38,6 +38,7 @@
     "toggle": "Toggle Navbar",
     "backToTop": "Back to top",
     "tagline": "FABIAN KLEINE // FIELD",
+    "github": "GitHub",
     "localTime": "Local time in Germany"
   },
   "LocaleSwitcher": {
@@ -47,9 +48,27 @@
   },
   "Footer": {
     "legal": "Legal",
+    "imprint": "Legal Notice",
     "contact": "Contact",
     "github": "Github",
     "reboot": "REBOOT SYSTEM"
+  },
+  "Consent": {
+    "eyebrow": "PRIVACY // EXTERNAL MEDIA",
+    "title": "Load project videos?",
+    "description": "The project showcase videos are hosted by jsDelivr and GitHub. Loading them sends your IP address to these providers, partly in the USA. Without your consent, only preview images are shown.",
+    "details": "More in the <link>Privacy Policy</link>. You can change your choice at any time via \"Privacy settings\" in the footer.",
+    "allow": "Allow videos",
+    "deny": "Images only",
+    "settings": "Privacy settings",
+    "videoBlocked": "This video is hosted on {host}. Loading it sends your IP address to that provider."
+  },
+  "Legal": {
+    "title": "Legal",
+    "metaTitle": "{title} | Fabian Kleine",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "imprint": "Legal Notice"
   },
   "Contact": {
     "title": "Contact Me",
@@ -62,7 +81,7 @@
     "subjectPlaceholder": "Subject",
     "message": "Message",
     "messagePlaceholder": "Your Message",
-    "acceptPrivacy": "I accept the <link>Privacy Policy</link>",
+    "acceptPrivacy": "I have read the <link>Privacy Policy</link>",
     "sending": "Sending your message...",
     "success": "Thank you for your message! I will get back to you as soon as possible.",
     "send": "Send Message",
@@ -72,7 +91,7 @@
       "invalidEmail": "Invalid email address",
       "subjectRequired": "Subject is required",
       "messageRequired": "Message is required",
-      "privacyRequired": "You must accept the privacy policy",
+      "privacyRequired": "Please confirm that you have read the privacy policy",
       "sendFailed": "Failed to send message. Please try again later.",
       "unknown": "An unknown error occurred"
     }
@@ -85,9 +104,30 @@
     "liveDemo": "Live demo"
   },
   "ProjectPage": {
+    "breadcrumb": "Breadcrumb",
+    "languageLabel": "Language notice",
+    "languageFallback": "This project is only available in {language, select, de {German} other {English}}.",
+    "back": "All operations",
+    "eyebrow": "Mission debrief",
+    "opId": "OP-{id}",
+    "live": "Live",
+    "sourceOnly": "Source only",
+    "openSource": "Open source",
     "liveDemo": "Live Demo",
     "viewCode": "View Code",
-    "overview": "Quick Overview"
+    "visual": "Visual record",
+    "overview": "Quick overview",
+    "briefing": "Briefing",
+    "objectives": "{count} objectives",
+    "reportEyebrow": "Full report // field notes",
+    "debrief": "Debrief",
+    "data": "Mission data",
+    "status": "Status",
+    "stack": "Loadout",
+    "stackCount": "{count} items",
+    "demo": "Demo",
+    "source": "Source",
+    "nextOp": "Next operation"
   },
   "Projects": {
     "eyebrow": "Mission archive // all debriefs",
@@ -109,7 +149,7 @@
     "stats": {
       "label": "Operator stats",
       "rank": "Rank: Apprentice",
-      "callsign": "Web developer // callsign Kleine",
+      "callsign": "Web developer",
       "liveDeployments": "Live deployments",
       "operations": "Operations",
       "stackItems": "Stack items",
@@ -127,18 +167,18 @@
       "built": "Built with Next.js and shadcn/ui"
     },
     "stack": {
-      "eyebrow": "Languages, frameworks, field tools",
+      "eyebrow": "Languages, frameworks, tools",
       "title": "Stack",
-      "meta": "{count} items equipped",
+      "meta": "{count} technologies",
       "primaryLabel": "Primary stack",
-      "primaryTitle": "Arsenal",
+      "primaryTitle": "Daily drivers",
       "secondaryLabel": "Secondary stack",
-      "secondaryTitle": "Field kit",
-      "summary": "{core} core // {total} equipped",
+      "secondaryTitle": "Toolbox",
+      "summary": "{core} core // {total} total",
       "core": "Core",
       "support": "Support",
-      "deployed": "Deployed",
-      "ops": "{count, plural, one {# op} other {# ops}}"
+      "level": "{level, select, 1 {Basics} 2 {Familiar} 3 {Proficient} 4 {Advanced} other {Expert}}",
+      "levelOf": "{level} / 5"
     },
     "insignia": {
       "eyebrow": "Commendations // select to inspect",
@@ -200,7 +240,7 @@
         "summary": "Official Shopware 6 developer certifications issued by Shopware AG, covering backend development at two levels and storefront frontend development."
       },
       "nextjs": {
-        "unit": "Airborne Division",
+        "unit": "Full-Stack Division",
         "summary": "My framework of choice for full stack React apps, from database backed web apps to this portfolio."
       },
       "react": {
