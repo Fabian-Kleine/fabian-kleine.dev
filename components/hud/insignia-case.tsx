@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Meter } from "@/components/hud/meter";
+import { TechIcon } from "@/components/hud/tech-icon";
 import { cn } from "@/lib/utils";
 import { prefersReducedMotion, pulse, readToken } from "@/lib/hud";
 import type { Certificate, Insignia } from "@/config";
@@ -21,7 +22,7 @@ export interface InsigniaDossier extends Insignia {
     stats: [value: string, label: string][];
     meter?: { label: string; value: string; percent: number };
     certificates: Certificate[];
-    partners: string[];
+    partners: { name: string; icon: string }[];
     operations: { title: string; slug?: string }[];
 }
 
@@ -127,6 +128,45 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                     ))}
                 </dl>
 
+                {(item.partners.length > 0 || item.operations.length > 0) && (
+                    <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                        {item.operations.length > 0 && (
+                            <div className="grid content-start gap-2">
+                                <Line i={i++} className="w-fit"><span className="hud-label">{t("deployedIn")}</span></Line>
+                                <Line i={i++} multi>
+                                    <ul className="grid gap-1 leading-relaxed">
+                                        {item.operations.map((op) => (
+                                            <li key={op.title} className="relative pl-5 before:absolute before:top-[0.8em] before:left-0 before:h-px before:w-2 before:bg-primary">
+                                                {op.slug ? (
+                                                    <Link href={`/projects/${op.slug}`} className="underline-offset-4 hover:text-primary hover:underline">{op.title}</Link>
+                                                ) : (
+                                                    <>{op.title}</>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </Line>
+                            </div>
+                        )}
+                        {item.partners.length > 0 && (
+                            <div className="grid content-start gap-2">
+                                <Line i={i++} className="w-fit"><span className="hud-label">{t("partners")}</span></Line>
+                                <Line i={i++}>
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {item.partners.map((p) => (
+                                            <Badge key={p.icon} variant="secondary">
+                                                {/* brand colors clash with the HUD palette, so every icon is flattened to white */}
+                                                <TechIcon name="" icon={p.icon} size={12} className="brightness-0 invert" />
+                                                {p.name}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                </Line>
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 {item.certificates.length > 0 && (
                     <div className="grid gap-3">
                         <Line i={i++} className="w-fit"><span className="hud-label">{t("certifications")}</span></Line>
@@ -164,39 +204,6 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
                                 </Line>
                             ))}
                         </div>
-                    </div>
-                )}
-
-                {(item.partners.length > 0 || item.operations.length > 0) && (
-                    <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-                        {item.operations.length > 0 && (
-                            <div className="grid content-start gap-2">
-                                <Line i={i++} className="w-fit"><span className="hud-label">{t("deployedIn")}</span></Line>
-                                <Line i={i++} multi>
-                                    <ul className="grid gap-1 leading-relaxed">
-                                        {item.operations.map((op) => (
-                                            <li key={op.title} className="relative pl-5 before:absolute before:top-[0.8em] before:left-0 before:h-px before:w-2 before:bg-primary">
-                                                {op.slug ? (
-                                                    <Link href={`/projects/${op.slug}`} className="underline-offset-4 hover:text-primary hover:underline">{op.title}</Link>
-                                                ) : (
-                                                    <>{op.title}</>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </Line>
-                            </div>
-                        )}
-                        {item.partners.length > 0 && (
-                            <div className="grid content-start gap-2">
-                                <Line i={i++} className="w-fit"><span className="hud-label">{t("partners")}</span></Line>
-                                <Line i={i++}>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {item.partners.map((p) => <Badge key={p} variant="secondary">{p}</Badge>)}
-                                    </div>
-                                </Line>
-                            </div>
-                        )}
                     </div>
                 )}
             </div>

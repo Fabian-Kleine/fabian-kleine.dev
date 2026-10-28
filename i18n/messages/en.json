@@ -237,7 +237,12 @@
     "items": {
       "shopware": {
         "unit": "Commerce Vanguard",
-        "summary": "Official Shopware 6 developer certifications issued by Shopware AG, covering backend development at two levels and storefront frontend development."
+        "summary": "My daily work at a Shopware agency: building and maintaining client shops and developing plugins for the Shopware Store. Backed by official Shopware 6 certifications from Shopware AG, covering backend development at two levels and storefront frontend development.",
+        "work": [
+          "Client shops at a Shopware agency (build and maintenance)",
+          "Shopware Store plugin (sole developer)",
+          "Major rewrites of two Store plugins"
+        ]
       },
       "nextjs": {
         "unit": "Full-Stack Division",

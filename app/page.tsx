@@ -19,7 +19,7 @@ import { InsigniaCase, InsigniaDossier } from "@/components/hud/insignia-case";
 import { getAllTech, getProjects, usesTech } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { config } from "@/config";
-import { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import type messages from "@/i18n/messages/en.json";
 
 const wrap = "mx-auto max-w-310 px-4";
@@ -32,6 +32,7 @@ export default async function Home() {
   const t = await getTranslations("Home");
   const tp = await getTranslations("Project");
   const ti = await getTranslations("Insignia.items");
+  const allMessages = await getMessages();
   const projects = await getProjects();
   const featured = await getProjects(config.projects.featuredProjectsSlugs);
   const archived = projects.filter((p) => !featured.some((f) => f.title === p.title));
@@ -42,13 +43,17 @@ export default async function Home() {
   const openSource = projects.filter((p) => p.github).length;
 
   const dossiers: InsigniaDossier[] = config.insignia.map((insignia) => {
-    const ops = opsFor(insignia.tech);
+    const ops = opsFor(insignia.tech).filter((p) => !p.slug || !insignia.excludeProjects?.includes(p.slug));
     const certificates = insignia.certificateIssuer
       ? config.certificates.filter((c) => c.issuer === insignia.certificateIssuer)
       : [];
-    const partners = [...new Set(ops.flatMap((p) => p.techs ?? []).filter((tech) => tech.icon !== insignia.tech).map((tech) => tech.name))];
+    const partners = [...ops.flatMap((p) => p.techs ?? []), ...insignia.extraPartners ?? []]
+      .filter((tech, i, all) => tech.icon !== insignia.tech && !insignia.excludePartners?.includes(tech.icon) && all.findIndex((other) => other.icon === tech.icon) === i);
     const id = insignia.id as InsigniaId;
     const copy = { unit: ti(`${id}.unit`), summary: ti(`${id}.summary`) };
+    // optional `work` list in messages: professional work listed under "Deployed in" ahead of the portfolio projects
+    const item = allMessages.Insignia.items[id];
+    const work = "work" in item ? item.work.map((title) => ({ title })) : [];
 
     if (certificates.length > 0) {
       const count = (track: string) => certificates.filter((c) => c.name.includes(track)).length;
@@ -59,7 +64,7 @@ export default async function Home() {
         stats: [[pad(certificates.length), t("insignia.certifications")], [pad(count("Backend")), t("insignia.backend")], [pad(count("Frontend")), t("insignia.frontend")]],
         certificates,
         partners,
-        operations: ops,
+        operations: [...work, ...ops],
       };
     }
     return {
@@ -70,7 +75,7 @@ export default async function Home() {
       meter: { label: t("insignia.share"), value: `${ops.length} / ${projects.length}`, percent: ops.length / projects.length * 100 },
       certificates,
       partners,
-      operations: ops,
+      operations: [...work, ...ops],
     };
   });
 

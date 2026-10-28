@@ -50,6 +50,12 @@ export interface Insignia {
     tech: string;
     /** shows the certificates issued by this issuer inside the insignia dossier */
     certificateIssuer?: string;
+    /** project slugs left out of this dossier even though they use its tech */
+    excludeProjects?: string[];
+    /** SimpleIcons slugs hidden from the field partners even though its projects use them */
+    excludePartners?: string[];
+    /** listed as field partners on top of the techs found in its projects */
+    extraPartners?: { name: string; icon: string }[];
 }
 
 export const config: Config = {
@@ -161,6 +167,12 @@ export const config: Config = {
             width: 608,
             height: 640,
             tech: "next.js",
+            excludeProjects: ["mywishlists"],
+            extraPartners: [
+                { name: "TypeScript", icon: "typescript" },
+                { name: "Vercel", icon: "vercel" },
+                { name: "Prisma", icon: "prisma" },
+            ],
         },
         {
             id: "react",
@@ -169,6 +181,12 @@ export const config: Config = {
             width: 556,
             height: 640,
             tech: "react",
+            excludePartners: ["vue.js"],
+            extraPartners: [
+                { name: "Expo", icon: "expo" },
+                { name: "Shadcn UI", icon: "shadcnui" },
+                { name: "TypeScript", icon: "typescript" },
+            ],
         },
     ],
     cookies: {

@@ -144,7 +144,7 @@
       "open": "Offen für neue Projekte",
       "intro": "Ich mache gerade meine Ausbildung und habe mir das Programmieren selbst beigebracht. Hauptsächlich baue ich moderne, barrierefreie Webanwendungen mit sauberem Code und einer guten User Experience.",
       "viewOperations": "Projekte ansehen",
-      "openComms": "Kanal öffnen"
+      "openComms": "Funk öffnen"
     },
     "stats": {
       "label": "Kennzahlen",
@@ -237,7 +237,12 @@
     "items": {
       "shopware": {
         "unit": "Commerce-Vorhut",
-        "summary": "Offiziell zertifiziert von der Shopware AG: Backend-Entwicklung auf zwei Stufen und Frontend-Entwicklung für die Storefront."
+        "summary": "Mein Arbeitsalltag in einer Shopware-Agentur: Kundenshops aufbauen und betreuen sowie Plugins für den Shopware Store entwickeln. Dazu offiziell zertifiziert von der Shopware AG: Backend-Entwicklung auf zwei Stufen und Frontend-Entwicklung für die Storefront.",
+        "work": [
+          "Kundenshops in einer Shopware-Agentur (Aufbau und Betreuung)",
+          "Shopware-Store-Plugin (eigenständig entwickelt)",
+          "Umfassende Neuentwicklung von zwei Store-Plugins"
+        ]
       },
       "nextjs": {
         "unit": "Full-Stack Division",
