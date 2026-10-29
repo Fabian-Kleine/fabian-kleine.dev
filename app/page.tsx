@@ -12,6 +12,7 @@ import { ScrambleText } from "@/components/hud/scramble-text";
 import { CountUp } from "@/components/hud/count-up";
 import { Meter } from "@/components/hud/meter";
 import { Radar } from "@/components/hud/radar";
+import { EuropeMap } from "@/components/hud/europe-map";
 import { TechIcon } from "@/components/hud/tech-icon";
 import { LiveDot } from "@/components/hud/live-dot";
 import { StatusBadge, projectStatus } from "@/components/hud/status-badge";
@@ -326,6 +327,13 @@ export default async function Home() {
               {t("comms.text")}
             </p>
             <p className="text-muted-foreground">{t("comms.status")}</p>
+            <EuropeMap
+              className="mt-6"
+              title={t("comms.mapTitle")}
+              location={t("comms.mapLocation")}
+              coords="51.5°N // 6.4°E"
+              label={t("comms.mapLabel")}
+            />
           </div>
           <Card className="dep wipe gap-0 px-5 py-5 font-mono text-sm tracking-[0.04em]" aria-label={t("comms.details")}>
             <div className="mb-2 flex justify-between gap-4 border-b pb-3 text-[0.7rem] tracking-[0.18em] text-muted-foreground">

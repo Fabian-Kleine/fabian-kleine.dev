@@ -227,7 +227,10 @@
       "external": "EXT",
       "archive": "ARCHIVE",
       "statusKey": "STATUS",
-      "awaiting": "AWAITING TRANSMISSION"
+      "awaiting": "AWAITING TRANSMISSION",
+      "mapTitle": "Base of operations",
+      "mapLocation": "Niederrhein, DE",
+      "mapLabel": "Map of Europe with Germany highlighted and a marker on the Niederrhein region, where I live"
     }
   },
   "Insignia": {

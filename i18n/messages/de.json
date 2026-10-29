@@ -227,7 +227,10 @@
       "external": "EXT",
       "archive": "ARCHIV",
       "statusKey": "STATUS",
-      "awaiting": "WARTE AUF FUNKSPRUCH"
+      "awaiting": "WARTE AUF FUNKSPRUCH",
+      "mapTitle": "Einsatzbasis",
+      "mapLocation": "Niederrhein, DE",
+      "mapLabel": "Europakarte mit hervorgehobenem Deutschland und einer Markierung am Niederrhein, wo ich wohne"
     }
   },
   "Insignia": {
