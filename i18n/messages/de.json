@@ -303,5 +303,149 @@
         "summary": "Mein Standard fürs Styling, im Einsatz in fast jedem Projekt. Zusammen mit Shadcn UI bekomme ich barrierearme Komponenten, die als Quellcode in meinem Projekt liegen und sich an jedes Design anpassen lassen."
       }
     }
+  },
+  "Terminal": {
+    "metaTitle": "Terminal | Fabian Kleine",
+    "label": "Gesichertes Terminal",
+    "inputLabel": "Befehl",
+    "startup": {
+      "build": "KLEINE-OS SECURE SHELL // BUILD 26.10",
+      "copyright": "(C) {year} FABIAN KLEINE // ZUGRIFF BESCHRÄNKT",
+      "tty": "VERBINDE TERMINAL",
+      "handshake": "HANDSHAKE MIT UPLINK",
+      "encryption": "HANDLE VERSCHLÜSSELUNG AUS",
+      "logs": "UNTERDRÜCKE AKTIVITÄTSPROTOKOLL",
+      "partial": "TEILWEISE",
+      "clearance": "PRÜFE OPERATOR-FREIGABE",
+      "granted": "ERTEILT",
+      "welcome": "Willkommen, Operator. Dieser Kanal ist inoffiziell.",
+      "hint": "Gib <cmd>help</cmd> ein, um alle Befehle anzuzeigen."
+    },
+    "help": {
+      "title": "VERFÜGBARE BEFEHLE",
+      "hint": "Pfeil hoch/runter blättert im Verlauf, Tab vervollständigt, Strg+L leert den Bildschirm."
+    },
+    "commands": {
+      "help": "Verfügbare Befehle anzeigen",
+      "whoami": "Operator-Profil anzeigen",
+      "projects": "Alle Projekte in der Akte auflisten",
+      "open": "Einsatzbericht eines Projekts öffnen",
+      "stack": "Ausrüstung und Kenntnisstand anzeigen",
+      "date": "Datum und Uhrzeit am Standort anzeigen",
+      "echo": "Text zurückgeben",
+      "github": "GitHub-Uplink anzeigen",
+      "clear": "Bildschirm leeren",
+      "exit": "Sitzung beenden",
+      "sitrep": "Lagebericht abrufen",
+      "neofetch": "Systeminformationen anzeigen",
+      "ls": "Dateien auflisten",
+      "cat": "Datei ausgeben",
+      "contact": "Funkkanal öffnen",
+      "hire": "Rekrutierungsprotokoll starten",
+      "remote-access": "Fernzugriff auf einen Host erlangen",
+      "lang": "Sprache wechseln",
+      "theme": "Farbschema ändern"
+    },
+    "whoami": {
+      "role": "Rolle",
+      "roleValue": "Webentwickler",
+      "rank": "Rang",
+      "rankValue": "Auszubildender @ Shopware-Agentur",
+      "base": "Standort",
+      "baseValue": "Niederrhein, Deutschland",
+      "status": "Status",
+      "statusValue": "Offen für neue Möglichkeiten"
+    },
+    "projects": {
+      "title": "{count} PROJEKTE IN DER AKTE",
+      "hint": "Mit <cmd>open SLUG</cmd> öffnest du einen Einsatzbericht."
+    },
+    "open": {
+      "usage": "Verwendung: <cmd>open SLUG</cmd>",
+      "notFound": "open: kein Projekt namens \"{slug}\"",
+      "opening": "Entschlüssle Einsatzbericht {slug} ..."
+    },
+    "stack": {
+      "title": "AUSRÜSTUNG // {count} EINTRÄGE"
+    },
+    "exit": "Beende gesicherte Sitzung ...",
+    "sudo": "Zugriff verweigert. Dieser Vorfall wird gemeldet.",
+    "notFound": "Befehl nicht gefunden: {command}",
+    "status": {
+      "session": "KLEINE-OS // SECURE SHELL",
+      "exit": "zum Beenden"
+    },
+    "sitrep": {
+      "title": "LAGEBERICHT // {date}",
+      "time": "Ortszeit am Standort",
+      "operations": "Projekte",
+      "operationsValue": "{total} in der Akte // {live} live // {source} nur Quellcode // {offline} offline",
+      "posting": "Aktueller Posten",
+      "readiness": "Einsatzbereitschaft",
+      "threat": "Bedrohungsstufe",
+      "threatValue": "NIEDRIG // Kaffeevorrat bei {coffee}%",
+      "action": "Empfohlene Maßnahme: <cmd>hire</cmd>"
+    },
+    "hire": {
+      "init": "STARTE REKRUTIERUNGSPROTOKOLL",
+      "credentials": "PRÜFE RECRUITER-AUSWEIS",
+      "channel": "VERSCHLÜSSLE FUNKKANAL",
+      "operator": "BEREITE OPERATOR AUF EINSATZ VOR",
+      "ready": "BEREIT",
+      "done": "Kanal offen. Ich stelle durch ...",
+      "subject": "Jobangebot (über das geheime Terminal)",
+      "message": "Hallo Fabian,\n\nich habe das geheime Terminal gefunden und würde gern über eine Gelegenheit sprechen.\n\nRolle / Projekt: \nZeitrahmen: \nStandort / remote: \n\nViele Grüße"
+    },
+    "remote": {
+      "connecting": "Verbinde mit {host}:22 ...",
+      "ports": "SCANNE OFFENE PORTS",
+      "firewall": "UMGEHE FIREWALL",
+      "hash": "KNACKE PASSWORT-HASH",
+      "trace": "WEICHE RÜCKVERFOLGUNG AUS",
+      "traceStatus": "GEFÄLSCHT",
+      "payload": "SCHLEUSE PAYLOAD EIN",
+      "granted": "Zugriff gewährt",
+      "punchline": "Du hast jetzt vollen Zugriff auf ... ein Portfolio. Glückwunsch. Gerüchten zufolge ist .secrets jetzt entschlüsselt."
+    },
+    "rm": {
+      "selfDestruct": "LEITE SELBSTZERSTÖRUNG EIN",
+      "armed": "SCHARF",
+      "auth": "Die Selbstzerstörung erfordert die Freigabe von zwei Operatoren.",
+      "second": "Zweiter Operator nicht gefunden. Abbruch. Netter Versuch.",
+      "missing": "rm: Operand fehlt",
+      "readOnly": "rm: \"{path}\" kann nicht entfernt werden: schreibgeschütztes Dateisystem"
+    },
+    "theme": {
+      "current": "Aktuelles Farbschema: tactical-dark",
+      "usage": "Verwendung: <cmd>theme THEME</cmd>",
+      "dark": "Tactical Dark ist bereits aktiv. Wie es sich gehört.",
+      "light": "Der Light Mode ist Verschlusssache. Deine Netzhaut dankt dir.",
+      "unknown": "theme: unbekanntes Farbschema \"{theme}\""
+    },
+    "ls": {
+      "notFound": "ls: Zugriff auf \"{path}\" nicht möglich: Datei oder Verzeichnis nicht gefunden"
+    },
+    "cat": {
+      "usage": "Verwendung: <cmd>cat DATEI</cmd>",
+      "directory": "cat: {path}: ist ein Verzeichnis",
+      "notFound": "cat: {path}: Datei oder Verzeichnis nicht gefunden",
+      "encrypted": "cat: .secrets: Datei ist verschlüsselt",
+      "clearance": "Freigabe unzureichend. Versuch es vielleicht erst mit <cmd>remote-access</cmd>.",
+      "project": "Vollständiger Bericht: <cmd>open {slug}</cmd>"
+    },
+    "files": {
+      "contact": "Funkkanal: <cmd>contact</cmd> ausführen. Eilig? <cmd>hire</cmd> spart den Small Talk."
+    },
+    "secrets": {
+      "title": "ENTSCHLÜSSELT // .secrets",
+      "list": "1. Ich google immer noch, wie man ein div zentriert. Jedes Mal.\n2. Dieses Terminal war das Feature, das am meisten Spaß gemacht hat.\n3. Dark Mode ist keine Vorliebe. Es ist eine Lebenseinstellung."
+    },
+    "lang": {
+      "current": "Aktuelle Sprache: {locale} // verfügbar: {available}",
+      "unknown": "lang: unbekannte Sprache \"{locale}\"",
+      "active": "{name} ist bereits aktiv.",
+      "switching": "Wechsle zu {name} ..."
+    },
+    "contact": "Öffne Funkkanal ..."
   }
 }

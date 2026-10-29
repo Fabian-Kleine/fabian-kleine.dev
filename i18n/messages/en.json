@@ -303,5 +303,149 @@
         "summary": "My default for styling, used in nearly every project. Paired with Shadcn UI, I get accessible components that live as source code in my project and can be shaped to fit any design."
       }
     }
+  },
+  "Terminal": {
+    "metaTitle": "Terminal | Fabian Kleine",
+    "label": "Secure terminal",
+    "inputLabel": "Command",
+    "startup": {
+      "build": "KLEINE-OS SECURE SHELL // BUILD 26.10",
+      "copyright": "(C) {year} FABIAN KLEINE // RESTRICTED ACCESS",
+      "tty": "ATTACH TERMINAL",
+      "handshake": "HANDSHAKE WITH UPLINK",
+      "encryption": "NEGOTIATE ENCRYPTION",
+      "logs": "SUPPRESS ACTIVITY LOG",
+      "partial": "PARTIAL",
+      "clearance": "CHECK OPERATOR CLEARANCE",
+      "granted": "GRANTED",
+      "welcome": "Welcome, operator. This channel is off the record.",
+      "hint": "Type <cmd>help</cmd> for a list of commands."
+    },
+    "help": {
+      "title": "AVAILABLE COMMANDS",
+      "hint": "Arrow up/down browses the history, Tab completes, Ctrl+L clears the screen."
+    },
+    "commands": {
+      "help": "List available commands",
+      "whoami": "Show the operator profile",
+      "projects": "List all operations on file",
+      "open": "Open the debrief of an operation",
+      "stack": "Show the loadout and proficiency",
+      "date": "Show date and time at base",
+      "echo": "Print text back",
+      "github": "Show the GitHub uplink",
+      "clear": "Clear the screen",
+      "exit": "Close the session",
+      "sitrep": "Get a situation report",
+      "neofetch": "Show system information",
+      "ls": "List files",
+      "cat": "Print a file",
+      "contact": "Open the comms channel",
+      "hire": "Start the recruitment protocol",
+      "remote-access": "Gain remote access to a host",
+      "lang": "Switch the language",
+      "theme": "Change the color theme"
+    },
+    "whoami": {
+      "role": "Role",
+      "roleValue": "Web developer",
+      "rank": "Rank",
+      "rankValue": "Apprentice @ Shopware agency",
+      "base": "Base",
+      "baseValue": "Niederrhein, Germany",
+      "status": "Status",
+      "statusValue": "Open to opportunities"
+    },
+    "projects": {
+      "title": "{count} OPERATIONS ON FILE",
+      "hint": "Run <cmd>open SLUG</cmd> to read a debrief."
+    },
+    "open": {
+      "usage": "usage: <cmd>open SLUG</cmd>",
+      "notFound": "open: no operation named \"{slug}\"",
+      "opening": "Decrypting debrief {slug} ..."
+    },
+    "stack": {
+      "title": "LOADOUT // {count} ITEMS"
+    },
+    "exit": "Closing secure session ...",
+    "sudo": "Permission denied. This incident will be reported.",
+    "notFound": "command not found: {command}",
+    "status": {
+      "session": "KLEINE-OS // SECURE SHELL",
+      "exit": "to exit"
+    },
+    "sitrep": {
+      "title": "SITREP // {date}",
+      "time": "Local time at base",
+      "operations": "Operations",
+      "operationsValue": "{total} on file // {live} live // {source} source only // {offline} offline",
+      "posting": "Current posting",
+      "readiness": "Readiness",
+      "threat": "Threat level",
+      "threatValue": "LOW // coffee reserves at {coffee}%",
+      "action": "Recommended action: <cmd>hire</cmd>"
+    },
+    "hire": {
+      "init": "INITIATING RECRUITMENT PROTOCOL",
+      "credentials": "VERIFY RECRUITER CREDENTIALS",
+      "channel": "ENCRYPT COMMS CHANNEL",
+      "operator": "PREPARE OPERATOR FOR DEPLOYMENT",
+      "ready": "READY",
+      "done": "Channel open. Patching you through ...",
+      "subject": "Job opportunity (via the secret terminal)",
+      "message": "Hi Fabian,\n\nI found the secret terminal and would like to talk about an opportunity.\n\nRole / project: \nTimeline: \nLocation / remote: \n\nBest regards"
+    },
+    "remote": {
+      "connecting": "Connecting to {host}:22 ...",
+      "ports": "SCAN OPEN PORTS",
+      "firewall": "BYPASS FIREWALL",
+      "hash": "CRACK PASSWORD HASH",
+      "trace": "EVADE TRACE",
+      "traceStatus": "SPOOFED",
+      "payload": "INJECT PAYLOAD",
+      "granted": "Access granted",
+      "punchline": "You now have full access to ... a portfolio. Congratulations. Rumor has it .secrets just got decrypted."
+    },
+    "rm": {
+      "selfDestruct": "INITIATE SELF-DESTRUCT",
+      "armed": "ARMED",
+      "auth": "Self-destruct requires authorization from two operators.",
+      "second": "Second operator not found. Aborting. Nice try.",
+      "missing": "rm: missing operand",
+      "readOnly": "rm: cannot remove \"{path}\": read-only file system"
+    },
+    "theme": {
+      "current": "Current theme: tactical-dark",
+      "usage": "usage: <cmd>theme THEME</cmd>",
+      "dark": "Tactical dark is already active. As it should be.",
+      "light": "Light mode is classified. Your retinas thank you.",
+      "unknown": "theme: unknown theme \"{theme}\""
+    },
+    "ls": {
+      "notFound": "ls: cannot access \"{path}\": no such file or directory"
+    },
+    "cat": {
+      "usage": "usage: <cmd>cat FILE</cmd>",
+      "directory": "cat: {path}: is a directory",
+      "notFound": "cat: {path}: no such file or directory",
+      "encrypted": "cat: .secrets: file is encrypted",
+      "clearance": "Clearance insufficient. Maybe try <cmd>remote-access</cmd> first.",
+      "project": "Full debrief: <cmd>open {slug}</cmd>"
+    },
+    "files": {
+      "contact": "Comms channel: run <cmd>contact</cmd>. In a hurry? <cmd>hire</cmd> skips the small talk."
+    },
+    "secrets": {
+      "title": "DECRYPTED // .secrets",
+      "list": "1. I still google how to center a div. Every time.\n2. This terminal was the most fun feature to build.\n3. Dark mode is not a preference. It is a lifestyle."
+    },
+    "lang": {
+      "current": "Current language: {locale} // available: {available}",
+      "unknown": "lang: unknown language \"{locale}\"",
+      "active": "{name} is already active.",
+      "switching": "Switching to {name} ..."
+    },
+    "contact": "Opening comms channel ..."
   }
 }

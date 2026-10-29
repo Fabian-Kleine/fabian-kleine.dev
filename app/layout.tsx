@@ -8,6 +8,7 @@ import { ConsentBanner } from "@/components/consent-banner";
 import { HudBackground } from "@/components/hud/hud-background";
 import { BootLine, BootSequence } from "@/components/hud/boot-sequence";
 import { RevealOnView } from "@/components/hud/reveal-on-view";
+import { TerminalHotkey } from "@/components/hud/terminal-hotkey";
 import { bootScript } from "@/lib/hud";
 import { getAllTech } from "@/lib/projects";
 import { config } from "@/config";
@@ -69,6 +70,7 @@ export default async function RootLayout({
           <ConsentBanner />
           <BootSequence lines={bootLines} />
           <RevealOnView />
+          <TerminalHotkey />
         </NextIntlClientProvider>
         <AnalyticsWrapper />
       </body>

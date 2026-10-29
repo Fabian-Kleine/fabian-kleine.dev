@@ -16,7 +16,7 @@ export interface BootLine {
 
 const STAGES = ["decrypting", "stack", "operations", "deploying"] as const;
 
-function LogLine({ line }: { line: BootLine }) {
+export function LogLine({ line }: { line: BootLine }) {
     const [showStatus, setShowStatus] = useState(false);
 
     useEffect(() => {

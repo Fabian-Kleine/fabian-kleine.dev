@@ -76,7 +76,16 @@ export const useContactDialogStore = create<ContactDialogStore>((set) => ({
     setCompleted: (completed) => set({ completed }),
 }));
 
-export default function ContactDialog({ children }: { children: ReactNode }) {
+interface ContactDialogProps {
+    children?: ReactNode;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    /** without a trigger there is nothing to return focus to, so the caller picks the target */
+    onCloseAutoFocus?: (event: Event) => void;
+}
+
+/** opened by its `children` as trigger, or controlled through `open` when there is none (the terminal) */
+export default function ContactDialog({ children, open, onOpenChange, onCloseAutoFocus }: ContactDialogProps) {
     const t = useTranslations("Contact");
     const {
         name,
@@ -178,9 +187,9 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
     };
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            {children && <DialogTrigger asChild>{children}</DialogTrigger>}
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto" onCloseAutoFocus={onCloseAutoFocus}>
                 <DialogHeader>
                     <DialogTitle className="tracking-tight text-3xl">{t("title")}</DialogTitle>
                     {!completed && !isLoading && (
