@@ -1,9 +1,7 @@
 "use client";
 
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
+import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupTextarea } from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import {
     Dialog,
     DialogContent,
@@ -19,9 +17,8 @@ import { Button } from "@/components/ui/button"
 import { ReactNode } from "react"
 import { useTranslations } from "next-intl";
 import { z } from "zod";
-import { LoaderCircle, Send } from "lucide-react";
+import { BookType, LoaderCircle, Mail, MessageSquare, Send, User } from "lucide-react";
 import { create } from "zustand";
-import IconInput from "./ui/icon-input";
 import { Checkbox } from "./ui/checkbox";
 import { TypographyLink } from "./blog/typography";
 
@@ -195,52 +192,66 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
                 {!completed && !isLoading && (
                     <div className="flex flex-col gap-4 w-full">
                         <Label htmlFor="name" className="text-sm font-medium">{t("name")}</Label>
-                        <IconInput icon="User">
-                            <Input
+                        <InputGroup>
+                            <InputGroupInput
                                 id="name"
                                 placeholder={t("namePlaceholder")}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 disabled={isLoading}
                                 autoComplete="name"
-                                className={cn(nameError && "border-red-500")}
+                                aria-invalid={nameError}
                             />
-                        </IconInput>
+                            <InputGroupAddon>
+                                <User />
+                            </InputGroupAddon>
+                        </InputGroup>
                         <Label htmlFor="email" className="text-sm font-medium">{t("email")}</Label>
-                        <IconInput icon="Mail">
-                            <Input
+                        <InputGroup>
+                            <InputGroupInput
                                 id="email"
+                                type="email"
                                 placeholder={t("emailPlaceholder")}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 disabled={isLoading}
                                 autoComplete="email"
-                                className={cn(emailError && "border-red-500")}
+                                aria-invalid={emailError}
                             />
-                        </IconInput>
+                            <InputGroupAddon>
+                                <Mail />
+                            </InputGroupAddon>
+                        </InputGroup>
                         <Label htmlFor="subject" className="text-sm font-medium">{t("subject")}</Label>
-                        <IconInput icon="BookType">
-                            <Input
+                        <InputGroup>
+                            <InputGroupInput
                                 id="subject"
                                 placeholder={t("subjectPlaceholder")}
                                 value={subject}
                                 onChange={(e) => setSubject(e.target.value)}
                                 disabled={isLoading}
-                                className={cn(subjectError && "border-red-500")}
+                                aria-invalid={subjectError}
                             />
-                        </IconInput>
+                            <InputGroupAddon>
+                                <BookType />
+                            </InputGroupAddon>
+                        </InputGroup>
                         <Label htmlFor="message" className="text-sm font-medium">{t("message")}</Label>
-                        <IconInput icon="MessageSquare">
-                            <Textarea
+                        <InputGroup>
+                            <InputGroupTextarea
                                 id="message"
                                 placeholder={t("messagePlaceholder")}
                                 rows={4}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 disabled={isLoading}
-                                className={cn(messageError && "border-red-500")}
+                                aria-invalid={messageError}
                             />
-                        </IconInput>
+                            {/* pinned to the first line instead of centered on the textarea */}
+                            <InputGroupAddon className="self-start pt-2.5">
+                                <MessageSquare />
+                            </InputGroupAddon>
+                        </InputGroup>
                         <div className="flex justify-center items-center space-x-2">
                             <Checkbox checked={privacyPolicy} onCheckedChange={setPrivacyPolicy} id="terms" />
                             <Label htmlFor="terms" className="block">
