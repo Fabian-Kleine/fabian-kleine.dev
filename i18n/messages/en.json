@@ -100,6 +100,7 @@
     "sector": "Sector: {list}",
     "live": "Live",
     "source": "Source",
+    "offline": "Offline",
     "viewProject": "View project",
     "liveDemo": "Live demo"
   },
@@ -112,6 +113,7 @@
     "opId": "OP-{id}",
     "live": "Live",
     "sourceOnly": "Source only",
+    "offline": "Offline",
     "openSource": "Open source",
     "liveDemo": "Live Demo",
     "viewCode": "View Code",

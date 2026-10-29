@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils";
 import { prefersReducedMotion, pulse, readToken } from "@/lib/hud";
 import type { Certificate, Insignia } from "@/config";
 
+const OPEN_INSIGNIA_EVENT = "hud:open-insignia";
+
 export interface InsigniaDossier extends Insignia {
     unit: string;
     summary: string;
@@ -241,6 +243,30 @@ function Dossier({ item, landed, imageRef }: { item: InsigniaDossier; landed: bo
     );
 }
 
+/** smooth scrolls to the insignia case, then opens the dossier of insignia `id` */
+export function InsigniaLink({ id, className, children }: { id?: string; className?: string; children: React.ReactNode }) {
+    const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const section = document.getElementById("insignia");
+        if (!section) return;
+        e.preventDefault();
+        const margin = parseFloat(getComputedStyle(section).scrollMarginTop) || 0;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const top = Math.min(max, Math.round(section.getBoundingClientRect().top + window.scrollY - margin));
+        const request = () => {
+            if (id) window.dispatchEvent(new CustomEvent(OPEN_INSIGNIA_EVENT, { detail: id }));
+        };
+        if (Math.abs(top - window.scrollY) < 2) return request();
+
+        // the badge flight measures the case, so the dossier only opens once scrolling has stopped
+        const done = () => { window.removeEventListener("scrollend", done); request(); };
+        if ("onscrollend" in window) window.addEventListener("scrollend", done);
+        else setTimeout(done, 1000);
+        window.scrollTo({ top, behavior: prefersReducedMotion() ? "instant" : "smooth" });
+    };
+
+    return <a href="#insignia" onClick={onClick} className={className}>{children}</a>;
+}
+
 export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
     const t = useTranslations("Insignia");
     const [active, setActive] = useState<string | null>(null);
@@ -254,6 +280,7 @@ export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
     const dossierImage = useRef<HTMLImageElement | null>(null);
     const takeoff = useRef<{ from: DOMRect; src: string } | null>(null);
     const busy = useRef(false);
+    const caseRef = useRef<HTMLDivElement>(null);
     const item = items.find((it) => it.id === (active ?? shown));
 
     const open = (id: string) => {
@@ -270,6 +297,23 @@ export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
         takeoff.current = { from: source.getBoundingClientRect(), src: source.currentSrc || source.src };
         setLifted(id);
     };
+
+    const openRef = useRef(open);
+    useEffect(() => {
+        openRef.current = open;
+    });
+
+    // InsigniaLink asks for a dossier, which opens once the case has finished building up
+    useEffect(() => {
+        const onRequest = async (e: Event) => {
+            await new Promise(requestAnimationFrame);
+            const animations = caseRef.current?.closest(".dep")?.getAnimations() ?? [];
+            await Promise.all(animations.map((a) => a.finished.catch(() => {})));
+            openRef.current((e as CustomEvent<string>).detail);
+        };
+        window.addEventListener(OPEN_INSIGNIA_EVENT, onRequest);
+        return () => window.removeEventListener(OPEN_INSIGNIA_EVENT, onRequest);
+    }, []);
 
     // the dossier image mounts inside the dialog portal, so measure it once it exists and fly there
     const attachDossierImage = useCallback((el: HTMLImageElement | null) => {
@@ -303,7 +347,7 @@ export function InsigniaCase({ items }: { items: InsigniaDossier[] }) {
 
     return (
         <>
-            <Card className="grid grid-cols-3 overflow-visible gap-[clamp(.4rem,3vw,2.5rem)] bg-[radial-gradient(70%_90%_at_50%_100%,color-mix(in_oklab,var(--glow)_28%,transparent),transparent_70%)] px-[clamp(.6rem,3vw,2.2rem)] py-[clamp(1.2rem,3vw,2.2rem)]">
+            <Card ref={caseRef} className="grid grid-cols-3 overflow-visible gap-[clamp(.4rem,3vw,2.5rem)] bg-[radial-gradient(70%_90%_at_50%_100%,color-mix(in_oklab,var(--glow)_28%,transparent),transparent_70%)] px-[clamp(.6rem,3vw,2.2rem)] py-[clamp(1.2rem,3vw,2.2rem)]">
                 {items.map((it) => (
                     <CardContent key={it.id} className={cn("px-0", it.operator && "insig-operator")}>
                         {it.operator && (

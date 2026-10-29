@@ -7,6 +7,7 @@ import AnalyticsWrapper from "@/components/analytics";
 import { ConsentBanner } from "@/components/consent-banner";
 import { HudBackground } from "@/components/hud/hud-background";
 import { BootLine, BootSequence } from "@/components/hud/boot-sequence";
+import { RevealOnView } from "@/components/hud/reveal-on-view";
 import { bootScript } from "@/lib/hud";
 import { getAllTech } from "@/lib/projects";
 import { config } from "@/config";
@@ -67,6 +68,7 @@ export default async function RootLayout({
           <Footer />
           <ConsentBanner />
           <BootSequence lines={bootLines} />
+          <RevealOnView />
         </NextIntlClientProvider>
         <AnalyticsWrapper />
       </body>

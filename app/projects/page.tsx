@@ -24,7 +24,6 @@ export default async function Projects() {
                         key={index}
                         metadata={project}
                         className="dep"
-                        style={{ "--d": index + 1 } as React.CSSProperties}
                     />
                 ))}
             </div>

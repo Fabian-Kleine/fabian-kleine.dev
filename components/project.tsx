@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import { SimpleIconsTag } from "./ui/simpleicons-tag";
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import GithubIcon from "./icons/github";
 import Link from "next/link";
 import ImageVideo from "./blog/image-video";
+import { StatusBadge, projectStatus } from "./hud/status-badge";
 import { ProjectMetaData } from "@/types";
 import { useTranslations } from "next-intl";
 
@@ -24,6 +24,7 @@ export default function Project({ className, style, metadata, title, img, video,
     const projectDemo = demo || metadata?.demo;
     const projectGithub = github || metadata?.github;
     const projectSlug = slug || metadata?.slug;
+    const status = projectStatus({ demo: projectDemo, github: projectGithub });
     const t = useTranslations("Project");
 
     return (
@@ -42,7 +43,7 @@ export default function Project({ className, style, metadata, title, img, video,
                     </CardTitle>
                     <CardDescription>{t("sector", { list: projectTechs.slice(0, 2).map((tech) => tech.name).join(" / ") })}</CardDescription>
                     <CardAction>
-                        {projectDemo ? <Badge>{t("live")}</Badge> : <Badge variant="outline">{t("source")}</Badge>}
+                        <StatusBadge status={status}>{t(status)}</StatusBadge>
                     </CardAction>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">

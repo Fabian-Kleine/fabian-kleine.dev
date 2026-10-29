@@ -302,8 +302,10 @@ html[data-bg-in] .hud-beam { animation: beam 1.1s cubic-bezier(.6, 0, .3, 1) bot
 /* ================= HUD: interface build-up ================= */
 html[data-deployed] [data-hud-chrome="header"] { animation: hdrIn .6s cubic-bezier(.2, .8, .2, 1) backwards; }
 @keyframes hdrIn { 0% { transform: translateY(-100%); opacity: 0; } 100% { transform: none; opacity: 1; } }
-html[data-deployed] .dep { animation: dep .7s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--d, 0) * 90ms); }
-html[data-deployed] .dep.wipe { animation-name: wipe; animation-duration: .75s; }
+/* blocks wait until they scroll into view, RevealOnView sets data-inview and the stagger index --d */
+html[data-deployed] .dep:not([data-inview]) { opacity: 0; }
+html[data-deployed] .dep[data-inview] { animation: dep .7s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--d, 0) * 90ms); }
+html[data-deployed] .dep.wipe[data-inview] { animation-name: wipe; animation-duration: .75s; }
 @keyframes dep {
   0% { opacity: 0; transform: translateY(14px); clip-path: inset(0 0 100% 0); }
   60% { opacity: 1; clip-path: inset(0 0 0 0); }

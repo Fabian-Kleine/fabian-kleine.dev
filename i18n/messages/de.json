@@ -100,6 +100,7 @@
     "sector": "Einsatzgebiet: {list}",
     "live": "Live",
     "source": "Quellcode",
+    "offline": "Offline",
     "viewProject": "Zum Projekt",
     "liveDemo": "Live-Demo"
   },
@@ -112,6 +113,7 @@
     "opId": "OP-{id}",
     "live": "Live",
     "sourceOnly": "Nur Quellcode",
+    "offline": "Offline",
     "openSource": "Open Source",
     "liveDemo": "Live-Demo",
     "viewCode": "Zum Quellcode",

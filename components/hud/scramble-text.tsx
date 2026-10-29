@@ -6,7 +6,8 @@ import { prefersReducedMotion } from "@/lib/hud";
 import { useOnDeploy } from "@/hooks/use-on-deploy";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/<>";
-const noise = (s: string) => s.replace(/./g, () => CHARS[Math.random() * CHARS.length | 0]);
+// keeps whitespace so multi-word text wraps the same while decoding
+const noise = (s: string) => s.replace(/\S/g, () => CHARS[Math.random() * CHARS.length | 0]);
 
 /** glitch-able text that decodes from noise every time the interface deploys */
 export function ScrambleText({ text, delay = 0, className }: { text: string; delay?: number; className?: string }) {
