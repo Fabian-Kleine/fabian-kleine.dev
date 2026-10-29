@@ -325,6 +325,21 @@ html[data-terminal] [data-hud-chrome="footer"] { display: none; }
 /* on html, not body: html's overflow-x clip stops body's overflow from reaching the viewport */
 html[data-terminal] { overflow: hidden; }
 .terminal::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, color-mix(in oklab, var(--highlight) 4%, transparent) 0 1px, transparent 1px 3px); }
+/* `intruder`: the screen edges pulse red */
+.terminal[data-alert]::before { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 140px color-mix(in oklab, var(--destructive) 55%, transparent); animation: alertPulse 1s ease-in-out infinite; }
+@keyframes alertPulse { 50% { opacity: .3; } }
+/* `shutdown`: like a CRT the picture collapses into a line, then into a dot that fades on the black offline screen */
+.terminal.crt-off { animation: crtCollapse .35s cubic-bezier(.6, 0, .3, 1) forwards; }
+@keyframes crtCollapse {
+  0% { transform: none; filter: none; }
+  60% { transform: scaleY(.01); filter: brightness(3); }
+  100% { transform: scale(0, .004); filter: brightness(5); }
+}
+.offline { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: #000; }
+.offline::before { content: ""; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--highlight); box-shadow: 0 0 24px 6px var(--primary); animation: crtDot .5s ease-out forwards; }
+@keyframes crtDot { to { opacity: 0; transform: scale(.2); } }
+.offline-content { animation: offlineIn .7s ease .6s backwards; }
+@keyframes offlineIn { from { opacity: 0; } }
 
 /* ================= HUD: interface build-up ================= */
 html[data-deployed] [data-hud-chrome="header"] { animation: hdrIn .6s cubic-bezier(.2, .8, .2, 1) backwards; }

@@ -344,7 +344,9 @@
       "hire": "Start the recruitment protocol",
       "remote-access": "Gain remote access to a host",
       "lang": "Switch the language",
-      "theme": "Change the color theme"
+      "theme": "Change the color theme",
+      "intruder": "Trigger the intruder protocol",
+      "shutdown": "Power down the system"
     },
     "whoami": {
       "role": "Role",
@@ -446,6 +448,36 @@
       "active": "{name} is already active.",
       "switching": "Switching to {name} ..."
     },
-    "contact": "Opening comms channel ..."
+    "contact": "Opening comms channel ...",
+    "shutdown": {
+      "services": "STOP ALL SERVICES",
+      "unmount": "UNMOUNT /dev/portfolio",
+      "uplink": "DISCONNECT SATELLITE UPLINK",
+      "power": "CUT POWER",
+      "bye": "Goodbye, operator."
+    },
+    "intruder": {
+      "alert": "Intruder alert",
+      "detected": "UNAUTHORIZED ACCESS DETECTED",
+      "detectedStatus": "ALERT",
+      "trace": "TRACE INTRUDER ORIGIN",
+      "traceStatus": "127.0.0.1 (THAT'S YOU)",
+      "lockdown": "LOCK DOWN COMMS",
+      "encrypt": "ENCRYPT OPERATOR FILES",
+      "logs": "WIPE ACCESS LOGS",
+      "countermeasures": "ACTIVATE COUNTERMEASURES",
+      "armed": "ARMED",
+      "decoy": "DEPLOY DECOY PORTFOLIO",
+      "ducks": "RELEASE THE RUBBER DUCKS",
+      "selfDestruct": "INITIATE SELF-DESTRUCT",
+      "countdown": "Self-destruct in {seconds} ...",
+      "bye": "Goodbye, intruder."
+    },
+    "offline": {
+      "label": "System offline",
+      "title": "Offline",
+      "subtitle": "KLEINE-OS // SYSTEM HALTED",
+      "start": "Start system"
+    }
   }
 }

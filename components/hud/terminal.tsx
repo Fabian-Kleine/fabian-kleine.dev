@@ -7,11 +7,12 @@ import { useHotkey } from "@tanstack/react-hotkeys";
 import { useLocale, useTranslations } from "next-intl";
 import ContactDialog, { useContactDialogStore } from "@/components/contact-dialog";
 import { LogLine, type BootLine } from "@/components/hud/boot-sequence";
+import { Button } from "@/components/ui/button";
 import type { ProjectStatus } from "@/components/hud/status-badge";
 import { useOnDeploy } from "@/hooks/use-on-deploy";
 import { setLocale } from "@/i18n/actions";
 import { isLocale, locales } from "@/i18n/config";
-import { prefersReducedMotion, pulse } from "@/lib/hud";
+import { BOOT_EVENT, prefersReducedMotion, pulse } from "@/lib/hud";
 import { cn } from "@/lib/utils";
 import type { SkillLevel } from "@/config";
 
@@ -59,6 +60,8 @@ const COMMANDS = {
     echo: "echo <text>",
     github: "github",
     clear: "clear",
+    intruder: "intruder",
+    shutdown: "shutdown",
     exit: "exit",
 } as const;
 const COMMAND_NAMES = Object.keys(COMMANDS) as (keyof typeof COMMANDS)[];
@@ -117,15 +120,76 @@ function table(rows: [ReactNode, ReactNode][], labelClass = "text-muted-foregrou
     );
 }
 
-function GlitchText({ text }: { text: string }) {
+function GlitchText({ text, className }: { text: string; className?: string }) {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => pulse(ref.current, 600), []);
 
     return (
-        <div ref={ref} className="glitch my-1 font-heading text-[clamp(1.6rem,6vw,2.6rem)] leading-none tracking-[0.08em] text-heading uppercase" data-text={text}>
+        <div ref={ref} className={cn("glitch my-1 font-heading text-[clamp(1.6rem,6vw,2.6rem)] leading-none tracking-[0.08em] text-heading uppercase", className)} data-text={text}>
             {text}
         </div>
+    );
+}
+
+/** a block bar that fills up over `ms` */
+function LoadBar({ ms, blocks = 24 }: { ms: number; blocks?: number }) {
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const t0 = performance.now();
+        let raf = 0;
+        const step = (now: number) => {
+            const p = Math.min(1, (now - t0) / ms);
+            setProgress(p);
+            if (p < 1) raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(raf);
+    }, [ms]);
+
+    const filled = Math.round(progress * blocks);
+    return (
+        <span>
+            <span className="text-primary">{"■".repeat(filled)}</span>
+            <span className="text-border-strong">{"■".repeat(blocks - filled)}</span>
+            {" "}{String(Math.round(progress * 100)).padStart(3, " ")}%
+        </span>
+    );
+}
+
+/** the black screen after `shutdown` and `intruder` */
+function Offline({ onStart }: { onStart: () => void }) {
+    const t = useTranslations("Terminal.offline");
+    const titleRef = useRef<HTMLDivElement>(null);
+    const startRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        startRef.current?.focus({ preventScroll: true });
+        // the dead screen still flickers now and then
+        let timer = 0;
+        const flicker = () => {
+            pulse(titleRef.current, 260);
+            timer = window.setTimeout(flicker, 2000 + Math.random() * 3000);
+        };
+        timer = window.setTimeout(flicker, 1600);
+        return () => window.clearTimeout(timer);
+    }, []);
+
+    return (
+        <section aria-label={t("label")} className="offline">
+            <div className="offline-content grid justify-items-center gap-6 px-4 text-center">
+                <div
+                    ref={titleRef}
+                    className="glitch font-heading text-[clamp(4rem,18vw,11rem)] leading-[.85] font-extrabold tracking-[0.04em] text-heading uppercase"
+                    data-text={t("title")}
+                >
+                    {t("title")}
+                </div>
+                <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground uppercase">{t("subtitle")}</p>
+                <Button ref={startRef} variant="terminal" size="lg" className="px-6" onClick={onStart}>{t("start")}</Button>
+            </div>
+        </section>
     );
 }
 
@@ -144,6 +208,10 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
     const [contactOpen, setContactOpen] = useState(false);
     // `remote-access` decrypts .secrets
     const [cleared, setCleared] = useState(false);
+    // `intruder` turns the screen red
+    const [alert, setAlert] = useState(false);
+    // `shutdown` collapses the picture, then shows the offline screen
+    const [power, setPower] = useState<"on" | "collapsing" | "off">("on");
     const history = useRef<string[]>([]);
     // -1 is the line being typed, anything else points into history
     const historyIndex = useRef(-1);
@@ -230,7 +298,21 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
         timers.current = [];
         print(out("^C", "dim"));
         setBusy(false);
+        setAlert(false);
     }, { enabled: busy });
+
+    const powerOff = () => {
+        setAlert(false);
+        if (prefersReducedMotion()) return setPower("off");
+        setPower("collapsing");
+        later(() => setPower("off"), 350);
+    };
+
+    // the boot sequence covers the switch to the landing page, which then builds up as on a fresh visit
+    const powerOn = () => {
+        window.dispatchEvent(new Event(BOOT_EVENT));
+        router.push("/");
+    };
 
     const execute = (command: string, args: string[]): Entry[] => {
         switch (command) {
@@ -392,6 +474,33 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
                 ], () => setCleared(true));
                 return [];
             }
+            case "shutdown":
+                stream([
+                    [log(t("shutdown.services"), "[OK]"), 0],
+                    [log(t("shutdown.unmount"), "[OK]"), 350],
+                    [log(t("shutdown.uplink"), "[OK]"), 350],
+                    [log(t("shutdown.power"), "[OK]"), 400],
+                    [out(t("shutdown.bye"), "dim"), 400],
+                ], powerOff);
+                return [];
+            case "intruder":
+                setAlert(true);
+                stream([
+                    [out(<GlitchText text={t("intruder.alert")} className="text-destructive" />), 0],
+                    [log(t("intruder.detected"), t("intruder.detectedStatus"), "warn"), 600],
+                    [log(t("intruder.trace"), t("intruder.traceStatus")), 600],
+                    [log(t("intruder.lockdown"), "[OK]"), 450],
+                    [log(t("intruder.encrypt"), "AES-256"), 450],
+                    [out(<LoadBar ms={1400} />), 100],
+                    [log(t("intruder.logs"), "[OK]"), 1550],
+                    [log(t("intruder.countermeasures"), t("intruder.armed"), "warn"), 450],
+                    [log(t("intruder.decoy"), "[OK]"), 450],
+                    [log(t("intruder.ducks"), "[OK]"), 450],
+                    [log(t("intruder.selfDestruct"), t("intruder.armed"), "warn"), 600],
+                    ...[3, 2, 1].map((seconds, i): Step => [out(t("intruder.countdown", { seconds }), "error"), i ? 1000 : 700]),
+                    [out(t("intruder.bye"), "heading"), 1000],
+                ], powerOff);
+                return [];
             case "rm": {
                 const target = args.find((arg) => !arg.startsWith("-"));
                 if (target === "/" || target === "/*") {
@@ -512,7 +621,8 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
         <>
             <section
                 aria-label={t("label")}
-                className="terminal fixed inset-0 z-40 flex flex-col bg-background/90 font-mono text-highlight"
+                data-alert={alert || undefined}
+                className={cn("terminal fixed inset-0 z-40 flex flex-col bg-background/90 font-mono text-highlight", power !== "on" && "crt-off")}
                 onClick={() => {
                     // keep text selectable, focus the prompt on a plain click
                     if (window.getSelection()?.isCollapsed) inputRef.current?.focus({ preventScroll: true });
@@ -531,7 +641,7 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
                             }
                             return <div key={i} className={cn("wrap-break-word whitespace-pre-wrap", entry.tone && TONES[entry.tone])}>{entry.node}</div>;
                         })}
-                        {ready && !busy && (
+                        {ready && !busy && power === "on" && (
                             <div className="flex items-baseline gap-[0.6em]">
                                 <span aria-hidden className="flex-none text-primary">{PROMPT}</span>
                                 <input
@@ -557,6 +667,7 @@ export function Terminal({ projects, stack, insignia }: { projects: TerminalProj
                     </div>
                 </div>
             </section>
+            {power === "off" && <Offline onStart={powerOn} />}
             {/* outside the section, its clicks would otherwise bubble up and pull focus back to the prompt */}
             <ContactDialog
                 open={contactOpen}

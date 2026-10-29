@@ -344,7 +344,9 @@
       "hire": "Rekrutierungsprotokoll starten",
       "remote-access": "Fernzugriff auf einen Host erlangen",
       "lang": "Sprache wechseln",
-      "theme": "Farbschema ändern"
+      "theme": "Farbschema ändern",
+      "intruder": "Eindringlingsprotokoll auslösen",
+      "shutdown": "System herunterfahren"
     },
     "whoami": {
       "role": "Rolle",
@@ -446,6 +448,36 @@
       "active": "{name} ist bereits aktiv.",
       "switching": "Wechsle zu {name} ..."
     },
-    "contact": "Öffne Funkkanal ..."
+    "contact": "Öffne Funkkanal ...",
+    "shutdown": {
+      "services": "BEENDE ALLE DIENSTE",
+      "unmount": "HÄNGE /dev/portfolio AUS",
+      "uplink": "TRENNE SATELLITEN-UPLINK",
+      "power": "KAPPE STROMVERSORGUNG",
+      "bye": "Auf Wiedersehen, Operator."
+    },
+    "intruder": {
+      "alert": "Eindringling erkannt",
+      "detected": "UNBEFUGTER ZUGRIFF ERKANNT",
+      "detectedStatus": "ALARM",
+      "trace": "VERFOLGE HERKUNFT DES EINDRINGLINGS",
+      "traceStatus": "127.0.0.1 (DAS BIST DU)",
+      "lockdown": "RIEGLE FUNKKANÄLE AB",
+      "encrypt": "VERSCHLÜSSLE OPERATOR-DATEIEN",
+      "logs": "LÖSCHE ZUGRIFFSPROTOKOLLE",
+      "countermeasures": "AKTIVIERE GEGENMASSNAHMEN",
+      "armed": "SCHARF",
+      "decoy": "STARTE KÖDER-PORTFOLIO",
+      "ducks": "LASSE DIE GUMMIENTEN FREI",
+      "selfDestruct": "LEITE SELBSTZERSTÖRUNG EIN",
+      "countdown": "Selbstzerstörung in {seconds} ...",
+      "bye": "Auf Wiedersehen, Eindringling."
+    },
+    "offline": {
+      "label": "System offline",
+      "title": "Offline",
+      "subtitle": "KLEINE-OS // SYSTEM ANGEHALTEN",
+      "start": "System starten"
+    }
   }
 }
