@@ -96,6 +96,16 @@
       "unknown": "An unknown error occurred"
     }
   },
+  "Media": {
+    "standby": "Video feed // standby",
+    "play": "Play",
+    "replay": "Replay",
+    "pause": "Pause",
+    "restart": "Restart",
+    "signalLost": "Signal lost",
+    "unavailable": "Video not available",
+    "external": "External media"
+  },
   "Project": {
     "sector": "Sector: {list}",
     "live": "Live",

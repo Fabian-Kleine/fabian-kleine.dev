@@ -2,12 +2,14 @@
 
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { MediaFrame } from "@/components/blog/media-frame";
 
 interface ImageComparisonProps {
     before: string;
     after: string;
     beforeLabel?: string;
     afterLabel?: string;
+    caption?: string;
     /** CSS aspect-ratio, both images are cropped to it */
     aspectRatio?: string;
     /** starting divider position in percent */
@@ -21,6 +23,7 @@ export default function ImageComparison({
     after,
     beforeLabel,
     afterLabel,
+    caption,
     aspectRatio = "16 / 9",
     initial = 50,
     width = 800,
@@ -52,55 +55,56 @@ export default function ImageComparison({
     const label = [beforeLabel, afterLabel].filter(Boolean).join(" / ") || "Image comparison";
 
     return (
-        <div
-            ref={containerRef}
-            style={{ width: `${width}px`, aspectRatio }}
-            className={cn(
-                "group relative mx-auto my-4 max-w-full select-none overflow-hidden rounded-xl border touch-pan-y",
-                dragging ? "cursor-grabbing" : "cursor-ew-resize",
-                className,
-            )}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={stopDragging}
-            onPointerCancel={stopDragging}
-        >
-            <img src={after} alt={afterLabel ?? ""} loading="lazy" draggable={false} className="absolute inset-0 size-full object-cover" />
-            <img
-                src={before}
-                alt={beforeLabel ?? ""}
-                loading="lazy"
-                draggable={false}
-                className="absolute inset-0 size-full object-cover"
-                style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-            />
+        <MediaFrame caption={caption} width={width} className={className}>
+            <div
+                ref={containerRef}
+                style={{ aspectRatio }}
+                className={cn(
+                    "group relative select-none touch-pan-y",
+                    dragging ? "cursor-grabbing" : "cursor-ew-resize",
+                )}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={stopDragging}
+                onPointerCancel={stopDragging}
+            >
+                <img src={after} alt={afterLabel ?? ""} loading="lazy" draggable={false} className="absolute inset-0 size-full object-cover" />
+                <img
+                    src={before}
+                    alt={beforeLabel ?? ""}
+                    loading="lazy"
+                    draggable={false}
+                    className="absolute inset-0 size-full object-cover"
+                    style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+                />
 
-            {beforeLabel && (
-                <ComparisonLabel className="left-3" hidden={position < 20}>{beforeLabel}</ComparisonLabel>
-            )}
-            {afterLabel && (
-                <ComparisonLabel className="right-3" hidden={position > 80}>{afterLabel}</ComparisonLabel>
-            )}
+                {beforeLabel && (
+                    <ComparisonLabel className="left-3" hidden={position < 20}>{beforeLabel}</ComparisonLabel>
+                )}
+                {afterLabel && (
+                    <ComparisonLabel className="right-3" hidden={position > 80}>{afterLabel}</ComparisonLabel>
+                )}
 
-            <div className="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-primary" style={{ left: `${position}%` }}>
-                <div className="absolute top-1/2 left-1/2 flex h-10 w-6 -translate-1/2 items-center justify-center gap-1 rounded-sm border border-primary bg-background/80 backdrop-blur-sm transition-shadow group-has-focus-visible:ring-2 group-has-focus-visible:ring-ring">
-                    <span className="h-4 w-px bg-primary" />
-                    <span className="h-4 w-px bg-primary" />
+                <div className="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-primary" style={{ left: `${position}%` }}>
+                    <div className="absolute top-1/2 left-1/2 flex h-10 w-6 -translate-1/2 items-center justify-center gap-1 rounded-sm border border-primary bg-background/80 backdrop-blur-sm transition-shadow group-has-focus-visible:ring-2 group-has-focus-visible:ring-ring">
+                        <span className="h-4 w-px bg-primary" />
+                        <span className="h-4 w-px bg-primary" />
+                    </div>
                 </div>
-            </div>
 
-            {/* keyboard and screen reader control */}
-            <input
-                type="range"
-                min={0}
-                max={100}
-                step={1}
-                value={Math.round(position)}
-                onChange={(e) => setPosition(Number(e.target.value))}
-                aria-label={label}
-                className="sr-only"
-            />
-        </div>
+                {/* keyboard and screen reader control */}
+                <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={Math.round(position)}
+                    onChange={(e) => setPosition(Number(e.target.value))}
+                    aria-label={label}
+                    className="sr-only"
+                />
+            </div>
+        </MediaFrame>
     );
 }
 

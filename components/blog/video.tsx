@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import { PlayIcon, PauseIcon, RotateCcwIcon } from "lucide-react";
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { LiveDot } from "@/components/hud/live-dot";
+import { MediaFrame } from "@/components/blog/media-frame";
 import { useTranslations } from "next-intl";
 import { isExternalUrl, setConsent, useExternalMedia } from "@/lib/consent";
 
@@ -12,6 +14,12 @@ interface VideoProps {
     width: number;
     className?: string;
 }
+
+/** 75 -> "01:15" */
+const timecode = (seconds: number) => {
+    const s = Math.floor(seconds);
+    return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+};
 
 export default function Video({ title, video, width, className }: VideoProps) {
     const externalMedia = useExternalMedia();
@@ -26,26 +34,35 @@ export default function Video({ title, video, width, className }: VideoProps) {
 
 function BlockedVideo({ title, video, width, className }: VideoProps) {
     const t = useTranslations("Consent");
+    const tm = useTranslations("Media");
 
     return (
-        <div title={title} style={{ width: `${width}px` }} className={cn("rounded-xl aspect-video max-w-full border bg-card flex flex-col items-center justify-center gap-3 p-6 text-center", className)}>
-            <p className="text-sm text-muted-foreground">{t("videoBlocked", { host: new URL(video).hostname })}</p>
-            <Button size="sm" onClick={() => setConsent("granted")}>{t("allow")}</Button>
-        </div>
+        <MediaFrame caption={title} width={width} className={className}>
+            <span className="flex aspect-video flex-col items-center justify-center gap-3 p-6 text-center">
+                <span className="hud-label">{tm("external")}</span>
+                <span className="max-w-md text-sm text-muted-foreground">{t("videoBlocked", { host: new URL(video).hostname })}</span>
+                <Button variant="terminal" size="sm" onClick={() => setConsent("granted")}>{t("allow")}</Button>
+            </span>
+        </MediaFrame>
     );
 }
 
 function VideoPlayer({ title, video, width, className }: VideoProps) {
+    const t = useTranslations("Media");
     const [isVideoError, setIsVideoError] = useState(false);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [isVideoEnded, setIsVideoEnded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [progress, setProgress] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
     const rafRef = useRef<number | null>(null);
 
     const tick = useCallback(() => {
         const el = videoRef.current;
         if (el && el.duration) {
             setProgress((el.currentTime / el.duration) * 100);
+            setCurrentTime(el.currentTime);
         }
         rafRef.current = requestAnimationFrame(tick);
     }, []);
@@ -67,6 +84,7 @@ function VideoPlayer({ title, video, width, className }: VideoProps) {
     const handlePlay = () => {
         videoRef.current?.play().catch((e) => console.error("Error playing video:", e));
         setIsVideoPlaying(true);
+        setIsVideoEnded(false);
         startRaf();
     };
 
@@ -83,55 +101,71 @@ function VideoPlayer({ title, video, width, className }: VideoProps) {
             el.play().catch((e) => console.error("Error playing video:", e));
         }
         setProgress(0);
+        setCurrentTime(0);
         setIsVideoPlaying(true);
+        setIsVideoEnded(false);
         startRaf();
     };
 
     const handleEnded = () => {
         setIsVideoPlaying(false);
+        setIsVideoEnded(true);
         setProgress(100);
         stopRaf();
     };
 
     return (
-        <div title={title} style={{ width: `${width}px` }} className={cn("rounded-xl aspect-video max-w-full object-cover object-center overflow-hidden relative", className)}>
-            <video
-                ref={videoRef}
-                className="w-full cursor-pointer"
-                src={video}
-                playsInline
-                preload="metadata"
-                onError={() => setIsVideoError(true)}
-                onEnded={handleEnded}
-                onClick={handlePause}
-            />
-            <div onClick={handlePlay} className={cn("absolute group bg-background/50 cursor-pointer inset-0 items-center justify-center transition-all duration-200 ease-out hover:bg-background/35", isVideoPlaying ? "hidden" : "flex")}>
-                <div className="flex size-28 items-center justify-center rounded-full bg-primary/10 backdrop-blur-md">
-                    <div className="flex items-center justify-center rounded-full size-20 bg-linear-to-b from-primary/30 to-primary shadow-md transition-all duration-200 ease-out group-hover:scale-[1.2]">
-                        <PlayIcon className="size-8 scale-100 fill-white text-white transition-transform duration-200 ease-out group-hover:scale-105" />
-                    </div>
-                </div>
-                <span className="sr-only">Play</span>
-            </div>
-            <div className={cn("absolute bottom-0 py-2 px-4 bg-background/35 justify-center items-center gap-2 w-full", isVideoPlaying ? "flex" : "hidden")}>
-                <Button onClick={handlePause} variant="ghost" size="icon" className="rounded-full">
-                    <PauseIcon className="size-6 fill-white text-white" />
-                    <span className="sr-only">Pause</span>
-                </Button>
-                <Button onClick={handleRestart} variant="ghost" size="icon" className="rounded-full">
-                    <RotateCcwIcon className="size-5 text-white" />
-                    <span className="sr-only">Restart</span>
-                </Button>
-                <div className="relative h-1.5 w-full rounded-full bg-white/20 overflow-hidden">
-                    <div className="h-full bg-primary" style={{ width: `${progress}%` }} />
-                </div>
-            </div>
-            <span className="sr-only">{title}</span>
-            {isVideoError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/50">
-                    <span className="text-white">Video not available</span>
-                </div>
-            )}
-        </div>
+        <MediaFrame caption={title} meta={duration ? timecode(duration) : undefined} width={width} className={className}>
+            <span className="relative block aspect-video bg-background">
+                <video
+                    ref={videoRef}
+                    className="block size-full cursor-pointer object-cover"
+                    src={video}
+                    playsInline
+                    preload="metadata"
+                    onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
+                    onError={() => setIsVideoError(true)}
+                    onEnded={handleEnded}
+                    onClick={handlePause}
+                />
+
+                {/* standby: dimmed feed with a centered play control */}
+                <span
+                    onClick={handlePlay}
+                    className={cn("absolute inset-0 cursor-pointer flex-col items-center justify-center gap-4 bg-background/60 bg-[repeating-linear-gradient(to_bottom,color-mix(in_oklab,var(--highlight)_5%,transparent)_0_1px,transparent_1px_3px)]", isVideoPlaying ? "hidden" : "flex")}
+                >
+                    <span className="absolute top-3 left-3 hud-label">{t("standby")}</span>
+                    <Button variant="signal" size="hud" className="bg-background/70 backdrop-blur-sm" onClick={(e) => { e.stopPropagation(); handlePlay(); }}>
+                        <PlayIcon className="size-4 fill-current" />
+                        {t(isVideoEnded ? "replay" : "play")}
+                    </Button>
+                </span>
+
+                <span className={cn("absolute inset-x-0 bottom-0 items-center gap-1 border-t bg-background/80 px-2 py-1.5 backdrop-blur-sm", isVideoPlaying ? "flex" : "hidden")}>
+                    <Button onClick={handlePause} variant="ghost" size="icon-sm" className="text-heading hover:text-primary">
+                        <PauseIcon className="fill-current" />
+                        <span className="sr-only">{t("pause")}</span>
+                    </Button>
+                    <Button onClick={handleRestart} variant="ghost" size="icon-sm" className="text-heading hover:text-primary">
+                        <RotateCcwIcon />
+                        <span className="sr-only">{t("restart")}</span>
+                    </Button>
+                    <LiveDot className="ml-1 text-primary" />
+                    <span className="hud-segments relative mx-2 block h-1.5 flex-1 overflow-hidden bg-muted">
+                        <span className="block h-full bg-primary" style={{ width: `${progress}%` }} />
+                    </span>
+                    <span className="hud-meta pr-1 text-[0.62rem] tabular-nums">
+                        {timecode(currentTime)} / {timecode(duration)}
+                    </span>
+                </span>
+
+                {isVideoError && (
+                    <span className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/85">
+                        <span className="hud-label text-destructive">{t("signalLost")}</span>
+                        <span className="hud-meta">{t("unavailable")}</span>
+                    </span>
+                )}
+            </span>
+        </MediaFrame>
     );
 }

@@ -193,6 +193,24 @@ html, body {
 [data-slot="card"]::before, [data-slot="dialog-content"]::before { top: 0; left: 0; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
 [data-slot="card"]::after, [data-slot="dialog-content"]::after { bottom: 0; right: 0; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
 
+/* ================= HUD: media frames ================= */
+/* brackets sit on the frame edge, outside the 1px border */
+[data-slot="media-frame"]::before,
+[data-slot="media-frame"]::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
+[data-slot="media-frame"]::before { top: -1px; left: -1px; border-top: 2px solid var(--primary); border-left: 2px solid var(--primary); }
+[data-slot="media-frame"]::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--primary); border-right: 2px solid var(--primary); }
+/* figures in a debrief are numbered */
+.debrief { counter-reset: fig; }
+.debrief .media-caption { counter-increment: fig; }
+.debrief .media-caption::before { content: "Fig. " counter(fig, decimal-leading-zero) " // "; color: var(--primary); }
+
 /* ================= HUD: atmosphere ================= */
 .hud-atmo { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .hud-atmo.mesh {
@@ -322,7 +340,8 @@ html[data-deployed] .dep.wipe[data-inview] { animation-name: wipe; animation-dur
 @keyframes tick { to { transform: translateX(-50%); } }
 
 /* ================= HUD: segmented progress ================= */
-[data-slot="progress"][data-segmented]::after {
+[data-slot="progress"][data-segmented]::after,
+.hud-segments::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--background) calc(10% - 2px) 10%);
 }

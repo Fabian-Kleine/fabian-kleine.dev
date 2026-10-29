@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
 import { TypographyBlockquote, TypographyH1, TypographyH2, TypographyH3, TypographyH4, TypographyInlineCode, TypographyLink, TypographyList, TypographyP, TypographyOrderedList } from '@/components/blog/typography';
+import { MediaFrame } from '@/components/blog/media-frame';
 import { cn } from './lib/utils'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -11,13 +12,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         p: (props) => <TypographyP {...props} />,
         ul: (props) => <TypographyList {...props} />,
         ol: (props) => <TypographyOrderedList {...props} />,
-        img: (props) => (
-          <img 
-            width={800}
-            height={800}
-            loading='lazy'
-            className={cn("rounded-xl mx-auto", props.className)}
-            {...props} />
+        img: ({ alt, ...props }) => (
+          <MediaFrame caption={alt}>
+            <img
+              width={800}
+              height={800}
+              loading='lazy'
+              alt={alt}
+              {...props}
+              className={cn("block", props.className)} />
+          </MediaFrame>
         ),
         a: ({ children, ...props }) => <TypographyLink {...props}>{children}</TypographyLink>,
         pre: (props) => <pre {...props} />,

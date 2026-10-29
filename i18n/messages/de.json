@@ -96,6 +96,16 @@
       "unknown": "Da ist etwas schiefgelaufen"
     }
   },
+  "Media": {
+    "standby": "Videofeed // Standby",
+    "play": "Abspielen",
+    "replay": "Erneut abspielen",
+    "pause": "Pausieren",
+    "restart": "Neu starten",
+    "signalLost": "Signal verloren",
+    "unavailable": "Video nicht verfügbar",
+    "external": "Externe Medien"
+  },
   "Project": {
     "sector": "Einsatzgebiet: {list}",
     "live": "Live",
