@@ -27,6 +27,8 @@ import type messages from "@/i18n/messages/en.json";
 const wrap = "mx-auto max-w-310 px-4";
 const sectionClass = cn(wrap, "scroll-mt-20 pt-[clamp(3.5rem,8vw,6rem)]");
 const pad = (n: number) => String(n).padStart(2, "0");
+const commsRow = "flex min-h-13 items-center justify-between gap-4 px-5 uppercase transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight";
+const commsRowOutline = "border-2 border-highlight text-heading hover:bg-highlight hover:text-background";
 
 type InsigniaId = keyof typeof messages.Insignia.items;
 
@@ -320,59 +322,40 @@ export default async function Home() {
       {/* ================= COMMS ================= */}
       <section id="comms" className={sectionClass} aria-labelledby="commsH">
         <SectionHeading id="commsH" eyebrow={t("comms.eyebrow")} title={t("comms.title")} meta={t("comms.meta")} className="dep" />
-        <div className="grid items-start gap-[clamp(1.5rem,4vw,3rem)] md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
-          <div className="dep">
-            <h3 className="mb-4 hud-title text-[clamp(2.2rem,5vw,3.2rem)] text-balance">{t("comms.heading")}</h3>
-            <p className="mb-4 max-w-[52ch]">
-              {t("comms.text")}
-            </p>
-            <p className="text-muted-foreground">{t("comms.status")}</p>
-            <EuropeMap
-              className="mt-6"
-              title={t("comms.mapTitle")}
-              location={t("comms.mapLocation")}
-              coords="51.5°N // 6.4°E"
-              label={t("comms.mapLabel")}
-            />
-          </div>
-          <Card className="dep wipe gap-0 px-5 py-5 font-mono text-sm tracking-[0.04em]" aria-label={t("comms.details")}>
-            <div className="mb-2 flex justify-between gap-4 border-b pb-3 text-[0.7rem] tracking-[0.18em] text-muted-foreground">
-              <span>{t("comms.channel")}</span>
-              <span className="flex items-center gap-1.5"><LiveDot className="bg-primary" />{t("comms.open")}</span>
+        <div className="dep wipe">
+          {/* inner element carries the corner cut, the wipe animation owns the outer clip-path */}
+          <div className="relative isolate overflow-hidden bg-[color-mix(in_oklab,var(--glow)_55%,var(--background))] [clip-path:polygon(0_0,calc(100%-24px)_0,100%_24px,100%_100%,24px_100%,0_calc(100%-24px))]">
+            <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-full md:w-[68%] text-highlight mask-[linear-gradient(to_right,transparent,#000_55%)]">
+              <EuropeMap label={t("comms.mapLabel")} className="size-full" />
             </div>
-            {[
-              {
-                k: t("comms.contact"),
-                v: <span className="text-heading">{t("comms.contactForm")}</span>,
-                action: (
-                  <ContactDialog>
-                    <Button variant="terminal" size="xs">{t("comms.openAction")}</Button>
-                  </ContactDialog>
-                ),
-              },
-              {
-                k: t("comms.github"),
-                v: <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer" className="text-heading hover:text-primary">github.com/Fabian-Kleine</a>,
-                action: <Badge variant="outline" aria-hidden="true">{t("comms.external")}</Badge>,
-              },
-              {
-                k: t("comms.archive"),
-                v: <Link href="/projects" className="text-heading hover:text-primary">/projects</Link>,
-                action: <Badge variant="outline" aria-hidden="true">{pad(projects.length)}</Badge>,
-              },
-              {
-                k: t("comms.statusKey"),
-                v: <span className="text-heading">{t("comms.awaiting")} <span className="inline-block h-[1em] w-[0.55em] animate-blink bg-primary align-[-0.15em]" /></span>,
-                action: null,
-              },
-            ].map((row) => (
-              <div key={row.k} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 border-b border-dashed py-2.5 last:border-b-0 sm:grid-cols-[7.5rem_minmax(0,1fr)_auto]">
-                <span className="col-span-full text-[0.72rem] tracking-[0.14em] text-muted-foreground sm:col-span-1">{row.k}</span>
-                <span className="min-w-0 wrap-anywhere">{row.v}</span>
-                {row.action}
+            <div className="grid items-end gap-x-12 gap-y-10 p-[clamp(1.75rem,6vw,4.5rem)] lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+              <div>
+                <p className="mb-5 flex items-center gap-2 font-mono text-xs font-bold tracking-[0.2em] text-highlight uppercase">
+                  <LiveDot />{t("comms.channel")}{" // "}{t("comms.open")}
+                </p>
+                <h3 className="hud-title text-[clamp(2.6rem,7vw,5.75rem)] text-balance">{t("comms.heading")}</h3>
+                <p className="mt-6 max-w-[52ch] text-lg leading-relaxed font-medium">{t("comms.text")}</p>
+                <p className="mt-3 font-mono text-sm tracking-[0.08em] text-highlight/75 uppercase">{t("comms.status")}</p>
               </div>
-            ))}
-          </Card>
+              <div className="flex flex-col gap-3 font-mono text-sm font-bold tracking-[0.14em] uppercase">
+                <ContactDialog>
+                  <button type="button" className={cn(commsRow, "bg-background text-heading hover:bg-secondary")}>
+                    {t("comms.contactForm")}<span className="text-primary">&gt;&gt;</span>
+                  </button>
+                </ContactDialog>
+                <a href="https://github.com/Fabian-Kleine" target="_blank" rel="noopener noreferrer" className={cn(commsRow, commsRowOutline)}>
+                  {t("comms.github")}<span className="flex items-center gap-2"><ExternalLink className="size-4" />&gt;&gt;</span>
+                </a>
+                <Link href="/projects" className={cn(commsRow, commsRowOutline)}>
+                  {t("comms.archive")}<span className="tabular-nums">{pad(projects.length)} &gt;&gt;</span>
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-between gap-x-6 gap-y-1 border-t border-highlight/20 px-[clamp(1.75rem,6vw,4.5rem)] py-3 font-mono text-[0.7rem] tracking-[0.16em] text-highlight uppercase">
+              <span className="flex items-center gap-2"><span aria-hidden="true" className="inline-block size-1.5 bg-current" />{t("comms.mapTitle")}{" // "}{t("comms.mapLocation")}</span>
+              <span className="opacity-75">51.5°N // 6.4°E</span>
+            </div>
+          </div>
         </div>
       </section>
     </>
