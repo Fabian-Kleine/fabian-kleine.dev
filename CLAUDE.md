@@ -30,7 +30,7 @@ Projects are MDX files in [projects/](projects/), one folder per language (`proj
 ### Key Directories
 
 - [app/](app/) — App Router pages and API routes. `app/projects/[slug]` renders MDX project pages dynamically.
-- [components/](components/) — Split into `ui/` (Shadcn base components), `magicui/` (typing animation, blur fade, bento grid), `aceternityui/` (3D marquee), `home/` (homepage sections), and root-level shared components.
+- [components/](components/) — Split into `ui/` (Shadcn base components), `hud/` (HUD-styled sections and effects), `blog/` (MDX media and typography), `icons/`, `legal/`, and root-level shared components.
 - [lib/](lib/) — Utility helpers.
 - [hooks/](hooks/) — Custom React hooks.
 - [projects/](projects/) — MDX project content files.

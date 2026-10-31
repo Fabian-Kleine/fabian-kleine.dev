@@ -1,5 +1,3 @@
-import { icons } from "lucide-react";
-
 export interface ProjectMetaData {
     img: string;
     video?: string;
@@ -14,5 +12,3 @@ export interface ProjectMetaData {
     }[];
     slug?: string;
 }
-
-export type IconName = keyof typeof icons;
