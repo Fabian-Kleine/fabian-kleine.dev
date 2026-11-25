@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [new URL("https://cdn.simpleicons.org/**")],
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    agentUpgrade: "security",
+  },
 };
 
 const withMDX = createMDX({
