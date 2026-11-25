@@ -24,6 +24,7 @@ import { create } from "zustand";
 import IconInput from "./ui/icon-input";
 import { Checkbox } from "./ui/checkbox";
 import { TypographyLink } from "./blog/typography";
+import { sendContactMessage } from "@/app/actions/contact";
 
 interface ContactDialogStore {
     name: string;
@@ -129,25 +130,10 @@ export default function ContactDialog({ children }: { children: ReactNode }) {
             setFormError("");
             setIsLoading(true);
 
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    subject,
-                    message,
-                }),
-            });
+            const result = await sendContactMessage({ name, email, subject, message });
 
-            if (!response.ok) {
-                throw new Error("Failed to send message. Please try again later.");
-            }
-
-            if (response.status !== 200) {
-                throw new Error("Failed to send message. Please try again later.");
+            if (!result.success) {
+                throw new Error(result.error);
             }
 
             setIsLoading(false);
