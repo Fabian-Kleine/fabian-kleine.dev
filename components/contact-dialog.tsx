@@ -21,6 +21,7 @@ import { BookType, LoaderCircle, Mail, MessageSquare, Send, User } from "lucide-
 import { create } from "zustand";
 import { Checkbox } from "./ui/checkbox";
 import { TypographyLink } from "./blog/typography";
+import { sendContactMessage } from "@/app/actions/contact";
 
 interface ContactDialogStore {
     name: string;
@@ -136,24 +137,9 @@ export default function ContactDialog({ children, open, onOpenChange, onCloseAut
             setFormError("");
             setIsLoading(true);
 
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    subject,
-                    message,
-                }),
-            });
+            const result = await sendContactMessage({ name, email, subject, message });
 
-            if (!response.ok) {
-                throw new Error(t("errors.sendFailed"));
-            }
-
-            if (response.status !== 200) {
+            if (!result.success) {
                 throw new Error(t("errors.sendFailed"));
             }
 

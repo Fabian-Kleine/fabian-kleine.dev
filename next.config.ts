@@ -5,6 +5,9 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    agentUpgrade: "security",
+  },
 };
 
 const withMDX = createMDX({

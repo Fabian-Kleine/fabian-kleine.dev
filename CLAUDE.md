@@ -37,7 +37,7 @@ Projects are MDX files in [projects/](projects/), one folder per language (`proj
 
 ### Contact Form
 
-`app/api/contact/route.ts` proxies form submissions to an external email service via the `PROXY_URL` environment variable. The dialog state (open/closed) is managed by Zustand in `components/contact-dialog.tsx`.
+`app/actions/contact.ts` is a server action that validates the form and sends two emails over SMTP with nodemailer (a notification to the contact inbox and a confirmation to the sender). It needs `MAIL_HOST`, `MAIL_PORT`, `MAIL_USER` and `MAIL_PASS`. The HTML templates live in `lib/mail-templates.ts`. The dialog state is managed by Zustand in `components/contact-dialog.tsx`.
 
 ### MDX Setup
 
