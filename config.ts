@@ -17,7 +17,6 @@ export const config: Config = {
     projects: {
         projectsSlugs: [
             "home-dashboard",
-            "nexus",
             "favorlist",
             "bang-search",
             "vue-vs-react",
@@ -26,7 +25,6 @@ export const config: Config = {
             "sil-touch",
             "mockup-creator",
             "postrocket",
-            "mywishlists",
             "portfolio-legacy",
             "r6-creative-hub"
         ],
